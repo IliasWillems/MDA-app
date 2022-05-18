@@ -1,0 +1,3223 @@
+,cluster,state,fips
+0,0,Colorado,08059
+1,0,Colorado,08035
+2,0,Colorado,08041
+3,0,Colorado,08037
+4,0,Colorado,08031
+5,0,Colorado,08069
+6,0,Colorado,08005
+7,0,Colorado,08051
+8,0,Colorado,08097
+9,0,Colorado,08001
+10,0,Colorado,08123
+11,0,Colorado,08117
+12,0,Colorado,08107
+13,0,Colorado,08101
+14,0,Colorado,08019
+15,0,Colorado,08077
+16,0,Colorado,08013
+17,0,Colorado,08045
+18,0,Colorado,08125
+19,0,Colorado,08087
+20,0,Colorado,08049
+21,0,Colorado,08025
+22,0,Colorado,08113
+23,0,Colorado,08093
+24,0,Colorado,08014
+25,0,Colorado,08085
+26,0,Colorado,08053
+27,0,Colorado,08039
+28,0,Colorado,08015
+29,0,Colorado,08119
+30,0,Colorado,08075
+31,0,Colorado,08067
+32,0,Colorado,08055
+33,0,Colorado,08043
+34,0,Colorado,08029
+35,0,Colorado,08089
+36,0,Colorado,08121
+37,0,Colorado,08105
+38,0,Colorado,08063
+39,0,Colorado,08073
+40,0,Colorado,08023
+41,0,Colorado,08003
+42,0,Colorado,08081
+43,0,Colorado,08009
+44,0,Colorado,08083
+45,0,Colorado,08079
+46,0,Colorado,08095
+47,0,Colorado,08007
+48,0,Colorado,08109
+49,0,Colorado,08065
+50,0,Colorado,08027
+51,0,Colorado,08103
+52,0,Colorado,08071
+53,0,Colorado,08091
+54,0,Colorado,08099
+55,0,Colorado,08047
+56,0,Colorado,08111
+57,0,Colorado,08021
+58,0,Colorado,08017
+59,0,Colorado,08011
+60,0,Colorado,08057
+61,0,Colorado,08115
+62,0,Colorado,08033
+63,0,Colorado,08061
+64,0,Connecticut,09001
+65,0,Connecticut,09005
+66,0,Connecticut,09009
+67,0,Connecticut,09003
+68,0,Connecticut,09007
+69,0,Connecticut,09015
+70,0,Connecticut,09013
+71,0,Connecticut,09011
+72,0,Delaware,10003
+73,0,Delaware,10005
+74,0,Delaware,10001
+75,0,District of Columbia,11001
+76,0,Illinois,17031
+77,0,Illinois,17111
+78,0,Illinois,17089
+79,0,Illinois,17097
+80,0,Illinois,17203
+81,0,Illinois,17163
+82,0,Illinois,17167
+83,0,Illinois,17043
+84,0,Illinois,17035
+85,0,Illinois,17201
+86,0,Illinois,17195
+87,0,Illinois,17027
+88,0,Illinois,17197
+89,0,Illinois,17143
+90,0,Illinois,17199
+91,0,Illinois,17189
+92,0,Illinois,17119
+93,0,Illinois,17099
+94,0,Illinois,17093
+95,0,Illinois,17091
+96,0,Illinois,17077
+97,0,Illinois,17113
+98,0,Illinois,17021
+99,0,Illinois,17001
+100,0,Illinois,17037
+101,0,Illinois,17177
+102,0,Illinois,17161
+103,0,Illinois,17105
+104,0,Illinois,17085
+105,0,Illinois,17019
+106,0,Illinois,17133
+107,0,Illinois,17063
+108,0,Illinois,17137
+109,0,Illinois,17123
+110,0,Illinois,17041
+111,0,Illinois,17179
+112,0,Illinois,17055
+113,0,Illinois,17075
+114,0,Illinois,17073
+115,0,Illinois,17011
+116,0,Illinois,17115
+117,0,Illinois,17051
+118,0,Illinois,17015
+119,0,Illinois,17135
+120,0,Illinois,17129
+121,0,Illinois,17095
+122,0,Illinois,17005
+123,0,Illinois,17165
+124,0,Illinois,17157
+125,0,Illinois,17121
+126,0,Illinois,17033
+127,0,Illinois,17023
+128,0,Illinois,17141
+129,0,Illinois,17053
+130,0,Illinois,17183
+131,0,Illinois,17127
+132,0,Illinois,17147
+133,0,Illinois,17139
+134,0,Illinois,17131
+135,0,Illinois,17117
+136,0,Illinois,17107
+137,0,Illinois,17083
+138,0,Illinois,17049
+139,0,Illinois,17039
+140,0,Illinois,17149
+141,0,Illinois,17125
+142,0,Illinois,17103
+143,0,Illinois,17079
+144,0,Illinois,17059
+145,0,Illinois,17013
+146,0,Illinois,17007
+147,0,Illinois,17185
+148,0,Illinois,17081
+149,0,Illinois,17173
+150,0,Illinois,17159
+151,0,Illinois,17101
+152,0,Illinois,17029
+153,0,Illinois,17175
+154,0,Illinois,17067
+155,0,Illinois,17169
+156,0,Illinois,17153
+157,0,Illinois,17061
+158,0,Illinois,17057
+159,0,Illinois,17187
+160,0,Illinois,17145
+161,0,Illinois,17109
+162,0,Illinois,17087
+163,0,Illinois,17025
+164,0,Illinois,17181
+165,0,Illinois,17003
+166,0,Illinois,17191
+167,0,Illinois,17071
+168,0,Illinois,17065
+169,0,Illinois,17193
+170,0,Illinois,17017
+171,0,Illinois,17069
+172,0,Illinois,17009
+173,0,Illinois,17151
+174,0,Illinois,17047
+175,0,Illinois,17155
+176,0,Illinois,17045
+177,0,Illinois,17171
+178,0,Indiana,18097
+179,0,Indiana,18063
+180,0,Indiana,18113
+181,0,Indiana,18011
+182,0,Indiana,18001
+183,0,Indiana,18141
+184,0,Indiana,18081
+185,0,Indiana,18067
+186,0,Indiana,18179
+187,0,Indiana,18091
+188,0,Indiana,18057
+189,0,Indiana,18043
+190,0,Indiana,18005
+191,0,Indiana,18089
+192,0,Indiana,18047
+193,0,Indiana,18095
+194,0,Indiana,18079
+195,0,Indiana,18041
+196,0,Indiana,18019
+197,0,Indiana,18177
+198,0,Indiana,18157
+199,0,Indiana,18119
+200,0,Indiana,18167
+201,0,Indiana,18163
+202,0,Indiana,18145
+203,0,Indiana,18053
+204,0,Indiana,18003
+205,0,Indiana,18175
+206,0,Indiana,18103
+207,0,Indiana,18061
+208,0,Indiana,18059
+209,0,Indiana,18039
+210,0,Indiana,18035
+211,0,Indiana,18159
+212,0,Indiana,18143
+213,0,Indiana,18137
+214,0,Indiana,18133
+215,0,Indiana,18109
+216,0,Indiana,18105
+217,0,Indiana,18037
+218,0,Indiana,18173
+219,0,Indiana,18153
+220,0,Indiana,18149
+221,0,Indiana,18127
+222,0,Indiana,18115
+223,0,Indiana,18107
+224,0,Indiana,18093
+225,0,Indiana,18071
+226,0,Indiana,18051
+227,0,Indiana,18031
+228,0,Indiana,18029
+229,0,Indiana,18013
+230,0,Indiana,18139
+231,0,Indiana,18073
+232,0,Indiana,18033
+233,0,Indiana,18171
+234,0,Indiana,18129
+235,0,Indiana,18117
+236,0,Indiana,18099
+237,0,Indiana,18045
+238,0,Indiana,18183
+239,0,Indiana,18135
+240,0,Indiana,18087
+241,0,Indiana,18085
+242,0,Indiana,18069
+243,0,Indiana,18065
+244,0,Indiana,18049
+245,0,Indiana,18023
+246,0,Indiana,18015
+247,0,Indiana,18181
+248,0,Indiana,18169
+249,0,Indiana,18165
+250,0,Indiana,18155
+251,0,Indiana,18111
+252,0,Indiana,18025
+253,0,Indiana,18151
+254,0,Indiana,18083
+255,0,Indiana,18055
+256,0,Indiana,18021
+257,0,Indiana,18077
+258,0,Indiana,18017
+259,0,Indiana,18075
+260,0,Indiana,18147
+261,0,Indiana,18009
+262,0,Indiana,18121
+263,0,Indiana,18161
+264,0,Indiana,18101
+265,0,Indiana,18027
+266,0,Indiana,18131
+267,0,Indiana,18123
+268,0,Indiana,18125
+269,0,Indiana,18007
+270,0,Iowa,19103
+271,0,Iowa,19155
+272,0,Iowa,19027
+273,0,Iowa,19085
+274,0,Iowa,19049
+275,0,Iowa,19153
+276,0,Iowa,19005
+277,0,Iowa,19013
+278,0,Iowa,19001
+279,0,Iowa,19191
+280,0,Iowa,19183
+281,0,Iowa,19139
+282,0,Iowa,19061
+283,0,Iowa,19169
+284,0,Iowa,19113
+285,0,Iowa,19087
+286,0,Iowa,19065
+287,0,Iowa,19193
+288,0,Iowa,19171
+289,0,Iowa,19167
+290,0,Iowa,19163
+291,0,Iowa,19157
+292,0,Iowa,19109
+293,0,Iowa,19033
+294,0,Iowa,19179
+295,0,Iowa,19081
+296,0,Iowa,19181
+297,0,Iowa,19099
+298,0,Iowa,19031
+299,0,Iowa,19019
+300,0,Iowa,19011
+301,0,Iowa,19145
+302,0,Iowa,19133
+303,0,Iowa,19123
+304,0,Iowa,19057
+305,0,Iowa,19043
+306,0,Iowa,19007
+307,0,Iowa,19197
+308,0,Iowa,19187
+309,0,Iowa,19137
+310,0,Iowa,19127
+311,0,Iowa,19095
+312,0,Iowa,19083
+313,0,Iowa,19059
+314,0,Iowa,19045
+315,0,Iowa,19023
+316,0,Iowa,19173
+317,0,Iowa,19165
+318,0,Iowa,19107
+319,0,Iowa,19015
+320,0,Iowa,19177
+321,0,Iowa,19105
+322,0,Iowa,19097
+323,0,Iowa,19077
+324,0,Iowa,19047
+325,0,Iowa,19009
+326,0,Iowa,19041
+327,0,Iowa,19131
+328,0,Iowa,19121
+329,0,Iowa,19141
+330,0,Iowa,19101
+331,0,Iowa,19017
+332,0,Iowa,19149
+333,0,Iowa,19119
+334,0,Iowa,19115
+335,0,Iowa,19129
+336,0,Iowa,19111
+337,0,Iowa,19089
+338,0,Iowa,19075
+339,0,Iowa,19079
+340,0,Iowa,19039
+341,0,Iowa,19189
+342,0,Iowa,19125
+343,0,Iowa,19069
+344,0,Iowa,19037
+345,0,Iowa,19073
+346,0,Iowa,19055
+347,0,Iowa,19021
+348,0,Iowa,19195
+349,0,Iowa,19175
+350,0,Iowa,19143
+351,0,Iowa,19029
+352,0,Iowa,19091
+353,0,Iowa,19035
+354,0,Iowa,19151
+355,0,Iowa,19051
+356,0,Iowa,19185
+357,0,Iowa,19161
+358,0,Iowa,19067
+359,0,Iowa,19025
+360,0,Iowa,19135
+361,0,Iowa,19147
+362,0,Iowa,19071
+363,0,Iowa,19093
+364,0,Iowa,19063
+365,0,Iowa,19117
+366,0,Iowa,19003
+367,0,Iowa,19159
+368,0,Iowa,19053
+369,0,Maine,23001
+370,0,Maine,23005
+371,0,Maine,23015
+372,0,Maine,23031
+373,0,Maine,23017
+374,0,Maine,23011
+375,0,Maine,23019
+376,0,Maine,23023
+377,0,Maine,23013
+378,0,Maine,23027
+379,0,Maine,23007
+380,0,Maine,23025
+381,0,Maine,23009
+382,0,Maine,23029
+383,0,Maine,23003
+384,0,Maine,23021
+385,0,Maryland,24031
+386,0,Maryland,24025
+387,0,Maryland,24033
+388,0,Maryland,24005
+389,0,Maryland,24017
+390,0,Maryland,24003
+391,0,Maryland,24013
+392,0,Maryland,24027
+393,0,Maryland,24510
+394,0,Maryland,24041
+395,0,Maryland,24021
+396,0,Maryland,24045
+397,0,Maryland,24009
+398,0,Maryland,24047
+399,0,Maryland,24043
+400,0,Maryland,24039
+401,0,Maryland,24011
+402,0,Maryland,24037
+403,0,Maryland,24015
+404,0,Maryland,24035
+405,0,Maryland,24023
+406,0,Maryland,24029
+407,0,Maryland,24019
+408,0,Maryland,24001
+409,0,Massachusetts,25025
+410,0,Massachusetts,25021
+411,0,Massachusetts,25017
+412,0,Massachusetts,25003
+413,0,Massachusetts,25027
+414,0,Massachusetts,25009
+415,0,Massachusetts,25005
+416,0,Massachusetts,25001
+417,0,Massachusetts,25023
+418,0,Massachusetts,25013
+419,0,Massachusetts,25011
+420,0,Massachusetts,25015
+421,0,Massachusetts,25019
+422,0,Massachusetts,25007
+423,0,Michigan,26163
+424,0,Michigan,26125
+425,0,Michigan,26161
+426,0,Michigan,26147
+427,0,Michigan,26117
+428,0,Michigan,26081
+429,0,Michigan,26065
+430,0,Michigan,26099
+431,0,Michigan,26089
+432,0,Michigan,26029
+433,0,Michigan,26017
+434,0,Michigan,26115
+435,0,Michigan,26139
+436,0,Michigan,26137
+437,0,Michigan,26075
+438,0,Michigan,26111
+439,0,Michigan,26093
+440,0,Michigan,26049
+441,0,Michigan,26045
+442,0,Michigan,26037
+443,0,Michigan,26165
+444,0,Michigan,26157
+445,0,Michigan,26145
+446,0,Michigan,26035
+447,0,Michigan,26025
+448,0,Michigan,26021
+449,0,Michigan,26015
+450,0,Michigan,26005
+451,0,Michigan,26143
+452,0,Michigan,26055
+453,0,Michigan,26051
+454,0,Michigan,26047
+455,0,Michigan,26123
+456,0,Michigan,26121
+457,0,Michigan,26077
+458,0,Michigan,26033
+459,0,Michigan,26101
+460,0,Michigan,26087
+461,0,Michigan,26079
+462,0,Michigan,26073
+463,0,Michigan,26059
+464,0,Michigan,26159
+465,0,Michigan,26151
+466,0,Michigan,26103
+467,0,Michigan,26091
+468,0,Michigan,26069
+469,0,Michigan,26155
+470,0,Michigan,26129
+471,0,Michigan,26127
+472,0,Michigan,26113
+473,0,Michigan,26107
+474,0,Michigan,26067
+475,0,Michigan,26053
+476,0,Michigan,26063
+477,0,Michigan,26057
+478,0,Michigan,26039
+479,0,Michigan,26027
+480,0,Michigan,26133
+481,0,Michigan,26031
+482,0,Michigan,26149
+483,0,Michigan,26061
+484,0,Michigan,26041
+485,0,Michigan,26009
+486,0,Michigan,26135
+487,0,Michigan,26023
+488,0,Michigan,26011
+489,0,Michigan,26097
+490,0,Michigan,26043
+491,0,Michigan,26095
+492,0,Michigan,26141
+493,0,Michigan,26105
+494,0,Michigan,26153
+495,0,Michigan,26109
+496,0,Michigan,26085
+497,0,Michigan,26007
+498,0,Michigan,26119
+499,0,Michigan,26001
+500,0,Michigan,26013
+501,0,Michigan,26019
+502,0,Michigan,26071
+503,0,Michigan,26083
+504,0,Michigan,26003
+505,0,Michigan,26131
+506,0,Minnesota,27123
+507,0,Minnesota,27019
+508,0,Minnesota,27003
+509,0,Minnesota,27109
+510,0,Minnesota,27145
+511,0,Minnesota,27053
+512,0,Minnesota,27037
+513,0,Minnesota,27171
+514,0,Minnesota,27129
+515,0,Minnesota,27163
+516,0,Minnesota,27161
+517,0,Minnesota,27013
+518,0,Minnesota,27009
+519,0,Minnesota,27103
+520,0,Minnesota,27091
+521,0,Minnesota,27131
+522,0,Minnesota,27139
+523,0,Minnesota,27099
+524,0,Minnesota,27045
+525,0,Minnesota,27027
+526,0,Minnesota,27025
+527,0,Minnesota,27157
+528,0,Minnesota,27147
+529,0,Minnesota,27137
+530,0,Minnesota,27063
+531,0,Minnesota,27039
+532,0,Minnesota,27079
+533,0,Minnesota,27141
+534,0,Minnesota,27073
+535,0,Minnesota,27021
+536,0,Minnesota,27011
+537,0,Minnesota,27169
+538,0,Minnesota,27049
+539,0,Minnesota,27167
+540,0,Minnesota,27143
+541,0,Minnesota,27067
+542,0,Minnesota,27087
+543,0,Minnesota,27081
+544,0,Minnesota,27043
+545,0,Minnesota,27007
+546,0,Minnesota,27029
+547,0,Minnesota,27111
+548,0,Minnesota,27059
+549,0,Minnesota,27041
+550,0,Minnesota,27033
+551,0,Minnesota,27165
+552,0,Minnesota,27093
+553,0,Minnesota,27061
+554,0,Minnesota,27155
+555,0,Minnesota,27083
+556,0,Minnesota,27017
+557,0,Minnesota,27015
+558,0,Minnesota,27173
+559,0,Minnesota,27047
+560,0,Minnesota,27035
+561,0,Minnesota,27071
+562,0,Minnesota,27119
+563,0,Minnesota,27085
+564,0,Minnesota,27117
+565,0,Minnesota,27055
+566,0,Minnesota,27127
+567,0,Minnesota,27101
+568,0,Minnesota,27151
+569,0,Minnesota,27135
+570,0,Minnesota,27115
+571,0,Minnesota,27105
+572,0,Minnesota,27005
+573,0,Minnesota,27153
+574,0,Minnesota,27133
+575,0,Minnesota,27125
+576,0,Minnesota,27107
+577,0,Minnesota,27095
+578,0,Minnesota,27001
+579,0,Minnesota,27069
+580,0,Minnesota,27097
+581,0,Minnesota,27089
+582,0,Minnesota,27023
+583,0,Minnesota,27113
+584,0,Minnesota,27159
+585,0,Minnesota,27065
+586,0,Minnesota,27051
+587,0,Minnesota,27121
+588,0,Minnesota,27075
+589,0,Minnesota,27057
+590,0,Minnesota,27149
+591,0,Minnesota,27031
+592,0,Minnesota,27077
+593,0,Montana,30111
+594,0,Montana,30093
+595,0,Montana,30049
+596,0,Montana,30031
+597,0,Montana,30063
+598,0,Montana,30085
+599,0,Montana,30057
+600,0,Montana,30029
+601,0,Montana,30007
+602,0,Montana,30081
+603,0,Montana,30013
+604,0,Montana,30043
+605,0,Montana,30041
+606,0,Montana,30101
+607,0,Montana,30059
+608,0,Montana,30053
+609,0,Montana,30067
+610,0,Montana,30047
+611,0,Montana,30023
+612,0,Montana,30065
+613,0,Montana,30051
+614,0,Montana,30009
+615,0,Montana,30035
+616,0,Montana,30001
+617,0,Montana,30083
+618,0,Montana,30095
+619,0,Montana,30003
+620,0,Montana,30037
+621,0,Montana,30073
+622,0,Montana,30107
+623,0,Montana,30087
+624,0,Montana,30017
+625,0,Montana,30105
+626,0,Montana,30027
+627,0,Montana,30021
+628,0,Montana,30103
+629,0,Montana,30039
+630,0,Montana,30099
+631,0,Montana,30091
+632,0,Montana,30025
+633,0,Montana,30033
+634,0,Montana,30109
+635,0,Montana,30089
+636,0,Montana,30097
+637,0,Montana,30005
+638,0,Montana,30055
+639,0,Montana,30015
+640,0,Montana,30045
+641,0,Montana,30075
+642,0,Montana,30019
+643,0,Montana,30077
+644,0,Montana,30079
+645,0,Montana,30071
+646,0,Montana,30061
+647,0,Montana,30011
+648,0,Montana,30069
+649,0,Nebraska,31055
+650,0,Nebraska,31025
+651,0,Nebraska,31153
+652,0,Nebraska,31107
+653,0,Nebraska,31111
+654,0,Nebraska,31001
+655,0,Nebraska,31127
+656,0,Nebraska,31109
+657,0,Nebraska,31019
+658,0,Nebraska,31047
+659,0,Nebraska,31177
+660,0,Nebraska,31119
+661,0,Nebraska,31155
+662,0,Nebraska,31053
+663,0,Nebraska,31099
+664,0,Nebraska,31079
+665,0,Nebraska,31141
+666,0,Nebraska,31073
+667,0,Nebraska,31157
+668,0,Nebraska,31185
+669,0,Nebraska,31003
+670,0,Nebraska,31105
+671,0,Nebraska,31039
+672,0,Nebraska,31131
+673,0,Nebraska,31081
+674,0,Nebraska,31067
+675,0,Nebraska,31037
+676,0,Nebraska,31121
+677,0,Nebraska,31031
+678,0,Nebraska,31159
+679,0,Nebraska,31137
+680,0,Nebraska,31097
+681,0,Nebraska,31167
+682,0,Nebraska,31041
+683,0,Nebraska,31033
+684,0,Nebraska,31143
+685,0,Nebraska,31021
+686,0,Nebraska,31181
+687,0,Nebraska,31061
+688,0,Nebraska,31035
+689,0,Nebraska,31179
+690,0,Nebraska,31139
+691,0,Nebraska,31013
+692,0,Nebraska,31043
+693,0,Nebraska,31151
+694,0,Nebraska,31123
+695,0,Nebraska,31125
+696,0,Nebraska,31093
+697,0,Nebraska,31145
+698,0,Nebraska,31023
+699,0,Nebraska,31065
+700,0,Nebraska,31051
+701,0,Nebraska,31059
+702,0,Nebraska,31163
+703,0,Nebraska,31077
+704,0,Nebraska,31173
+705,0,Nebraska,31095
+706,0,Nebraska,31175
+707,0,Nebraska,31027
+708,0,Nebraska,31063
+709,0,Nebraska,31087
+710,0,Nebraska,31101
+711,0,Nebraska,31089
+712,0,Nebraska,31011
+713,0,Nebraska,31171
+714,0,Nebraska,31045
+715,0,Nebraska,31147
+716,0,Nebraska,31129
+717,0,Nebraska,31029
+718,0,Nebraska,31169
+719,0,Nebraska,31069
+720,0,Nebraska,31015
+721,0,Nebraska,31071
+722,0,Nebraska,31007
+723,0,Nebraska,31165
+724,0,Nebraska,31083
+725,0,Nebraska,31149
+726,0,Nebraska,31161
+727,0,Nebraska,31091
+728,0,Nebraska,31117
+729,0,Nebraska,31133
+730,0,Nebraska,31049
+731,0,Nebraska,31057
+732,0,Nebraska,31135
+733,0,Nebraska,31183
+734,0,Nebraska,31005
+735,0,Nebraska,31017
+736,0,Nebraska,31103
+737,0,Nebraska,31113
+738,0,Nebraska,31115
+739,0,Nebraska,31075
+740,0,Nebraska,31009
+741,0,Nebraska,31085
+742,0,New Hampshire,33009
+743,0,New Hampshire,33015
+744,0,New Hampshire,33011
+745,0,New Hampshire,33003
+746,0,New Hampshire,33013
+747,0,New Hampshire,33001
+748,0,New Hampshire,33005
+749,0,New Hampshire,33017
+750,0,New Hampshire,33019
+751,0,New Hampshire,33007
+752,0,New Jersey,34003
+753,0,New Jersey,34007
+754,0,New Jersey,34031
+755,0,New Jersey,34039
+756,0,New Jersey,34025
+757,0,New Jersey,34017
+758,0,New Jersey,34005
+759,0,New Jersey,34023
+760,0,New Jersey,34027
+761,0,New Jersey,34013
+762,0,New Jersey,34029
+763,0,New Jersey,34021
+764,0,New Jersey,34035
+765,0,New Jersey,34019
+766,0,New Jersey,34041
+767,0,New Jersey,34015
+768,0,New Jersey,34001
+769,0,New Jersey,34037
+770,0,New Jersey,34009
+771,0,New Jersey,34011
+772,0,New Jersey,34033
+773,0,New Mexico,35053
+774,0,New Mexico,35049
+775,0,New Mexico,35001
+776,0,New Mexico,35043
+777,0,New Mexico,35055
+778,0,New Mexico,35047
+779,0,New Mexico,35031
+780,0,New Mexico,35013
+781,0,New Mexico,35025
+782,0,New Mexico,35045
+783,0,New Mexico,35005
+784,0,New Mexico,35009
+785,0,New Mexico,35006
+786,0,New Mexico,35039
+787,0,New Mexico,35015
+788,0,New Mexico,35061
+789,0,New Mexico,35041
+790,0,New Mexico,35057
+791,0,New Mexico,35035
+792,0,New Mexico,35017
+793,0,New Mexico,35003
+794,0,New Mexico,35028
+795,0,New Mexico,35027
+796,0,New Mexico,35007
+797,0,New Mexico,35029
+798,0,New Mexico,35037
+799,0,New Mexico,35019
+800,0,New Mexico,35021
+801,0,New Mexico,35059
+802,0,New Mexico,35051
+803,0,New Mexico,35023
+804,0,New Mexico,35033
+805,0,New Mexico,35011
+806,0,New York,36998
+807,0,New York,36119
+808,0,New York,36059
+809,0,New York,36087
+810,0,New York,36091
+811,0,New York,36111
+812,0,New York,36103
+813,0,New York,36055
+814,0,New York,36071
+815,0,New York,36043
+816,0,New York,36027
+817,0,New York,36025
+818,0,New York,36001
+819,0,New York,36093
+820,0,New York,36109
+821,0,New York,36107
+822,0,New York,36007
+823,0,New York,36079
+824,0,New York,36057
+825,0,New York,36039
+826,0,New York,36029
+827,0,New York,36069
+828,0,New York,36067
+829,0,New York,36003
+830,0,New York,36121
+831,0,New York,36105
+832,0,New York,36083
+833,0,New York,36019
+834,0,New York,36115
+835,0,New York,36113
+836,0,New York,36051
+837,0,New York,36045
+838,0,New York,36041
+839,0,New York,36031
+840,0,New York,36017
+841,0,New York,36117
+842,0,New York,36095
+843,0,New York,36065
+844,0,New York,36063
+845,0,New York,36037
+846,0,New York,36035
+847,0,New York,36021
+848,0,New York,36101
+849,0,New York,36089
+850,0,New York,36053
+851,0,New York,36023
+852,0,New York,36077
+853,0,New York,36075
+854,0,New York,36011
+855,0,New York,36073
+856,0,New York,36015
+857,0,New York,36033
+858,0,New York,36013
+859,0,New York,36097
+860,0,New York,36009
+861,0,New York,36049
+862,0,New York,36099
+863,0,New York,36123
+864,0,North Dakota,38101
+865,0,North Dakota,38017
+866,0,North Dakota,38015
+867,0,North Dakota,38059
+868,0,North Dakota,38071
+869,0,North Dakota,38069
+870,0,North Dakota,38099
+871,0,North Dakota,38025
+872,0,North Dakota,38089
+873,0,North Dakota,38031
+874,0,North Dakota,38051
+875,0,North Dakota,38049
+876,0,North Dakota,38085
+877,0,North Dakota,38061
+878,0,North Dakota,38055
+879,0,North Dakota,38023
+880,0,North Dakota,38003
+881,0,North Dakota,38065
+882,0,North Dakota,38035
+883,0,North Dakota,38105
+884,0,North Dakota,38053
+885,0,North Dakota,38037
+886,0,North Dakota,38013
+887,0,North Dakota,38087
+888,0,North Dakota,38027
+889,0,North Dakota,38029
+890,0,North Dakota,38011
+891,0,North Dakota,38093
+892,0,North Dakota,38077
+893,0,North Dakota,38081
+894,0,North Dakota,38079
+895,0,North Dakota,38063
+896,0,North Dakota,38103
+897,0,North Dakota,38067
+898,0,North Dakota,38073
+899,0,North Dakota,38075
+900,0,North Dakota,38057
+901,0,North Dakota,38097
+902,0,North Dakota,38005
+903,0,North Dakota,38091
+904,0,North Dakota,38009
+905,0,North Dakota,38039
+906,0,North Dakota,38021
+907,0,North Dakota,38083
+908,0,North Dakota,38045
+909,0,North Dakota,38043
+910,0,North Dakota,38019
+911,0,North Dakota,38007
+912,0,North Dakota,38041
+913,0,North Dakota,38095
+914,0,North Dakota,38047
+915,0,North Dakota,38033
+916,0,North Dakota,38001
+917,0,Ohio,39035
+918,0,Ohio,39151
+919,0,Ohio,39155
+920,0,Ohio,39157
+921,0,Ohio,39153
+922,0,Ohio,39093
+923,0,Ohio,39049
+924,0,Ohio,39017
+925,0,Ohio,39013
+926,0,Ohio,39103
+927,0,Ohio,39095
+928,0,Ohio,39055
+929,0,Ohio,39099
+930,0,Ohio,39085
+931,0,Ohio,39037
+932,0,Ohio,39031
+933,0,Ohio,39109
+934,0,Ohio,39077
+935,0,Ohio,39041
+936,0,Ohio,39023
+937,0,Ohio,39005
+938,0,Ohio,39139
+939,0,Ohio,39113
+940,0,Ohio,39061
+941,0,Ohio,39165
+942,0,Ohio,39159
+943,0,Ohio,39101
+944,0,Ohio,39029
+945,0,Ohio,39007
+946,0,Ohio,39089
+947,0,Ohio,39043
+948,0,Ohio,39039
+949,0,Ohio,39025
+950,0,Ohio,39173
+951,0,Ohio,39133
+952,0,Ohio,39063
+953,0,Ohio,39057
+954,0,Ohio,39053
+955,0,Ohio,39027
+956,0,Ohio,39019
+957,0,Ohio,39167
+958,0,Ohio,39143
+959,0,Ohio,39097
+960,0,Ohio,39091
+961,0,Ohio,39083
+962,0,Ohio,39071
+963,0,Ohio,39045
+964,0,Ohio,39033
+965,0,Ohio,39021
+966,0,Ohio,39169
+967,0,Ohio,39147
+968,0,Ohio,39129
+969,0,Ohio,39107
+970,0,Ohio,39087
+971,0,Ohio,39047
+972,0,Ohio,39175
+973,0,Ohio,39119
+974,0,Ohio,39081
+975,0,Ohio,39009
+976,0,Ohio,39149
+977,0,Ohio,39051
+978,0,Ohio,39161
+979,0,Ohio,39131
+980,0,Ohio,39123
+981,0,Ohio,39011
+982,0,Ohio,39003
+983,0,Ohio,39141
+984,0,Ohio,39135
+985,0,Ohio,39075
+986,0,Ohio,39015
+987,0,Ohio,39127
+988,0,Ohio,39117
+989,0,Ohio,39171
+990,0,Ohio,39065
+991,0,Ohio,39059
+992,0,Ohio,39001
+993,0,Ohio,39111
+994,0,Ohio,39145
+995,0,Ohio,39137
+996,0,Ohio,39125
+997,0,Ohio,39115
+998,0,Ohio,39105
+999,0,Ohio,39079
+1000,0,Ohio,39069
+1001,0,Ohio,39121
+1002,0,Ohio,39073
+1003,0,Ohio,39067
+1004,0,Ohio,39163
+1005,0,Pennsylvania,42127
+1006,0,Pennsylvania,42045
+1007,0,Pennsylvania,42091
+1008,0,Pennsylvania,42089
+1009,0,Pennsylvania,42101
+1010,0,Pennsylvania,42017
+1011,0,Pennsylvania,42103
+1012,0,Pennsylvania,42095
+1013,0,Pennsylvania,42125
+1014,0,Pennsylvania,42041
+1015,0,Pennsylvania,42029
+1016,0,Pennsylvania,42003
+1017,0,Pennsylvania,42079
+1018,0,Pennsylvania,42077
+1019,0,Pennsylvania,42007
+1020,0,Pennsylvania,42133
+1021,0,Pennsylvania,42069
+1022,0,Pennsylvania,42011
+1023,0,Pennsylvania,42001
+1024,0,Pennsylvania,42129
+1025,0,Pennsylvania,42075
+1026,0,Pennsylvania,42071
+1027,0,Pennsylvania,42105
+1028,0,Pennsylvania,42055
+1029,0,Pennsylvania,42049
+1030,0,Pennsylvania,42027
+1031,0,Pennsylvania,42093
+1032,0,Pennsylvania,42019
+1033,0,Pennsylvania,42107
+1034,0,Pennsylvania,42085
+1035,0,Pennsylvania,42051
+1036,0,Pennsylvania,42043
+1037,0,Pennsylvania,42037
+1038,0,Pennsylvania,42021
+1039,0,Pennsylvania,42111
+1040,0,Pennsylvania,42067
+1041,0,Pennsylvania,42033
+1042,0,Pennsylvania,42025
+1043,0,Pennsylvania,42015
+1044,0,Pennsylvania,42005
+1045,0,Pennsylvania,42123
+1046,0,Pennsylvania,42081
+1047,0,Pennsylvania,42073
+1048,0,Pennsylvania,42059
+1049,0,Pennsylvania,42115
+1050,0,Pennsylvania,42063
+1051,0,Pennsylvania,42039
+1052,0,Pennsylvania,42013
+1053,0,Pennsylvania,42097
+1054,0,Pennsylvania,42117
+1055,0,Pennsylvania,42109
+1056,0,Pennsylvania,42099
+1057,0,Pennsylvania,42083
+1058,0,Pennsylvania,42061
+1059,0,Pennsylvania,42031
+1060,0,Pennsylvania,42023
+1061,0,Pennsylvania,42121
+1062,0,Pennsylvania,42087
+1063,0,Pennsylvania,42119
+1064,0,Pennsylvania,42009
+1065,0,Pennsylvania,42053
+1066,0,Pennsylvania,42035
+1067,0,Pennsylvania,42131
+1068,0,Pennsylvania,42113
+1069,0,Pennsylvania,42057
+1070,0,Pennsylvania,42065
+1071,0,Pennsylvania,42047
+1072,0,South Dakota,46099
+1073,0,South Dakota,46035
+1074,0,South Dakota,46023
+1075,0,South Dakota,46005
+1076,0,South Dakota,46009
+1077,0,South Dakota,46087
+1078,0,South Dakota,46013
+1079,0,South Dakota,46103
+1080,0,South Dakota,46085
+1081,0,South Dakota,46065
+1082,0,South Dakota,46029
+1083,0,South Dakota,46011
+1084,0,South Dakota,46093
+1085,0,South Dakota,46083
+1086,0,South Dakota,46127
+1087,0,South Dakota,46121
+1088,0,South Dakota,46081
+1089,0,South Dakota,46049
+1090,0,South Dakota,46003
+1091,0,South Dakota,46135
+1092,0,South Dakota,46067
+1093,0,South Dakota,46057
+1094,0,South Dakota,46039
+1095,0,South Dakota,46125
+1096,0,South Dakota,46109
+1097,0,South Dakota,46047
+1098,0,South Dakota,46027
+1099,0,South Dakota,46025
+1100,0,South Dakota,46091
+1101,0,South Dakota,46115
+1102,0,South Dakota,46079
+1103,0,South Dakota,46102
+1104,0,South Dakota,46073
+1105,0,South Dakota,46031
+1106,0,South Dakota,46097
+1107,0,South Dakota,46111
+1108,0,South Dakota,46129
+1109,0,South Dakota,46119
+1110,0,South Dakota,46069
+1111,0,South Dakota,46101
+1112,0,South Dakota,46117
+1113,0,South Dakota,46089
+1114,0,South Dakota,46059
+1115,0,South Dakota,46043
+1116,0,South Dakota,46017
+1117,0,South Dakota,46037
+1118,0,South Dakota,46137
+1119,0,South Dakota,46051
+1120,0,South Dakota,46123
+1121,0,South Dakota,46071
+1122,0,South Dakota,46077
+1123,0,South Dakota,46045
+1124,0,South Dakota,46053
+1125,0,South Dakota,46061
+1126,0,South Dakota,46015
+1127,0,South Dakota,46033
+1128,0,South Dakota,46041
+1129,0,South Dakota,46095
+1130,0,South Dakota,46007
+1131,0,South Dakota,46021
+1132,0,South Dakota,46055
+1133,0,South Dakota,46075
+1134,0,South Dakota,46019
+1135,0,South Dakota,46105
+1136,0,South Dakota,46107
+1137,0,South Dakota,46063
+1138,0,Tennessee,47187
+1139,0,Tennessee,47157
+1140,0,Tennessee,47037
+1141,0,Tennessee,47163
+1142,0,Tennessee,47093
+1143,0,Tennessee,47149
+1144,0,Tennessee,47089
+1145,0,Tennessee,47065
+1146,0,Tennessee,47013
+1147,0,Tennessee,47155
+1148,0,Tennessee,47165
+1149,0,Tennessee,47147
+1150,0,Tennessee,47021
+1151,0,Tennessee,47189
+1152,0,Tennessee,47179
+1153,0,Tennessee,47125
+1154,0,Tennessee,47045
+1155,0,Tennessee,47035
+1156,0,Tennessee,47167
+1157,0,Tennessee,47119
+1158,0,Tennessee,47063
+1159,0,Tennessee,47059
+1160,0,Tennessee,47043
+1161,0,Tennessee,47011
+1162,0,Tennessee,47009
+1163,0,Tennessee,47001
+1164,0,Tennessee,47151
+1165,0,Tennessee,47145
+1166,0,Tennessee,47141
+1167,0,Tennessee,47123
+1168,0,Tennessee,47047
+1169,0,Tennessee,47029
+1170,0,Tennessee,47017
+1171,0,Tennessee,47135
+1172,0,Tennessee,47107
+1173,0,Tennessee,47115
+1174,0,Tennessee,47105
+1175,0,Tennessee,47083
+1176,0,Tennessee,47053
+1177,0,Tennessee,47051
+1178,0,Tennessee,47023
+1179,0,Tennessee,47133
+1180,0,Tennessee,47113
+1181,0,Tennessee,47103
+1182,0,Tennessee,47071
+1183,0,Tennessee,47061
+1184,0,Tennessee,47041
+1185,0,Tennessee,47025
+1186,0,Tennessee,47185
+1187,0,Tennessee,47101
+1188,0,Tennessee,47073
+1189,0,Tennessee,47003
+1190,0,Tennessee,47171
+1191,0,Tennessee,47121
+1192,0,Tennessee,47111
+1193,0,Tennessee,47015
+1194,0,Tennessee,47005
+1195,0,Tennessee,47159
+1196,0,Tennessee,47183
+1197,0,Tennessee,47173
+1198,0,Tennessee,47169
+1199,0,Tennessee,47129
+1200,0,Tennessee,47091
+1201,0,Tennessee,47069
+1202,0,Tennessee,47019
+1203,0,Tennessee,47007
+1204,0,Tennessee,47131
+1205,0,Tennessee,47109
+1206,0,Tennessee,47079
+1207,0,Tennessee,47075
+1208,0,Tennessee,47031
+1209,0,Tennessee,47181
+1210,0,Tennessee,47177
+1211,0,Tennessee,47117
+1212,0,Tennessee,47099
+1213,0,Tennessee,47055
+1214,0,Tennessee,47049
+1215,0,Tennessee,47085
+1216,0,Tennessee,47153
+1217,0,Tennessee,47097
+1218,0,Tennessee,47081
+1219,0,Tennessee,47057
+1220,0,Tennessee,47027
+1221,0,Tennessee,47139
+1222,0,Tennessee,47087
+1223,0,Tennessee,47161
+1224,0,Tennessee,47077
+1225,0,Tennessee,47039
+1226,0,Tennessee,47175
+1227,0,Tennessee,47095
+1228,0,Tennessee,47127
+1229,0,Tennessee,47143
+1230,0,Tennessee,47033
+1231,0,Tennessee,47137
+1232,0,Tennessee,47067
+1233,0,Vermont,50003
+1234,0,Vermont,50007
+1235,0,Vermont,50027
+1236,0,Vermont,50023
+1237,0,Vermont,50017
+1238,0,Vermont,50021
+1239,0,Vermont,50001
+1240,0,Vermont,50025
+1241,0,Vermont,50011
+1242,0,Vermont,50019
+1243,0,Vermont,50005
+1244,0,Vermont,50015
+1245,0,Vermont,50013
+1246,0,Vermont,50009
+1247,0,Wisconsin,55025
+1248,0,Wisconsin,55093
+1249,0,Wisconsin,55133
+1250,0,Wisconsin,55039
+1251,0,Wisconsin,55117
+1252,0,Wisconsin,55101
+1253,0,Wisconsin,55079
+1254,0,Wisconsin,55139
+1255,0,Wisconsin,55141
+1256,0,Wisconsin,55087
+1257,0,Wisconsin,55059
+1258,0,Wisconsin,55131
+1259,0,Wisconsin,55063
+1260,0,Wisconsin,55009
+1261,0,Wisconsin,55127
+1262,0,Wisconsin,55111
+1263,0,Wisconsin,55089
+1264,0,Wisconsin,55035
+1265,0,Wisconsin,55021
+1266,0,Wisconsin,55015
+1267,0,Wisconsin,55007
+1268,0,Wisconsin,55109
+1269,0,Wisconsin,55105
+1270,0,Wisconsin,55073
+1271,0,Wisconsin,55055
+1272,0,Wisconsin,55045
+1273,0,Wisconsin,55033
+1274,0,Wisconsin,55031
+1275,0,Wisconsin,55017
+1276,0,Wisconsin,55027
+1277,0,Wisconsin,55081
+1278,0,Wisconsin,55057
+1279,0,Wisconsin,55049
+1280,0,Wisconsin,55043
+1281,0,Wisconsin,55125
+1282,0,Wisconsin,55097
+1283,0,Wisconsin,55019
+1284,0,Wisconsin,55135
+1285,0,Wisconsin,55103
+1286,0,Wisconsin,55075
+1287,0,Wisconsin,55051
+1288,0,Wisconsin,55085
+1289,0,Wisconsin,55077
+1290,0,Wisconsin,55053
+1291,0,Wisconsin,55029
+1292,0,Wisconsin,55083
+1293,0,Wisconsin,55011
+1294,0,Wisconsin,55003
+1295,0,Wisconsin,55078
+1296,0,Wisconsin,55023
+1297,0,Wisconsin,55121
+1298,0,Wisconsin,55001
+1299,0,Wisconsin,55107
+1300,0,Wisconsin,55005
+1301,0,Wisconsin,55115
+1302,0,Wisconsin,55071
+1303,0,Wisconsin,55037
+1304,0,Wisconsin,55137
+1305,0,Wisconsin,55061
+1306,0,Wisconsin,55065
+1307,0,Wisconsin,55113
+1308,0,Wisconsin,55095
+1309,0,Wisconsin,55099
+1310,0,Wisconsin,55047
+1311,0,Wisconsin,55129
+1312,0,Wisconsin,55123
+1313,0,Wisconsin,55069
+1314,0,Wisconsin,55041
+1315,0,Wisconsin,55091
+1316,0,Wisconsin,55013
+1317,0,Wisconsin,55119
+1318,0,Wisconsin,55067
+1319,0,Wyoming,56033
+1320,0,Wyoming,56013
+1321,0,Wyoming,56029
+1322,0,Wyoming,56021
+1323,0,Wyoming,56039
+1324,0,Wyoming,56025
+1325,0,Wyoming,56005
+1326,0,Wyoming,56007
+1327,0,Wyoming,56037
+1328,0,Wyoming,56001
+1329,0,Wyoming,56019
+1330,0,Wyoming,56017
+1331,0,Wyoming,56043
+1332,0,Wyoming,56015
+1333,0,Wyoming,56035
+1334,0,Wyoming,56009
+1335,0,Wyoming,56041
+1336,0,Wyoming,56023
+1337,0,Wyoming,56011
+1338,0,Wyoming,56027
+1339,0,Wyoming,56003
+1340,0,Wyoming,56031
+1341,0,Wyoming,56045
+1342,1,Alabama,01125
+1343,1,Alabama,01101
+1344,1,Alabama,01083
+1345,1,Alabama,01073
+1346,1,Alabama,01051
+1347,1,Alabama,01003
+1348,1,Alabama,01117
+1349,1,Alabama,01081
+1350,1,Alabama,01115
+1351,1,Alabama,01089
+1352,1,Alabama,01121
+1353,1,Alabama,01015
+1354,1,Alabama,01127
+1355,1,Alabama,01097
+1356,1,Alabama,01017
+1357,1,Alabama,01129
+1358,1,Alabama,01077
+1359,1,Alabama,01075
+1360,1,Alabama,01071
+1361,1,Alabama,01043
+1362,1,Alabama,01093
+1363,1,Alabama,01123
+1364,1,Alabama,01069
+1365,1,Alabama,01059
+1366,1,Alabama,01103
+1367,1,Alabama,01001
+1368,1,Alabama,01131
+1369,1,Alabama,01113
+1370,1,Alabama,01109
+1371,1,Alabama,01107
+1372,1,Alabama,01095
+1373,1,Alabama,01079
+1374,1,Alabama,01055
+1375,1,Alabama,01047
+1376,1,Alabama,01033
+1377,1,Alabama,01029
+1378,1,Alabama,01027
+1379,1,Alabama,01021
+1380,1,Alabama,01019
+1381,1,Alabama,01013
+1382,1,Alabama,01009
+1383,1,Alabama,01091
+1384,1,Alabama,01085
+1385,1,Alabama,01049
+1386,1,Alabama,01041
+1387,1,Alabama,01037
+1388,1,Alabama,01023
+1389,1,Alabama,01011
+1390,1,Alabama,01133
+1391,1,Alabama,01111
+1392,1,Alabama,01063
+1393,1,Alabama,01053
+1394,1,Alabama,01039
+1395,1,Alabama,01099
+1396,1,Alabama,01087
+1397,1,Alabama,01119
+1398,1,Alabama,01065
+1399,1,Alabama,01057
+1400,1,Alabama,01007
+1401,1,Alabama,01045
+1402,1,Alabama,01035
+1403,1,Alabama,01025
+1404,1,Alabama,01031
+1405,1,Alabama,01067
+1406,1,Alabama,01005
+1407,1,Alabama,01105
+1408,1,Alabama,01061
+1409,1,Arkansas,05069
+1410,1,Arkansas,05119
+1411,1,Arkansas,05125
+1412,1,Arkansas,05051
+1413,1,Arkansas,05079
+1414,1,Arkansas,05041
+1415,1,Arkansas,05025
+1416,1,Arkansas,05023
+1417,1,Arkansas,05143
+1418,1,Arkansas,05045
+1419,1,Arkansas,05011
+1420,1,Arkansas,05141
+1421,1,Arkansas,05133
+1422,1,Arkansas,05131
+1423,1,Arkansas,05129
+1424,1,Arkansas,05115
+1425,1,Arkansas,05113
+1426,1,Arkansas,05111
+1427,1,Arkansas,05063
+1428,1,Arkansas,05055
+1429,1,Arkansas,05053
+1430,1,Arkansas,05035
+1431,1,Arkansas,05031
+1432,1,Arkansas,05019
+1433,1,Arkansas,05009
+1434,1,Arkansas,05007
+1435,1,Arkansas,05147
+1436,1,Arkansas,05145
+1437,1,Arkansas,05139
+1438,1,Arkansas,05137
+1439,1,Arkansas,05109
+1440,1,Arkansas,05075
+1441,1,Arkansas,05059
+1442,1,Arkansas,05037
+1443,1,Arkansas,05033
+1444,1,Arkansas,05029
+1445,1,Arkansas,05027
+1446,1,Arkansas,05043
+1447,1,Arkansas,05121
+1448,1,Arkansas,05085
+1449,1,Arkansas,05061
+1450,1,Arkansas,05017
+1451,1,Arkansas,05005
+1452,1,Arkansas,05071
+1453,1,Arkansas,05105
+1454,1,Arkansas,05099
+1455,1,Arkansas,05057
+1456,1,Arkansas,05003
+1457,1,Arkansas,05001
+1458,1,Arkansas,05123
+1459,1,Arkansas,05101
+1460,1,Arkansas,05127
+1461,1,Arkansas,05091
+1462,1,Arkansas,05077
+1463,1,Arkansas,05015
+1464,1,Arkansas,05135
+1465,1,Arkansas,05103
+1466,1,Arkansas,05095
+1467,1,Arkansas,05093
+1468,1,Arkansas,05117
+1469,1,Arkansas,05073
+1470,1,Arkansas,05039
+1471,1,Arkansas,05149
+1472,1,Arkansas,05107
+1473,1,Arkansas,05083
+1474,1,Arkansas,05065
+1475,1,Arkansas,05047
+1476,1,Arkansas,05021
+1477,1,Arkansas,05087
+1478,1,Arkansas,05089
+1479,1,Arkansas,05067
+1480,1,Arkansas,05049
+1481,1,Arkansas,05097
+1482,1,Arkansas,05081
+1483,1,Arkansas,05013
+1484,1,California,06059
+1485,1,California,06037
+1486,1,California,06085
+1487,1,California,06075
+1488,1,California,06073
+1489,1,California,06023
+1490,1,California,06067
+1491,1,California,06095
+1492,1,California,06097
+1493,1,California,06055
+1494,1,California,06041
+1495,1,California,06001
+1496,1,California,06081
+1497,1,California,06061
+1498,1,California,06013
+1499,1,California,06113
+1500,1,California,06087
+1501,1,California,06065
+1502,1,California,06039
+1503,1,California,06019
+1504,1,California,06089
+1505,1,California,06111
+1506,1,California,06077
+1507,1,California,06099
+1508,1,California,06107
+1509,1,California,06069
+1510,1,California,06079
+1511,1,California,06083
+1512,1,California,06071
+1513,1,California,06057
+1514,1,California,06053
+1515,1,California,06029
+1516,1,California,06045
+1517,1,California,06025
+1518,1,California,06005
+1519,1,California,06115
+1520,1,California,06093
+1521,1,California,06017
+1522,1,California,06007
+1523,1,California,06051
+1524,1,California,06047
+1525,1,California,06009
+1526,1,California,06101
+1527,1,California,06027
+1528,1,California,06031
+1529,1,California,06011
+1530,1,California,06021
+1531,1,California,06109
+1532,1,California,06003
+1533,1,California,06063
+1534,1,California,06015
+1535,1,California,06103
+1536,1,California,06033
+1537,1,California,06043
+1538,1,California,06105
+1539,1,California,06091
+1540,1,California,06035
+1541,1,California,06049
+1542,1,Florida,12081
+1543,1,Florida,12057
+1544,1,Florida,12113
+1545,1,Florida,12071
+1546,1,Florida,12011
+1547,1,Florida,12127
+1548,1,Florida,12091
+1549,1,Florida,12015
+1550,1,Florida,12103
+1551,1,Florida,12101
+1552,1,Florida,12089
+1553,1,Florida,12021
+1554,1,Florida,12001
+1555,1,Florida,12109
+1556,1,Florida,12086
+1557,1,Florida,12117
+1558,1,Florida,12115
+1559,1,Florida,12099
+1560,1,Florida,12031
+1561,1,Florida,12019
+1562,1,Florida,12097
+1563,1,Florida,12095
+1564,1,Florida,12017
+1565,1,Florida,12003
+1566,1,Florida,12069
+1567,1,Florida,12033
+1568,1,Florida,12105
+1569,1,Florida,12009
+1570,1,Florida,12131
+1571,1,Florida,12119
+1572,1,Florida,12073
+1573,1,Florida,12085
+1574,1,Florida,12063
+1575,1,Florida,12061
+1576,1,Florida,12053
+1577,1,Florida,12087
+1578,1,Florida,12111
+1579,1,Florida,12107
+1580,1,Florida,12083
+1581,1,Florida,12055
+1582,1,Florida,12005
+1583,1,Florida,12035
+1584,1,Florida,12027
+1585,1,Florida,12023
+1586,1,Florida,12007
+1587,1,Florida,12039
+1588,1,Florida,12133
+1589,1,Florida,12121
+1590,1,Florida,12075
+1591,1,Florida,12051
+1592,1,Florida,12129
+1593,1,Florida,12043
+1594,1,Florida,12059
+1595,1,Florida,12125
+1596,1,Florida,12013
+1597,1,Florida,12093
+1598,1,Florida,12079
+1599,1,Florida,12049
+1600,1,Florida,12045
+1601,1,Florida,12037
+1602,1,Florida,12065
+1603,1,Florida,12029
+1604,1,Florida,12047
+1605,1,Florida,12123
+1606,1,Florida,12041
+1607,1,Florida,12067
+1608,1,Florida,12077
+1609,1,Georgia,13121
+1610,1,Georgia,13233
+1611,1,Georgia,13135
+1612,1,Georgia,13067
+1613,1,Georgia,13057
+1614,1,Georgia,13115
+1615,1,Georgia,13113
+1616,1,Georgia,13089
+1617,1,Georgia,13049
+1618,1,Georgia,13185
+1619,1,Georgia,13177
+1620,1,Georgia,13015
+1621,1,Georgia,13151
+1622,1,Georgia,13129
+1623,1,Georgia,13077
+1624,1,Georgia,13217
+1625,1,Georgia,13095
+1626,1,Georgia,13063
+1627,1,Georgia,13059
+1628,1,Georgia,13285
+1629,1,Georgia,13223
+1630,1,Georgia,13139
+1631,1,Georgia,13117
+1632,1,Georgia,13313
+1633,1,Georgia,13245
+1634,1,Georgia,13153
+1635,1,Georgia,13073
+1636,1,Georgia,13247
+1637,1,Georgia,13225
+1638,1,Georgia,13175
+1639,1,Georgia,13127
+1640,1,Georgia,13103
+1641,1,Georgia,13099
+1642,1,Georgia,13021
+1643,1,Georgia,13321
+1644,1,Georgia,13287
+1645,1,Georgia,13277
+1646,1,Georgia,13273
+1647,1,Georgia,13261
+1648,1,Georgia,13255
+1649,1,Georgia,13243
+1650,1,Georgia,13227
+1651,1,Georgia,13219
+1652,1,Georgia,13215
+1653,1,Georgia,13207
+1654,1,Georgia,13201
+1655,1,Georgia,13181
+1656,1,Georgia,13171
+1657,1,Georgia,13149
+1658,1,Georgia,13097
+1659,1,Georgia,13085
+1660,1,Georgia,13051
+1661,1,Georgia,13045
+1662,1,Georgia,13187
+1663,1,Georgia,13009
+1664,1,Georgia,13289
+1665,1,Georgia,13267
+1666,1,Georgia,13069
+1667,1,Georgia,13065
+1668,1,Georgia,13055
+1669,1,Georgia,13035
+1670,1,Georgia,13013
+1671,1,Georgia,13303
+1672,1,Georgia,13229
+1673,1,Georgia,13211
+1674,1,Georgia,13195
+1675,1,Georgia,13179
+1676,1,Georgia,13145
+1677,1,Georgia,13047
+1678,1,Georgia,13033
+1679,1,Georgia,13257
+1680,1,Georgia,13253
+1681,1,Georgia,13235
+1682,1,Georgia,13205
+1683,1,Georgia,13199
+1684,1,Georgia,13193
+1685,1,Georgia,13159
+1686,1,Georgia,13155
+1687,1,Georgia,13133
+1688,1,Georgia,13111
+1689,1,Georgia,13081
+1690,1,Georgia,13071
+1691,1,Georgia,13039
+1692,1,Georgia,13029
+1693,1,Georgia,13017
+1694,1,Georgia,13007
+1695,1,Georgia,13317
+1696,1,Georgia,13311
+1697,1,Georgia,13299
+1698,1,Georgia,13275
+1699,1,Georgia,13269
+1700,1,Georgia,13183
+1701,1,Georgia,13169
+1702,1,Georgia,13157
+1703,1,Georgia,13091
+1704,1,Georgia,13087
+1705,1,Georgia,13279
+1706,1,Georgia,13189
+1707,1,Georgia,13143
+1708,1,Georgia,13119
+1709,1,Georgia,13037
+1710,1,Georgia,13293
+1711,1,Georgia,13147
+1712,1,Georgia,13137
+1713,1,Georgia,13053
+1714,1,Georgia,13309
+1715,1,Georgia,13297
+1716,1,Georgia,13231
+1717,1,Georgia,13213
+1718,1,Georgia,13165
+1719,1,Georgia,13031
+1720,1,Georgia,13043
+1721,1,Georgia,13027
+1722,1,Georgia,13005
+1723,1,Georgia,13301
+1724,1,Georgia,13263
+1725,1,Georgia,13249
+1726,1,Georgia,13191
+1727,1,Georgia,13167
+1728,1,Georgia,13163
+1729,1,Georgia,13123
+1730,1,Georgia,13093
+1731,1,Georgia,13083
+1732,1,Georgia,13075
+1733,1,Georgia,13061
+1734,1,Georgia,13023
+1735,1,Georgia,13019
+1736,1,Georgia,13011
+1737,1,Georgia,13001
+1738,1,Georgia,13319
+1739,1,Georgia,13315
+1740,1,Georgia,13307
+1741,1,Georgia,13295
+1742,1,Georgia,13259
+1743,1,Georgia,13251
+1744,1,Georgia,13241
+1745,1,Georgia,13221
+1746,1,Georgia,13131
+1747,1,Georgia,13107
+1748,1,Georgia,13291
+1749,1,Georgia,13237
+1750,1,Georgia,13173
+1751,1,Georgia,13271
+1752,1,Georgia,13281
+1753,1,Georgia,13239
+1754,1,Georgia,13197
+1755,1,Georgia,13105
+1756,1,Georgia,13305
+1757,1,Georgia,13079
+1758,1,Georgia,13283
+1759,1,Georgia,13161
+1760,1,Georgia,13101
+1761,1,Georgia,13025
+1762,1,Georgia,13003
+1763,1,Georgia,13141
+1764,1,Georgia,13209
+1765,1,Georgia,13109
+1766,1,Georgia,13265
+1767,1,Georgia,13125
+1768,1,Hawaii,15003
+1769,1,Hawaii,15007
+1770,1,Hawaii,15009
+1771,1,Hawaii,15001
+1772,1,Hawaii,15005
+1773,1,Idaho,16001
+1774,1,Idaho,16081
+1775,1,Idaho,16013
+1776,1,Idaho,16065
+1777,1,Idaho,16083
+1778,1,Idaho,16055
+1779,1,Idaho,16027
+1780,1,Idaho,16011
+1781,1,Idaho,16085
+1782,1,Idaho,16031
+1783,1,Idaho,16005
+1784,1,Idaho,16075
+1785,1,Idaho,16069
+1786,1,Idaho,16051
+1787,1,Idaho,16049
+1788,1,Idaho,16043
+1789,1,Idaho,16037
+1790,1,Idaho,16045
+1791,1,Idaho,16063
+1792,1,Idaho,16019
+1793,1,Idaho,16073
+1794,1,Idaho,16067
+1795,1,Idaho,16053
+1796,1,Idaho,16039
+1797,1,Idaho,16017
+1798,1,Idaho,16025
+1799,1,Idaho,16003
+1800,1,Idaho,16057
+1801,1,Idaho,16047
+1802,1,Idaho,16087
+1803,1,Idaho,16029
+1804,1,Idaho,16077
+1805,1,Idaho,16059
+1806,1,Idaho,16009
+1807,1,Idaho,16041
+1808,1,Idaho,16015
+1809,1,Idaho,16035
+1810,1,Idaho,16021
+1811,1,Idaho,16071
+1812,1,Idaho,16007
+1813,1,Idaho,16079
+1814,1,Idaho,16061
+1815,1,Idaho,16033
+1816,1,Idaho,16023
+1817,1,Kentucky,21067
+1818,1,Kentucky,21111
+1819,1,Kentucky,21097
+1820,1,Kentucky,21173
+1821,1,Kentucky,21179
+1822,1,Kentucky,21017
+1823,1,Kentucky,21049
+1824,1,Kentucky,21143
+1825,1,Kentucky,21227
+1826,1,Kentucky,21117
+1827,1,Kentucky,21073
+1828,1,Kentucky,21209
+1829,1,Kentucky,21199
+1830,1,Kentucky,21101
+1831,1,Kentucky,21059
+1832,1,Kentucky,21047
+1833,1,Kentucky,21035
+1834,1,Kentucky,21215
+1835,1,Kentucky,21151
+1836,1,Kentucky,21005
+1837,1,Kentucky,21185
+1838,1,Kentucky,21113
+1839,1,Kentucky,21093
+1840,1,Kentucky,21025
+1841,1,Kentucky,21003
+1842,1,Kentucky,21141
+1843,1,Kentucky,21213
+1844,1,Kentucky,21177
+1845,1,Kentucky,21165
+1846,1,Kentucky,21145
+1847,1,Kentucky,21159
+1848,1,Kentucky,21231
+1849,1,Kentucky,21147
+1850,1,Kentucky,21125
+1851,1,Kentucky,21085
+1852,1,Kentucky,21233
+1853,1,Kentucky,21225
+1854,1,Kentucky,21167
+1855,1,Kentucky,21161
+1856,1,Kentucky,21107
+1857,1,Kentucky,21015
+1858,1,Kentucky,21239
+1859,1,Kentucky,21123
+1860,1,Kentucky,21037
+1861,1,Kentucky,21029
+1862,1,Kentucky,21229
+1863,1,Kentucky,21211
+1864,1,Kentucky,21181
+1865,1,Kentucky,21081
+1866,1,Kentucky,21071
+1867,1,Kentucky,21041
+1868,1,Kentucky,21031
+1869,1,Kentucky,21027
+1870,1,Kentucky,21023
+1871,1,Kentucky,21021
+1872,1,Kentucky,21217
+1873,1,Kentucky,21135
+1874,1,Kentucky,21019
+1875,1,Kentucky,21157
+1876,1,Kentucky,21155
+1877,1,Kentucky,21207
+1878,1,Kentucky,21203
+1879,1,Kentucky,21197
+1880,1,Kentucky,21127
+1881,1,Kentucky,21103
+1882,1,Kentucky,21091
+1883,1,Kentucky,21083
+1884,1,Kentucky,21061
+1885,1,Kentucky,21009
+1886,1,Kentucky,21191
+1887,1,Kentucky,21163
+1888,1,Kentucky,21137
+1889,1,Kentucky,21057
+1890,1,Kentucky,21055
+1891,1,Kentucky,21011
+1892,1,Kentucky,21193
+1893,1,Kentucky,21183
+1894,1,Kentucky,21053
+1895,1,Kentucky,21033
+1896,1,Kentucky,21195
+1897,1,Kentucky,21171
+1898,1,Kentucky,21149
+1899,1,Kentucky,21133
+1900,1,Kentucky,21131
+1901,1,Kentucky,21115
+1902,1,Kentucky,21089
+1903,1,Kentucky,21043
+1904,1,Kentucky,21001
+1905,1,Kentucky,21219
+1906,1,Kentucky,21099
+1907,1,Kentucky,21087
+1908,1,Kentucky,21235
+1909,1,Kentucky,21109
+1910,1,Kentucky,21007
+1911,1,Kentucky,21121
+1912,1,Kentucky,21223
+1913,1,Kentucky,21205
+1914,1,Kentucky,21119
+1915,1,Kentucky,21077
+1916,1,Kentucky,21069
+1917,1,Kentucky,21221
+1918,1,Kentucky,21189
+1919,1,Kentucky,21175
+1920,1,Kentucky,21139
+1921,1,Kentucky,21079
+1922,1,Kentucky,21045
+1923,1,Kentucky,21075
+1924,1,Kentucky,21051
+1925,1,Kentucky,21105
+1926,1,Kentucky,21039
+1927,1,Kentucky,21187
+1928,1,Kentucky,21169
+1929,1,Kentucky,21095
+1930,1,Kentucky,21153
+1931,1,Kentucky,21013
+1932,1,Kentucky,21237
+1933,1,Kentucky,21063
+1934,1,Kentucky,21129
+1935,1,Kentucky,21065
+1936,1,Kentucky,21201
+1937,1,Louisiana,22051
+1938,1,Louisiana,22071
+1939,1,Louisiana,22017
+1940,1,Louisiana,22109
+1941,1,Louisiana,22103
+1942,1,Louisiana,22089
+1943,1,Louisiana,22095
+1944,1,Louisiana,22057
+1945,1,Louisiana,22015
+1946,1,Louisiana,22087
+1947,1,Louisiana,22005
+1948,1,Louisiana,22117
+1949,1,Louisiana,22033
+1950,1,Louisiana,22121
+1951,1,Louisiana,22119
+1952,1,Louisiana,22097
+1953,1,Louisiana,22093
+1954,1,Louisiana,22075
+1955,1,Louisiana,22063
+1956,1,Louisiana,22055
+1957,1,Louisiana,22047
+1958,1,Louisiana,22045
+1959,1,Louisiana,22019
+1960,1,Louisiana,22007
+1961,1,Louisiana,22105
+1962,1,Louisiana,22079
+1963,1,Louisiana,22031
+1964,1,Louisiana,22025
+1965,1,Louisiana,22101
+1966,1,Louisiana,22073
+1967,1,Louisiana,22039
+1968,1,Louisiana,22027
+1969,1,Louisiana,22013
+1970,1,Louisiana,22011
+1971,1,Louisiana,22009
+1972,1,Louisiana,22001
+1973,1,Louisiana,22099
+1974,1,Louisiana,22083
+1975,1,Louisiana,22069
+1976,1,Louisiana,22061
+1977,1,Louisiana,22043
+1978,1,Louisiana,22003
+1979,1,Louisiana,22115
+1980,1,Louisiana,22127
+1981,1,Louisiana,22111
+1982,1,Louisiana,22067
+1983,1,Louisiana,22053
+1984,1,Louisiana,22049
+1985,1,Louisiana,22113
+1986,1,Louisiana,22077
+1987,1,Louisiana,22065
+1988,1,Louisiana,22059
+1989,1,Louisiana,22037
+1990,1,Louisiana,22125
+1991,1,Louisiana,22041
+1992,1,Louisiana,22035
+1993,1,Louisiana,22085
+1994,1,Louisiana,22081
+1995,1,Louisiana,22091
+1996,1,Louisiana,22029
+1997,1,Louisiana,22021
+1998,1,Louisiana,22123
+1999,1,Louisiana,22023
+2000,1,Louisiana,22107
+2001,1,Mississippi,28035
+2002,1,Mississippi,28109
+2003,1,Mississippi,28083
+2004,1,Mississippi,28029
+2005,1,Mississippi,28049
+2006,1,Mississippi,28095
+2007,1,Mississippi,28045
+2008,1,Mississippi,28059
+2009,1,Mississippi,28047
+2010,1,Mississippi,28111
+2011,1,Mississippi,28089
+2012,1,Mississippi,28033
+2013,1,Mississippi,28027
+2014,1,Mississippi,28011
+2015,1,Mississippi,28163
+2016,1,Mississippi,28159
+2017,1,Mississippi,28157
+2018,1,Mississippi,28147
+2019,1,Mississippi,28123
+2020,1,Mississippi,28067
+2021,1,Mississippi,28051
+2022,1,Mississippi,28139
+2023,1,Mississippi,28129
+2024,1,Mississippi,28121
+2025,1,Mississippi,28113
+2026,1,Mississippi,28093
+2027,1,Mississippi,28081
+2028,1,Mississippi,28077
+2029,1,Mississippi,28071
+2030,1,Mississippi,28053
+2031,1,Mississippi,28037
+2032,1,Mississippi,28001
+2033,1,Mississippi,28151
+2034,1,Mississippi,28145
+2035,1,Mississippi,28143
+2036,1,Mississippi,28127
+2037,1,Mississippi,28107
+2038,1,Mississippi,28087
+2039,1,Mississippi,28085
+2040,1,Mississippi,28079
+2041,1,Mississippi,28057
+2042,1,Mississippi,28043
+2043,1,Mississippi,28039
+2044,1,Mississippi,28025
+2045,1,Mississippi,28007
+2046,1,Mississippi,28155
+2047,1,Mississippi,28137
+2048,1,Mississippi,28133
+2049,1,Mississippi,28115
+2050,1,Mississippi,28105
+2051,1,Mississippi,28097
+2052,1,Mississippi,28017
+2053,1,Mississippi,28135
+2054,1,Mississippi,28091
+2055,1,Mississippi,28073
+2056,1,Mississippi,28103
+2057,1,Mississippi,28101
+2058,1,Mississippi,28019
+2059,1,Mississippi,28117
+2060,1,Mississippi,28013
+2061,1,Mississippi,28161
+2062,1,Mississippi,28119
+2063,1,Mississippi,28075
+2064,1,Mississippi,28009
+2065,1,Mississippi,28125
+2066,1,Mississippi,28099
+2067,1,Mississippi,28069
+2068,1,Mississippi,28063
+2069,1,Mississippi,28031
+2070,1,Mississippi,28023
+2071,1,Mississippi,28005
+2072,1,Mississippi,28149
+2073,1,Mississippi,28021
+2074,1,Mississippi,28015
+2075,1,Mississippi,28003
+2076,1,Mississippi,28141
+2077,1,Mississippi,28061
+2078,1,Mississippi,28153
+2079,1,Mississippi,28131
+2080,1,Mississippi,28041
+2081,1,Mississippi,28065
+2082,1,Mississippi,28055
+2083,1,Missouri,29189
+2084,1,Missouri,29077
+2085,1,Missouri,29083
+2086,1,Missouri,29037
+2087,1,Missouri,29095
+2088,1,Missouri,29051
+2089,1,Missouri,29019
+2090,1,Missouri,29510
+2091,1,Missouri,29183
+2092,1,Missouri,29998
+2093,1,Missouri,29201
+2094,1,Missouri,29169
+2095,1,Missouri,29069
+2096,1,Missouri,29043
+2097,1,Missouri,29101
+2098,1,Missouri,29097
+2099,1,Missouri,29013
+2100,1,Missouri,29213
+2101,1,Missouri,29187
+2102,1,Missouri,29157
+2103,1,Missouri,29135
+2104,1,Missouri,29107
+2105,1,Missouri,29049
+2106,1,Missouri,29047
+2107,1,Missouri,29029
+2108,1,Missouri,29027
+2109,1,Missouri,29001
+2110,1,Missouri,29155
+2111,1,Missouri,29099
+2112,1,Missouri,29071
+2113,1,Missouri,29031
+2114,1,Missouri,29205
+2115,1,Missouri,29175
+2116,1,Missouri,29173
+2117,1,Missouri,29165
+2118,1,Missouri,29145
+2119,1,Missouri,29139
+2120,1,Missouri,29119
+2121,1,Missouri,29053
+2122,1,Missouri,29207
+2123,1,Missouri,29035
+2124,1,Missouri,29017
+2125,1,Missouri,29015
+2126,1,Missouri,29229
+2127,1,Missouri,29177
+2128,1,Missouri,29159
+2129,1,Missouri,29113
+2130,1,Missouri,29041
+2131,1,Missouri,29021
+2132,1,Missouri,29009
+2133,1,Missouri,29005
+2134,1,Missouri,29219
+2135,1,Missouri,29181
+2136,1,Missouri,29225
+2137,1,Missouri,29209
+2138,1,Missouri,29179
+2139,1,Missouri,29163
+2140,1,Missouri,29151
+2141,1,Missouri,29141
+2142,1,Missouri,29125
+2143,1,Missouri,29121
+2144,1,Missouri,29117
+2145,1,Missouri,29055
+2146,1,Missouri,29039
+2147,1,Missouri,29186
+2148,1,Missouri,29081
+2149,1,Missouri,29073
+2150,1,Missouri,29063
+2151,1,Missouri,29025
+2152,1,Missouri,29023
+2153,1,Missouri,29143
+2154,1,Missouri,29091
+2155,1,Missouri,29195
+2156,1,Missouri,29115
+2157,1,Missouri,29045
+2158,1,Missouri,29147
+2159,1,Missouri,29227
+2160,1,Missouri,29161
+2161,1,Missouri,29123
+2162,1,Missouri,29075
+2163,1,Missouri,29199
+2164,1,Missouri,29167
+2165,1,Missouri,29149
+2166,1,Missouri,29089
+2167,1,Missouri,29059
+2168,1,Missouri,29221
+2169,1,Missouri,29217
+2170,1,Missouri,29185
+2171,1,Missouri,29093
+2172,1,Missouri,29003
+2173,1,Missouri,29131
+2174,1,Missouri,29087
+2175,1,Missouri,29061
+2176,1,Missouri,29127
+2177,1,Missouri,29111
+2178,1,Missouri,29007
+2179,1,Missouri,29133
+2180,1,Missouri,29033
+2181,1,Missouri,29211
+2182,1,Missouri,29109
+2183,1,Missouri,29105
+2184,1,Missouri,29065
+2185,1,Missouri,29197
+2186,1,Missouri,29079
+2187,1,Missouri,29203
+2188,1,Missouri,29137
+2189,1,Missouri,29215
+2190,1,Missouri,29129
+2191,1,Missouri,29067
+2192,1,Missouri,29171
+2193,1,Missouri,29103
+2194,1,Missouri,29011
+2195,1,Missouri,29057
+2196,1,Missouri,29223
+2197,1,Missouri,29153
+2198,1,Missouri,29997
+2199,1,Missouri,29085
+2200,1,Nevada,32031
+2201,1,Nevada,32003
+2202,1,Nevada,32510
+2203,1,Nevada,32007
+2204,1,Nevada,32023
+2205,1,Nevada,32005
+2206,1,Nevada,32019
+2207,1,Nevada,32013
+2208,1,Nevada,32033
+2209,1,Nevada,32001
+2210,1,Nevada,32021
+2211,1,Nevada,32015
+2212,1,Nevada,32017
+2213,1,Nevada,32029
+2214,1,Nevada,32027
+2215,1,Nevada,32011
+2216,1,Nevada,32009
+2217,1,North Carolina,37183
+2218,1,North Carolina,37037
+2219,1,North Carolina,37133
+2220,1,North Carolina,37119
+2221,1,North Carolina,37101
+2222,1,North Carolina,37067
+2223,1,North Carolina,37025
+2224,1,North Carolina,37191
+2225,1,North Carolina,37085
+2226,1,North Carolina,37049
+2227,1,North Carolina,37019
+2228,1,North Carolina,37195
+2229,1,North Carolina,37189
+2230,1,North Carolina,37063
+2231,1,North Carolina,37163
+2232,1,North Carolina,37097
+2233,1,North Carolina,37129
+2234,1,North Carolina,37125
+2235,1,North Carolina,37109
+2236,1,North Carolina,37093
+2237,1,North Carolina,37081
+2238,1,North Carolina,37071
+2239,1,North Carolina,37167
+2240,1,North Carolina,37159
+2241,1,North Carolina,37147
+2242,1,North Carolina,37139
+2243,1,North Carolina,37135
+2244,1,North Carolina,37069
+2245,1,North Carolina,37057
+2246,1,North Carolina,37031
+2247,1,North Carolina,37035
+2248,1,North Carolina,37021
+2249,1,North Carolina,37179
+2250,1,North Carolina,37165
+2251,1,North Carolina,37155
+2252,1,North Carolina,37127
+2253,1,North Carolina,37105
+2254,1,North Carolina,37089
+2255,1,North Carolina,37077
+2256,1,North Carolina,37059
+2257,1,North Carolina,37051
+2258,1,North Carolina,37039
+2259,1,North Carolina,37181
+2260,1,North Carolina,37001
+2261,1,North Carolina,37175
+2262,1,North Carolina,37151
+2263,1,North Carolina,37123
+2264,1,North Carolina,37131
+2265,1,North Carolina,37111
+2266,1,North Carolina,37107
+2267,1,North Carolina,37091
+2268,1,North Carolina,37061
+2269,1,North Carolina,37045
+2270,1,North Carolina,37027
+2271,1,North Carolina,37023
+2272,1,North Carolina,37015
+2273,1,North Carolina,37013
+2274,1,North Carolina,37171
+2275,1,North Carolina,37145
+2276,1,North Carolina,37079
+2277,1,North Carolina,37149
+2278,1,North Carolina,37143
+2279,1,North Carolina,37065
+2280,1,North Carolina,37197
+2281,1,North Carolina,37187
+2282,1,North Carolina,37137
+2283,1,North Carolina,37083
+2284,1,North Carolina,37053
+2285,1,North Carolina,37047
+2286,1,North Carolina,37033
+2287,1,North Carolina,37005
+2288,1,North Carolina,37161
+2289,1,North Carolina,37003
+2290,1,North Carolina,37193
+2291,1,North Carolina,37157
+2292,1,North Carolina,37117
+2293,1,North Carolina,37043
+2294,1,North Carolina,37007
+2295,1,North Carolina,37169
+2296,1,North Carolina,37121
+2297,1,North Carolina,37113
+2298,1,North Carolina,37073
+2299,1,North Carolina,37055
+2300,1,North Carolina,37087
+2301,1,North Carolina,37041
+2302,1,North Carolina,37017
+2303,1,North Carolina,37185
+2304,1,North Carolina,37009
+2305,1,North Carolina,37141
+2306,1,North Carolina,37153
+2307,1,North Carolina,37103
+2308,1,North Carolina,37099
+2309,1,North Carolina,37177
+2310,1,North Carolina,37115
+2311,1,North Carolina,37029
+2312,1,North Carolina,37075
+2313,1,North Carolina,37173
+2314,1,North Carolina,37095
+2315,1,North Carolina,37199
+2316,1,North Carolina,37011
+2317,1,Oklahoma,40143
+2318,1,Oklahoma,40109
+2319,1,Oklahoma,40065
+2320,1,Oklahoma,40119
+2321,1,Oklahoma,40071
+2322,1,Oklahoma,40027
+2323,1,Oklahoma,40017
+2324,1,Oklahoma,40117
+2325,1,Oklahoma,40147
+2326,1,Oklahoma,40087
+2327,1,Oklahoma,40083
+2328,1,Oklahoma,40051
+2329,1,Oklahoma,40039
+2330,1,Oklahoma,40049
+2331,1,Oklahoma,40103
+2332,1,Oklahoma,40101
+2333,1,Oklahoma,40123
+2334,1,Oklahoma,40145
+2335,1,Oklahoma,40097
+2336,1,Oklahoma,40137
+2337,1,Oklahoma,40125
+2338,1,Oklahoma,40113
+2339,1,Oklahoma,40041
+2340,1,Oklahoma,40037
+2341,1,Oklahoma,40019
+2342,1,Oklahoma,40013
+2343,1,Oklahoma,40001
+2344,1,Oklahoma,40135
+2345,1,Oklahoma,40115
+2346,1,Oklahoma,40111
+2347,1,Oklahoma,40081
+2348,1,Oklahoma,40035
+2349,1,Oklahoma,40031
+2350,1,Oklahoma,40121
+2351,1,Oklahoma,40077
+2352,1,Oklahoma,40023
+2353,1,Oklahoma,40021
+2354,1,Oklahoma,40015
+2355,1,Oklahoma,40105
+2356,1,Oklahoma,40079
+2357,1,Oklahoma,40139
+2358,1,Oklahoma,40133
+2359,1,Oklahoma,40131
+2360,1,Oklahoma,40047
+2361,1,Oklahoma,40085
+2362,1,Oklahoma,40033
+2363,1,Oklahoma,40009
+2364,1,Oklahoma,40055
+2365,1,Oklahoma,40153
+2366,1,Oklahoma,40075
+2367,1,Oklahoma,40073
+2368,1,Oklahoma,40005
+2369,1,Oklahoma,40089
+2370,1,Oklahoma,40093
+2371,1,Oklahoma,40053
+2372,1,Oklahoma,40141
+2373,1,Oklahoma,40067
+2374,1,Oklahoma,40095
+2375,1,Oklahoma,40043
+2376,1,Oklahoma,40007
+2377,1,Oklahoma,40107
+2378,1,Oklahoma,40099
+2379,1,Oklahoma,40003
+2380,1,Oklahoma,40069
+2381,1,Oklahoma,40151
+2382,1,Oklahoma,40091
+2383,1,Oklahoma,40061
+2384,1,Oklahoma,40059
+2385,1,Oklahoma,40025
+2386,1,Oklahoma,40127
+2387,1,Oklahoma,40011
+2388,1,Oklahoma,40149
+2389,1,Oklahoma,40029
+2390,1,Oklahoma,40063
+2391,1,Oklahoma,40045
+2392,1,Oklahoma,40057
+2393,1,Oklahoma,40129
+2394,1,South Carolina,45055
+2395,1,South Carolina,45019
+2396,1,South Carolina,45083
+2397,1,South Carolina,45057
+2398,1,South Carolina,45063
+2399,1,South Carolina,45013
+2400,1,South Carolina,45051
+2401,1,South Carolina,45045
+2402,1,South Carolina,45007
+2403,1,South Carolina,45039
+2404,1,South Carolina,45091
+2405,1,South Carolina,45079
+2406,1,South Carolina,45017
+2407,1,South Carolina,45061
+2408,1,South Carolina,45081
+2409,1,South Carolina,45035
+2410,1,South Carolina,45001
+2411,1,South Carolina,45085
+2412,1,South Carolina,45077
+2413,1,South Carolina,45075
+2414,1,South Carolina,45041
+2415,1,South Carolina,45031
+2416,1,South Carolina,45027
+2417,1,South Carolina,45015
+2418,1,South Carolina,45003
+2419,1,South Carolina,45071
+2420,1,South Carolina,45069
+2421,1,South Carolina,45053
+2422,1,South Carolina,45047
+2423,1,South Carolina,45037
+2424,1,South Carolina,45033
+2425,1,South Carolina,45029
+2426,1,South Carolina,45073
+2427,1,South Carolina,45043
+2428,1,South Carolina,45023
+2429,1,South Carolina,45025
+2430,1,South Carolina,45089
+2431,1,South Carolina,45087
+2432,1,South Carolina,45067
+2433,1,South Carolina,45059
+2434,1,South Carolina,45011
+2435,1,South Carolina,45009
+2436,1,South Carolina,45005
+2437,1,South Carolina,45065
+2438,1,South Carolina,45049
+2439,1,South Carolina,45021
+2440,1,Texas,48029
+2441,1,Texas,48157
+2442,1,Texas,48201
+2443,1,Texas,48085
+2444,1,Texas,48439
+2445,1,Texas,48339
+2446,1,Texas,48113
+2447,1,Texas,48183
+2448,1,Texas,48453
+2449,1,Texas,48423
+2450,1,Texas,48167
+2451,1,Texas,48141
+2452,1,Texas,48027
+2453,1,Texas,48209
+2454,1,Texas,48039
+2455,1,Texas,48121
+2456,1,Texas,48321
+2457,1,Texas,48037
+2458,1,Texas,48303
+2459,1,Texas,48139
+2460,1,Texas,48041
+2461,1,Texas,48491
+2462,1,Texas,48485
+2463,1,Texas,48479
+2464,1,Texas,48401
+2465,1,Texas,48325
+2466,1,Texas,48309
+2467,1,Texas,48285
+2468,1,Texas,48467
+2469,1,Texas,48251
+2470,1,Texas,48123
+2471,1,Texas,48103
+2472,1,Texas,48061
+2473,1,Texas,48459
+2474,1,Texas,48219
+2475,1,Texas,48147
+2476,1,Texas,48067
+2477,1,Texas,48049
+2478,1,Texas,48375
+2479,1,Texas,48359
+2480,1,Texas,48329
+2481,1,Texas,48117
+2482,1,Texas,48069
+2483,1,Texas,48021
+2484,1,Texas,48343
+2485,1,Texas,48469
+2486,1,Texas,48367
+2487,1,Texas,48355
+2488,1,Texas,48245
+2489,1,Texas,48215
+2490,1,Texas,48181
+2491,1,Texas,48145
+2492,1,Texas,48091
+2493,1,Texas,48071
+2494,1,Texas,48493
+2495,1,Texas,48481
+2496,1,Texas,48471
+2497,1,Texas,48451
+2498,1,Texas,48445
+2499,1,Texas,48409
+2500,1,Texas,48395
+2501,1,Texas,48361
+2502,1,Texas,48331
+2503,1,Texas,48323
+2504,1,Texas,48299
+2505,1,Texas,48293
+2506,1,Texas,48291
+2507,1,Texas,48277
+2508,1,Texas,48259
+2509,1,Texas,48257
+2510,1,Texas,48231
+2511,1,Texas,48223
+2512,1,Texas,48199
+2513,1,Texas,48189
+2514,1,Texas,48187
+2515,1,Texas,48185
+2516,1,Texas,48165
+2517,1,Texas,48149
+2518,1,Texas,48143
+2519,1,Texas,48133
+2520,1,Texas,48099
+2521,1,Texas,48053
+2522,1,Texas,48031
+2523,1,Texas,48015
+2524,1,Texas,48013
+2525,1,Texas,48465
+2526,1,Texas,48397
+2527,1,Texas,48347
+2528,1,Texas,48317
+2529,1,Texas,48255
+2530,1,Texas,48239
+2531,1,Texas,48057
+2532,1,Texas,48005
+2533,1,Texas,48503
+2534,1,Texas,48489
+2535,1,Texas,48463
+2536,1,Texas,48441
+2537,1,Texas,48427
+2538,1,Texas,48419
+2539,1,Texas,48381
+2540,1,Texas,48349
+2541,1,Texas,48337
+2542,1,Texas,48221
+2543,1,Texas,48203
+2544,1,Texas,48073
+2545,1,Texas,48477
+2546,1,Texas,48305
+2547,1,Texas,48279
+2548,1,Texas,48055
+2549,1,Texas,48051
+2550,1,Texas,48473
+2551,1,Texas,48437
+2552,1,Texas,48407
+2553,1,Texas,48373
+2554,1,Texas,48273
+2555,1,Texas,48213
+2556,1,Texas,48159
+2557,1,Texas,48135
+2558,1,Texas,48115
+2559,1,Texas,48497
+2560,1,Texas,48341
+2561,1,Texas,48289
+2562,1,Texas,48217
+2563,1,Texas,48499
+2564,1,Texas,48405
+2565,1,Texas,48351
+2566,1,Texas,48297
+2567,1,Texas,48265
+2568,1,Texas,48179
+2569,1,Texas,48177
+2570,1,Texas,48093
+2571,1,Texas,48089
+2572,1,Texas,48077
+2573,1,Texas,48063
+2574,1,Texas,48001
+2575,1,Texas,48365
+2576,1,Texas,48363
+2577,1,Texas,48287
+2578,1,Texas,48249
+2579,1,Texas,48241
+2580,1,Texas,48175
+2581,1,Texas,48171
+2582,1,Texas,48129
+2583,1,Texas,48449
+2584,1,Texas,48281
+2585,1,Texas,48457
+2586,1,Texas,48455
+2587,1,Texas,48319
+2588,1,Texas,48233
+2589,1,Texas,48211
+2590,1,Texas,48003
+2591,1,Texas,48007
+2592,1,Texas,48505
+2593,1,Texas,48371
+2594,1,Texas,48335
+2595,1,Texas,48275
+2596,1,Texas,48195
+2597,1,Texas,48193
+2598,1,Texas,48111
+2599,1,Texas,48107
+2600,1,Texas,48059
+2601,1,Texas,48253
+2602,1,Texas,48163
+2603,1,Texas,48153
+2604,1,Texas,48125
+2605,1,Texas,48119
+2606,1,Texas,48025
+2607,1,Texas,48415
+2608,1,Texas,48403
+2609,1,Texas,48307
+2610,1,Texas,48313
+2611,1,Texas,48237
+2612,1,Texas,48019
+2613,1,Texas,48495
+2614,1,Texas,48429
+2615,1,Texas,48379
+2616,1,Texas,48227
+2617,1,Texas,48097
+2618,1,Texas,48095
+2619,1,Texas,48127
+2620,1,Texas,48345
+2621,1,Texas,48487
+2622,1,Texas,48131
+2623,1,Texas,48011
+2624,1,Texas,48161
+2625,1,Texas,48035
+2626,1,Texas,48421
+2627,1,Texas,48393
+2628,1,Texas,48387
+2629,1,Texas,48315
+2630,1,Texas,48283
+2631,1,Texas,48507
+2632,1,Texas,48501
+2633,1,Texas,48065
+2634,1,Texas,48369
+2635,1,Texas,48225
+2636,1,Texas,48075
+2637,1,Texas,48205
+2638,1,Texas,48483
+2639,1,Texas,48047
+2640,1,Texas,48247
+2641,1,Texas,48079
+2642,1,Texas,48357
+2643,1,Texas,48353
+2644,1,Texas,48101
+2645,1,Texas,48399
+2646,1,Texas,48295
+2647,1,Texas,48173
+2648,1,Texas,48169
+2649,1,Texas,48043
+2650,1,Texas,48083
+2651,1,Texas,48045
+2652,1,Texas,48391
+2653,1,Texas,48087
+2654,1,Texas,48081
+2655,1,Texas,48017
+2656,1,Texas,48417
+2657,1,Texas,48389
+2658,1,Texas,48267
+2659,1,Texas,48207
+2660,1,Texas,48151
+2661,1,Texas,48009
+2662,1,Texas,48411
+2663,1,Texas,48333
+2664,1,Texas,48191
+2665,1,Texas,48475
+2666,1,Texas,48197
+2667,1,Texas,48377
+2668,1,Texas,48229
+2669,1,Texas,48383
+2670,1,Texas,48271
+2671,1,Texas,48235
+2672,1,Texas,48385
+2673,1,Texas,48105
+2674,1,Texas,48023
+2675,1,Texas,48425
+2676,1,Texas,48413
+2677,1,Texas,48461
+2678,1,Texas,48435
+2679,1,Texas,48109
+2680,1,Texas,48327
+2681,1,Texas,48443
+2682,1,Texas,48137
+2683,1,Texas,48243
+2684,1,Texas,48447
+2685,1,Texas,48261
+2686,1,Texas,48155
+2687,1,Texas,48311
+2688,1,Texas,48263
+2689,1,Texas,48433
+2690,1,Texas,48431
+2691,1,Texas,48033
+2692,1,Texas,48269
+2693,1,Texas,48301
+2694,1,Virgin Islands,78030
+2695,1,Virgin Islands,78020
+2696,1,Virgin Islands,78010
+2697,1,Virginia,51059
+2698,1,Virginia,51810
+2699,1,Virginia,51107
+2700,1,Virginia,51013
+2701,1,Virginia,51153
+2702,1,Virginia,51147
+2703,1,Virginia,51095
+2704,1,Virginia,51085
+2705,1,Virginia,51510
+2706,1,Virginia,51660
+2707,1,Virginia,51177
+2708,1,Virginia,51041
+2709,1,Virginia,51199
+2710,1,Virginia,51179
+2711,1,Virginia,51830
+2712,1,Virginia,51087
+2713,1,Virginia,51075
+2714,1,Virginia,51540
+2715,1,Virginia,51760
+2716,1,Virginia,51036
+2717,1,Virginia,51740
+2718,1,Virginia,51710
+2719,1,Virginia,51700
+2720,1,Virginia,51073
+2721,1,Virginia,51001
+2722,1,Virginia,51800
+2723,1,Virginia,51117
+2724,1,Virginia,51093
+2725,1,Virginia,51067
+2726,1,Virginia,51023
+2727,1,Virginia,51003
+2728,1,Virginia,51165
+2729,1,Virginia,51109
+2730,1,Virginia,51105
+2731,1,Virginia,51065
+2732,1,Virginia,51047
+2733,1,Virginia,51019
+2734,1,Virginia,51009
+2735,1,Virginia,51163
+2736,1,Virginia,51590
+2737,1,Virginia,51083
+2738,1,Virginia,51550
+2739,1,Virginia,51171
+2740,1,Virginia,51161
+2741,1,Virginia,51137
+2742,1,Virginia,51135
+2743,1,Virginia,51125
+2744,1,Virginia,51115
+2745,1,Virginia,51683
+2746,1,Virginia,51113
+2747,1,Virginia,51630
+2748,1,Virginia,51069
+2749,1,Virginia,51191
+2750,1,Virginia,51187
+2751,1,Virginia,51175
+2752,1,Virginia,51750
+2753,1,Virginia,51149
+2754,1,Virginia,51735
+2755,1,Virginia,51143
+2756,1,Virginia,51131
+2757,1,Virginia,51680
+2758,1,Virginia,51099
+2759,1,Virginia,51650
+2760,1,Virginia,51079
+2761,1,Virginia,51061
+2762,1,Virginia,51007
+2763,1,Virginia,51770
+2764,1,Virginia,51640
+2765,1,Virginia,51520
+2766,1,Virginia,51145
+2767,1,Virginia,51133
+2768,1,Virginia,51127
+2769,1,Virginia,51121
+2770,1,Virginia,51103
+2771,1,Virginia,51670
+2772,1,Virginia,51197
+2773,1,Virginia,51840
+2774,1,Virginia,51185
+2775,1,Virginia,51685
+2776,1,Virginia,51081
+2777,1,Virginia,51005
+2778,1,Virginia,51173
+2779,1,Virginia,51730
+2780,1,Virginia,51101
+2781,1,Virginia,51089
+2782,1,Virginia,51820
+2783,1,Virginia,51181
+2784,1,Virginia,51139
+2785,1,Virginia,51097
+2786,1,Virginia,51620
+2787,1,Virginia,51043
+2788,1,Virginia,51035
+2789,1,Virginia,51031
+2790,1,Virginia,51029
+2791,1,Virginia,51025
+2792,1,Virginia,51183
+2793,1,Virginia,51015
+2794,1,Virginia,51775
+2795,1,Virginia,51049
+2796,1,Virginia,51195
+2797,1,Virginia,51193
+2798,1,Virginia,51159
+2799,1,Virginia,51155
+2800,1,Virginia,51678
+2801,1,Virginia,51595
+2802,1,Virginia,51033
+2803,1,Virginia,51530
+2804,1,Virginia,51790
+2805,1,Virginia,51037
+2806,1,Virginia,51167
+2807,1,Virginia,51071
+2808,1,Virginia,51011
+2809,1,Virginia,51157
+2810,1,Virginia,51111
+2811,1,Virginia,51053
+2812,1,Virginia,51045
+2813,1,Virginia,51027
+2814,1,Virginia,51119
+2815,1,Virginia,51063
+2816,1,Virginia,51169
+2817,1,Virginia,51600
+2818,1,Virginia,51570
+2819,1,Virginia,51610
+2820,1,Virginia,51057
+2821,1,Virginia,51141
+2822,1,Virginia,51720
+2823,1,Virginia,51091
+2824,1,Virginia,51690
+2825,1,Virginia,51077
+2826,1,Virginia,51580
+2827,1,Virginia,51051
+2828,1,Virginia,51021
+2829,1,Virginia,51017
+2830,1,Washington,53061
+2831,1,Washington,53063
+2832,1,Washington,53033
+2833,1,Washington,53071
+2834,1,Washington,53007
+2835,1,Washington,53053
+2836,1,Washington,53031
+2837,1,Washington,53011
+2838,1,Washington,53037
+2839,1,Washington,53035
+2840,1,Washington,53073
+2841,1,Washington,53057
+2842,1,Washington,53067
+2843,1,Washington,53029
+2844,1,Washington,53077
+2845,1,Washington,53027
+2846,1,Washington,53013
+2847,1,Washington,53025
+2848,1,Washington,53039
+2849,1,Washington,53043
+2850,1,Washington,53041
+2851,1,Washington,53045
+2852,1,Washington,53021
+2853,1,Washington,53005
+2854,1,Washington,53009
+2855,1,Washington,53065
+2856,1,Washington,53055
+2857,1,Washington,53015
+2858,1,Washington,53075
+2859,1,Washington,53017
+2860,1,Washington,53001
+2861,1,Washington,53047
+2862,1,Washington,53019
+2863,1,Washington,53059
+2864,1,Washington,53051
+2865,1,Washington,53003
+2866,1,Washington,53069
+2867,1,Washington,53049
+2868,1,Washington,53023
+2869,1,West Virginia,54037
+2870,1,West Virginia,54055
+2871,1,West Virginia,54093
+2872,1,West Virginia,54061
+2873,1,West Virginia,54039
+2874,1,West Virginia,54035
+2875,1,West Virginia,54079
+2876,1,West Virginia,54051
+2877,1,West Virginia,54107
+2878,1,West Virginia,54077
+2879,1,West Virginia,54033
+2880,1,West Virginia,54003
+2881,1,West Virginia,54081
+2882,1,West Virginia,54069
+2883,1,West Virginia,54049
+2884,1,West Virginia,54045
+2885,1,West Virginia,54097
+2886,1,West Virginia,54053
+2887,1,West Virginia,54073
+2888,1,West Virginia,54029
+2889,1,West Virginia,54025
+2890,1,West Virginia,54105
+2891,1,West Virginia,54103
+2892,1,West Virginia,54065
+2893,1,West Virginia,54011
+2894,1,West Virginia,54087
+2895,1,West Virginia,54083
+2896,1,West Virginia,54031
+2897,1,West Virginia,54001
+2898,1,West Virginia,54071
+2899,1,West Virginia,54057
+2900,1,West Virginia,54091
+2901,1,West Virginia,54041
+2902,1,West Virginia,54109
+2903,1,West Virginia,54095
+2904,1,West Virginia,54067
+2905,1,West Virginia,54047
+2906,1,West Virginia,54019
+2907,1,West Virginia,54009
+2908,1,West Virginia,54027
+2909,1,West Virginia,54007
+2910,1,West Virginia,54005
+2911,1,West Virginia,54099
+2912,1,West Virginia,54089
+2913,1,West Virginia,54063
+2914,1,West Virginia,54059
+2915,1,West Virginia,54023
+2916,1,West Virginia,54043
+2917,1,West Virginia,54021
+2918,1,West Virginia,54013
+2919,1,West Virginia,54075
+2920,1,West Virginia,54085
+2921,1,West Virginia,54015
+2922,1,West Virginia,54101
+2923,1,West Virginia,54017
+2924,2,Alaska,02020
+2925,2,Alaska,02090
+2926,2,Alaska,02130
+2927,2,Alaska,02122
+2928,2,Alaska,02170
+2929,2,Alaska,02110
+2930,2,Alaska,02290
+2931,2,Alaska,02240
+2932,2,Alaska,02195
+2933,2,Alaska,02050
+2934,2,Alaska,02198
+2935,2,Alaska,02180
+2936,2,Alaska,02150
+2937,2,Alaska,02220
+2938,2,Alaska,02261
+2939,2,Alaska,02997
+2940,2,Alaska,02188
+2941,2,Alaska,02185
+2942,2,Alaska,02070
+2943,2,Alaska,02016
+2944,2,Alaska,02275
+2945,2,Alaska,02100
+2946,2,Alaska,02013
+2947,2,Alaska,02068
+2948,2,Alaska,02158
+2949,2,Alaska,02998
+2950,2,Alaska,02230
+2951,3,Arizona,04013
+2952,3,Arizona,04021
+2953,3,Arizona,04019
+2954,3,Arizona,04009
+2955,3,Arizona,04017
+2956,3,Arizona,04005
+2957,3,Arizona,04025
+2958,3,Arizona,04023
+2959,3,Arizona,04027
+2960,3,Arizona,04003
+2961,3,Arizona,04001
+2962,3,Arizona,04015
+2963,3,Arizona,04012
+2964,3,Arizona,04007
+2965,3,Arizona,04011
+2966,4,Kansas,20091
+2967,4,Kansas,20209
+2968,4,Kansas,20015
+2969,4,Kansas,20059
+2970,4,Kansas,20057
+2971,4,Kansas,20045
+2972,4,Kansas,20103
+2973,4,Kansas,20173
+2974,4,Kansas,20127
+2975,4,Kansas,20107
+2976,4,Kansas,20021
+2977,4,Kansas,20161
+2978,4,Kansas,20155
+2979,4,Kansas,20123
+2980,4,Kansas,20085
+2981,4,Kansas,20111
+2982,4,Kansas,20011
+2983,4,Kansas,20207
+2984,4,Kansas,20149
+2985,4,Kansas,20043
+2986,4,Kansas,20177
+2987,4,Kansas,20133
+2988,4,Kansas,20037
+2989,4,Kansas,20191
+2990,4,Kansas,20087
+2991,4,Kansas,20143
+2992,4,Kansas,20139
+2993,4,Kansas,20113
+2994,4,Kansas,20079
+2995,4,Kansas,20063
+2996,4,Kansas,20031
+2997,4,Kansas,20027
+2998,4,Kansas,20121
+2999,4,Kansas,20189
+3000,4,Kansas,20185
+3001,4,Kansas,20125
+3002,4,Kansas,20055
+3003,4,Kansas,20169
+3004,4,Kansas,20005
+3005,4,Kansas,20099
+3006,4,Kansas,20019
+3007,4,Kansas,20009
+3008,4,Kansas,20151
+3009,4,Kansas,20035
+3010,4,Kansas,20029
+3011,4,Kansas,20141
+3012,4,Kansas,20115
+3013,4,Kansas,20089
+3014,4,Kansas,20073
+3015,4,Kansas,20197
+3016,4,Kansas,20157
+3017,4,Kansas,20061
+3018,4,Kansas,20129
+3019,4,Kansas,20175
+3020,4,Kansas,20171
+3021,4,Kansas,20163
+3022,4,Kansas,20007
+3023,4,Kansas,20147
+3024,4,Kansas,20075
+3025,4,Kansas,20051
+3026,4,Kansas,20187
+3027,4,Kansas,20093
+3028,4,Kansas,20041
+3029,4,Kansas,20183
+3030,4,Kansas,20205
+3031,4,Kansas,20181
+3032,4,Kansas,20017
+3033,4,Kansas,20179
+3034,4,Kansas,20081
+3035,4,Kansas,20047
+3036,4,Kansas,20159
+3037,4,Kansas,20097
+3038,4,Kansas,20069
+3039,4,Kansas,20025
+3040,4,Kansas,20119
+3041,4,Kansas,20067
+3042,4,Kansas,20131
+3043,4,Kansas,20023
+3044,4,Kansas,20077
+3045,4,Kansas,20137
+3046,4,Kansas,20053
+3047,4,Kansas,20013
+3048,4,Kansas,20003
+3049,4,Kansas,20135
+3050,4,Kansas,20195
+3051,4,Kansas,20101
+3052,4,Kansas,20083
+3053,4,Kansas,20033
+3054,4,Kansas,20145
+3055,4,Kansas,20201
+3056,4,Kansas,20001
+3057,4,Kansas,20193
+3058,4,Kansas,20117
+3059,4,Kansas,20109
+3060,4,Kansas,20049
+3061,4,Kansas,20165
+3062,4,Kansas,20095
+3063,4,Kansas,20065
+3064,4,Kansas,20167
+3065,4,Kansas,20105
+3066,4,Kansas,20071
+3067,4,Kansas,20039
+3068,4,Kansas,20203
+3069,4,Kansas,20199
+3070,4,Kansas,20153
+3071,5,Northern Mariana Islands,69120
+3072,5,Northern Mariana Islands,69110
+3073,5,Northern Mariana Islands,69100
+3074,6,Oregon,41067
+3075,6,Oregon,41035
+3076,6,Oregon,41029
+3077,6,Oregon,41047
+3078,6,Oregon,41019
+3079,6,Oregon,41051
+3080,6,Oregon,41059
+3081,6,Oregon,41053
+3082,6,Oregon,41043
+3083,6,Oregon,41017
+3084,6,Oregon,41005
+3085,6,Oregon,41071
+3086,6,Oregon,41003
+3087,6,Oregon,41039
+3088,6,Oregon,41061
+3089,6,Oregon,41023
+3090,6,Oregon,41033
+3091,6,Oregon,41027
+3092,6,Oregon,41007
+3093,6,Oregon,41041
+3094,6,Oregon,41065
+3095,6,Oregon,41057
+3096,6,Oregon,41049
+3097,6,Oregon,41009
+3098,6,Oregon,41063
+3099,6,Oregon,41045
+3100,6,Oregon,41013
+3101,6,Oregon,41055
+3102,6,Oregon,41015
+3103,6,Oregon,41011
+3104,6,Oregon,41031
+3105,6,Oregon,41025
+3106,6,Oregon,41001
+3107,6,Oregon,41037
+3108,6,Oregon,41021
+3109,6,Oregon,41069
+3110,7,Puerto Rico,72153
+3111,7,Puerto Rico,72151
+3112,7,Puerto Rico,72149
+3113,7,Puerto Rico,72145
+3114,7,Puerto Rico,72143
+3115,7,Puerto Rico,72141
+3116,7,Puerto Rico,72139
+3117,7,Puerto Rico,72137
+3118,7,Puerto Rico,72135
+3119,7,Puerto Rico,72133
+3120,7,Puerto Rico,72131
+3121,7,Puerto Rico,72129
+3122,7,Puerto Rico,72127
+3123,7,Puerto Rico,72125
+3124,7,Puerto Rico,72123
+3125,7,Puerto Rico,72121
+3126,7,Puerto Rico,72119
+3127,7,Puerto Rico,72117
+3128,7,Puerto Rico,72115
+3129,7,Puerto Rico,72113
+3130,7,Puerto Rico,72111
+3131,7,Puerto Rico,72109
+3132,7,Puerto Rico,72107
+3133,7,Puerto Rico,72105
+3134,7,Puerto Rico,72103
+3135,7,Puerto Rico,72101
+3136,7,Puerto Rico,72099
+3137,7,Puerto Rico,72097
+3138,7,Puerto Rico,72095
+3139,7,Puerto Rico,72091
+3140,7,Puerto Rico,72089
+3141,7,Puerto Rico,72087
+3142,7,Puerto Rico,72085
+3143,7,Puerto Rico,72083
+3144,7,Puerto Rico,72081
+3145,7,Puerto Rico,72079
+3146,7,Puerto Rico,72077
+3147,7,Puerto Rico,72075
+3148,7,Puerto Rico,72073
+3149,7,Puerto Rico,72071
+3150,7,Puerto Rico,72069
+3151,7,Puerto Rico,72067
+3152,7,Puerto Rico,72065
+3153,7,Puerto Rico,72063
+3154,7,Puerto Rico,72061
+3155,7,Puerto Rico,72059
+3156,7,Puerto Rico,72057
+3157,7,Puerto Rico,72055
+3158,7,Puerto Rico,72054
+3159,7,Puerto Rico,72053
+3160,7,Puerto Rico,72051
+3161,7,Puerto Rico,72047
+3162,7,Puerto Rico,72045
+3163,7,Puerto Rico,72043
+3164,7,Puerto Rico,72041
+3165,7,Puerto Rico,72039
+3166,7,Puerto Rico,72037
+3167,7,Puerto Rico,72035
+3168,7,Puerto Rico,72033
+3169,7,Puerto Rico,72031
+3170,7,Puerto Rico,72029
+3171,7,Puerto Rico,72027
+3172,7,Puerto Rico,72025
+3173,7,Puerto Rico,72023
+3174,7,Puerto Rico,72021
+3175,7,Puerto Rico,72019
+3176,7,Puerto Rico,72017
+3177,7,Puerto Rico,72015
+3178,7,Puerto Rico,72013
+3179,7,Puerto Rico,72011
+3180,7,Puerto Rico,72009
+3181,7,Puerto Rico,72007
+3182,7,Puerto Rico,72005
+3183,7,Puerto Rico,72003
+3184,7,Puerto Rico,72001
+3185,7,Puerto Rico,72147
+3186,7,Puerto Rico,72093
+3187,7,Puerto Rico,72049
+3188,8,Rhode Island,44009
+3189,8,Rhode Island,44007
+3190,8,Rhode Island,44005
+3191,8,Rhode Island,44003
+3192,8,Rhode Island,44001
+3193,9,Utah,49035
+3194,9,Utah,49053
+3195,9,Utah,49011
+3196,9,Utah,49057
+3197,9,Utah,49043
+3198,9,Utah,49049
+3199,9,Utah,49051
+3200,9,Utah,49045
+3201,9,Utah,49005
+3202,9,Utah,49003
+3203,9,Utah,49021
+3204,9,Utah,49029
+3205,9,Utah,49047
+3206,9,Utah,49037
+3207,9,Utah,49017
+3208,9,Utah,49025
+3209,9,Utah,49027
+3210,9,Utah,49023
+3211,9,Utah,49019
+3212,9,Utah,49015
+3213,9,Utah,49013
+3214,9,Utah,49007
+3215,9,Utah,49041
+3216,9,Utah,49039
+3217,9,Utah,49031
+3218,9,Utah,49033
+3219,9,Utah,49001
+3220,9,Utah,49055
+3221,9,Utah,49009
