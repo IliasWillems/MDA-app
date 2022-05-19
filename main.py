@@ -366,15 +366,15 @@ fig_visual = update_figure_vis(1)
 # General text that is always displayed
 infection_rate_general_text = html.Div([
     "In this section, we display the infection number for each week and each state."
-    " Therefore, the weekly percentage of infections"
+    " To this end, the weekly percentage of infections"
     " on a state level is used. Assuming people are infectious for 7 days, the infection number for a certain week"
     " can be computed as"
-    " the number of cases in the next week divided by the number of cases in this week."
+    " the number of cases in the next week divided by the number of cases in the current week."
     " This number represents the average amount of people that"
     " each Covid patient infects in that week. Also a smoothed curve is added to the plot of the infection numbers.",
     html.Br(),
     html.Br(),
-    " Besides, some Covid measurements are displayes in terms of closing schools and mask obligation.",
+    " Additionally, some Covid measurements are displayed in terms of closing schools and mask obligation.",
     html.Br(),
     "Legend for the colours:",
     html.Ul(children=[
@@ -386,15 +386,15 @@ infection_rate_general_text = html.Div([
             ]),
         html.Div(children=["2. Masks"]),
             html.Ul(children=[
-                html.Div(children=["1. Orange = Masks obligatory in all public spaces where "
+                html.Div(children=["1. Red = Masks obligatory in all public spaces where "
                                    "social distancing is not possible "]),
-                html.Div(children=["2. Blue = Masks obligatory in all public spaces where social"
+                html.Div(children=["2. Green = Masks not obligatory in all public spaces where social"
                                    " distancing is not possible"])
         ]),
         html.Div(children=["3. Schools"]),
             html.Ul(children=[
-                html.Div(children=["1. Brown = At least some types of schools need to close"]),
-                html.Div(children=["2. Yellow = No such restrictions"])
+                html.Div(children=["1. Red = At least some types of schools need to close"]),
+                html.Div(children=["2. Green = No such restrictions"])
         ]),
     ]),
     html.Br(),
