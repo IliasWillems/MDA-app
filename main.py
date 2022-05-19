@@ -150,15 +150,13 @@ def update_figure_waste_water(n_clicks):
 )
 def update_figure_community_detection_cases(period):
     df = pd.read_csv("Data/CommunityDetection/df_LB_cases_%s.csv" % period, dtype={'fips': str, 'cluster': str})
-    df = df.loc[df['state'].shift() != df['state']]
-    df['fips'] = df.apply(lambda row: int(row['fips'][:2]), axis=1)
-    df = pd.merge(df, states, left_on='fips', right_on='fips')
+    df = df.loc[df['Name'].shift() != df['Name']]
 
     fig = px.choropleth(df,
                         locations='Postal Code',
                         color='cluster',
                         color_continuous_scale='spectral_r',
-                        hover_name='state',
+                        hover_name='Name',
                         locationmode='USA-states',
                         scope='usa')
 
@@ -166,7 +164,7 @@ def update_figure_community_detection_cases(period):
                '21/06/2021 - 20/12/2021', '21/12/2021 - 11/04/2022']
 
     fig.update_layout(margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
-                      title_text="Community detection on deaths for the period <br> " + periods[period-1])
+                      title_text="Community detection on cases for the period <br> " + periods[period-1])
 
     return fig
 
@@ -177,15 +175,13 @@ def update_figure_community_detection_cases(period):
 )
 def update_figure_community_detection_deaths(period):
     df = pd.read_csv("Data/CommunityDetection/df_LB_deaths_%s.csv" % period, dtype={'fips': str, 'cluster': str})
-    df = df.loc[df['state'].shift() != df['state']]
-    df['fips'] = df.apply(lambda row: int(row['fips'][:2]), axis=1)
-    df = pd.merge(df, states, left_on='fips', right_on='fips')
+    df = df.loc[df['Name'].shift() != df['Name']]
 
     fig = px.choropleth(df,
                         locations='Postal Code',
                         color='cluster',
                         color_continuous_scale='spectral_r',
-                        hover_name='state',
+                        hover_name='Name',
                         locationmode='USA-states',
                         scope='usa')
 
@@ -203,21 +199,47 @@ def update_figure_community_detection_deaths(period):
     [Input(component_id='community-detection-periods', component_property='value')]
 )
 def update_general_info_community_detection(period):
-    info = ["In this period, some things happened. Other things didn't happen, and some things were about to happen"
-            "but didn't yet came to be. I am already out of inspiration for this sample text so enjoy some pineapples:"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples",
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"
-            "pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples pineapples"]
-    return info[1]
+    info = ["During the first period of the pandemic, Covid-19 was some new and frightening virus. Many states responded to"
+            " this in the same way by issuing statewide lockdown orders. As can be seen on the figures below,"
+            " the evolution of Covid cases and deaths is found to"
+            " be similar throughout the United States. For the cases, there is only one state that does not belong"
+            " to the large cluster, namely Northern Mariana Islands."
+            " Concerning the deaths, Northern Mariane Islands, as well as Puerto Rico and Virgin Islands belong to"
+            " separate one-state clusters. These are all islands that are separated from the USA mainland,"
+            " making a different evolution plausible. ",
+            "During the second period of the pandemic, the different states still seem to evolve similarly"
+            " in terms of cases. Only one large cluster can be observed, excluding Hawaii, Northern Mariana"
+            " Islands, Puerto Rico and Virgin Islands, which are islands separated from the USA mainland."
+            " Concerning the evolution of the deaths however, two large clusters can be detected, as well as"
+            " some separate one-state clusters. In the winter of 2020, a second wave of Covid 19 cases occurred"
+            " with a peak that was even higher than before. Different state characteristics could have had an influence"
+            " on the ability of a state to take care of severely ill people under these circumstances."
+            " This makes a different evolution of Covid-19 deaths across states plausible.",
+            "During the first six months of the year 2021, a general downward trend in cases can be observed in the USA."
+            " All states are clustered together based on their evolution of cases, except for Northern Mariana Island and"
+            " Virgin Islands, which are two islands separated from the USA mainland, making a slightly different evolution"
+            " plausible. Moreover, the evolution of the deaths is similar for most of the states. This could be due to the"
+            " decreasing number of cases, leading to a better ability to take care of severely ill people."
+            " Therefore, differences in state characteristics could be less decisive in the evolution of deaths then"
+            " is the case when there is a peak in Covid-19 infections."
+            " It is also useful to notice that during this period, vaccination against Covid-19 were beginning to be rolled"
+            " out to the public. Since this is just the beginning of the vaccination campaign, the average vaccination"
+            " rate over this period"
+            " is still low for all states. Besides, vaccination rate does not seem to influence the cluster"
+            " assigned to a state yet.",
+            "During this period, the vaccination campaign is in full swing. The broad population has had a chance"
+            " to get fully vaccinated. Besides, the delta variant of Covid became dominant, leading to a new peak"
+            " of Covid infections in the USA. However, this evolution does not seem to be the same in all states, since"
+            " two separate large clusters of Covid-19 cases evolution are detected. Also for the evolution of the deaths,"
+            " two clear clusters are found. Different state characteristics can influence these clusters.",
+            "During the most recent period, Omicron has become the dominating variant. After a high peak in January, the"
+            " number of cases shows in general a decreasing trend. It was found that this trend is similar for all states,"
+            " since they are clustered together, except for the Northern Mariana Islands."
+            " It is possible that the effect of vaccinations on the clustering solution has diminished because the"
+            " vaccination rate is more similar for the different states. Moreover, the vaccines are less effective"
+            " against infection with Omicron, compared to earlier Covid variants. The clustering solution of the deaths"
+            " shows two large clusters and 8 one-state clusters."]
+    return info[period-1]
 
 
 @app.callback(
@@ -225,38 +247,35 @@ def update_general_info_community_detection(period):
     [Input(component_id='community-detection-periods', component_property='value')]
 )
 def update_text_community_detection_cases(period):
-    info = ["For this period, there is only one cluster, so it would not make sense to predict for each county the"
-            "cluster they belong to.",
+    info = ["For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+            " the cluster it belongs to.",
 
             # Period 2
-            "For this period, there is only one cluster, so it would not make sense to predict for each county the"
-            "cluster they belong to.",
+            "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+            " the cluster it belongs to.",
 
             # Period 3
-            "For this period, there is only one cluster, so it would not make sense to predict for each county the"
-            "cluster they belong to.",
+            "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+            " the cluster it belongs to.",
 
             # Period 4
             html.Div([
                 "For this period, multiple clusters are detected, so we can also try to predict cluster membership for each "
                 "state. In order to produce interpretable results, as well as to be able to do variable selection, we use "
                 "a logistic regression model. Starting with the full list of covariates displayed above, we end up"
-                "selecting ",
+                " selecting ",
                 html.I("proportion vaccinated (p = 0.031)"),
                 " and ",
                 html.I("poverty rate (p = 0.016)"),
                 ". ",
                 "The significance of ",
                 html.I("proportion vaccinated"),
-                " does not come as a surprise, as in that time period the vaccination were beginning to be rolled out "
-                "to the public (presumably, should check this). Somewhat unexpectedly, the variable ",
-                html.I("Community_detection_com"),
-                " is not significant."
+                " does not come as a surprise, as in this time period the effectiveness of the vaccination "
+                "should be optimal for the broad public."
             ]),
-
             # Period 5
-            "For this period, there is only one cluster, so it would not make sense to predict for each county the"
-            "cluster they belong to."]
+            "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+            " the cluster it belongs to."]
 
     return info[period - 1]
 
@@ -266,15 +285,15 @@ def update_text_community_detection_cases(period):
     [Input(component_id='community-detection-periods', component_property='value')]
 )
 def update_text_community_detection_deaths(period):
-    info = ["For this period, there is only one cluster, so it would not make sense to predict for each county the"
-            "cluster they belong to.",
+    info = ["For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+            " the cluster it belongs to.",
 
             # Period 2
             html.Div([
                 "For this period, there are two large clusters detected. After a backwards variable selection it is "
                 "determined that only the variable ",
                 html.I("Uninsured"),
-                " is significant ",
+                " is significant in predicting the cluster for each state ",
                 html.I("(p = 0.008)"),
                 ". Just like in the overall analysis, the poverty rate turns out to be borderline insignificant."
             ]),
@@ -297,9 +316,14 @@ def update_text_community_detection_deaths(period):
             html.Div([
                 "For the last period, again 2 large clusters are detected. ",
                 html.I("Uninsured"),
-                " returns as a significant variable, ",
+                " is a significant variable, ",
                 html.I("(p = 0.004)"),
-                " while the poverty rate is no longer significant."
+                " while the ",
+                html.I("poverty rate"),
+                " is no longer significant. ",
+                "Moreover ",
+                html.I("proportion vaccinated"),
+                " is borderline insignificant."
             ]),
             ]
 
@@ -332,18 +356,12 @@ fig_visual = update_figure_vis(1)
 ########################################################################################################################
 #                                                Infection Rates                                                       #
 ########################################################################################################################
-# ToDo: Add all states to the dropdown menu (https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696)
 # ToDo: Try to predict these curves with f.e. an SVM. Use Louvain communities as extra predictor.
 
 # Create dropdown for state
 infrates_states_dropdown = dcc.Dropdown(
     id='infrates-states',
-    options=[{"label": 'Alabama', 'value': 1},
-             {"label": 'Alaska', 'value': 2},
-             {"label": 'Arizona', 'value': 4},
-             {"label": 'Arkansas', 'value': 5},
-             {"label": 'California', 'value': 6},
-             ],
+    options=[{"label":x,"value":y} for x,y in zip(states.Name,states.fips)],
     value=1)
 
 # Create dropdown for measure
@@ -373,9 +391,6 @@ fig_waste_water = update_figure_waste_water(0)
 ########################################################################################################################
 #                                              Community Detection                                                     #
 ########################################################################################################################
-# ToDo: Display information for selected period explaining what important Covid stuff went on during that time
-# ToDo: Check with Sara/code if edges are indeed made if correlation > 0.8
-
 
 # Create dropdown to select period
 community_detection_dropdown = dcc.Dropdown(
@@ -399,10 +414,10 @@ community_detection_methodology_and_general_results = html.Div([
     "In this section, we construct a graph based on the covid data set. More specifically, the nodes represent the "
     "different states and two states are connected if the evolution of Covid-19 in these states follows the same trend. "
     "To this end, we look at correlations between the number of cases in both states on a weekly basis and create an "
-    "undirected connection between them if the correlation is larger than 0.8. In a next step, we perform a community "
+    "undirected connection between them if the correlation is larger than 0.7. In a next step, we perform a community "
     "detection algorithm based on label propagation and group states according to their communities. In a completely "
     "analogous way, communities of states are formed based on the evolution of Covid-19 related deaths in the different "
-    "states. In the dropdown menu above, you can specify a specific 6 month-period for which the communities are "
+    "states. In the dropdown menu below, you can specify a specific 6 month-period for which the communities are "
     "computed. Note that this subdivision in periods can be insightful since the developments related to Covid-19 are "
     "quickly evolving.",
     html.Br(),
@@ -417,7 +432,7 @@ community_detection_methodology_and_general_results = html.Div([
                            html.I("prop_age.")]),
         html.Div(children=["4. Proportion of people who are vaccinated, referred to as ",
                            html.I("prop.")]),
-        html.Div(children=["5. The degree centrality of the state based on commuting flows, referred to as ",
+        html.Div(children=["5. The degree centrality of the state based on commuting flows between states, referred to as ",
                            html.I("Degree_centrality_com.")])
     ]),
     html.Br(),
@@ -443,7 +458,7 @@ community_detection_general_info = update_general_info_community_detection(1)
 
 # Analyses for each of the periods
 community_detection_cases_info = update_text_community_detection_cases(1)
-community_detection_deaths_info = update_text_community_detection_cases(1)
+community_detection_deaths_info = update_text_community_detection_deaths(1)
 
 ########################################################################################################################
 #                                             Display everything                                                       #
@@ -522,7 +537,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(html.Div(id='id_community-detection-cases-info', children=[community_detection_cases_info]),
                         md=5),
-                dbc.Col(html.Div(id='id_community-detection-deaths-info', children=[community_detection_cases_info]),
+                dbc.Col(html.Div(id='id_community-detection-deaths-info', children=[community_detection_deaths_info]),
                         md=5)
             ],
             align="top",
