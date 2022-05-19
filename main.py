@@ -220,7 +220,7 @@ def update_general_info_community_detection(period):
             " Virgin Islands, which are two islands separated from the USA mainland, making a slightly different evolution"
             " plausible. Moreover, the evolution of the deaths is similar for most of the states. This could be due to the"
             " decreasing number of cases, leading to a better ability to take care of severely ill people."
-            " Therefore, differences in state characteristics could be less decisive in the evolution of deaths then"
+            " Therefore, differences in state characteristics could be less decisive in the evolution of deaths than"
             " is the case when there is a peak in Covid-19 infections."
             " It is also useful to notice that during this period, vaccination against Covid-19 were beginning to be rolled"
             " out to the public. Since this is just the beginning of the vaccination campaign, the average vaccination"
@@ -334,6 +334,12 @@ def update_text_community_detection_deaths(period):
 #                                           Covid spread visualization                                                 #
 ########################################################################################################################
 # ToDo: Implement animated visualization
+# General text that is always displayed
+Covid_spread_general_text = html.Div([
+    "In this section, we display the newly reported cases per county and per week."
+    " The slider can be used to choose the week for which the data must be shown.",
+    html.Br()
+])
 
 # Create a dropdown for options 'animate' and 'slider'
 visualization_dropdown = dcc.Dropdown(
@@ -357,6 +363,43 @@ fig_visual = update_figure_vis(1)
 #                                                Infection Rates                                                       #
 ########################################################################################################################
 # ToDo: Try to predict these curves with f.e. an SVM. Use Louvain communities as extra predictor.
+# General text that is always displayed
+infection_rate_general_text = html.Div([
+    "In this section, we display the infection number for each week and each state."
+    " Therefore, the weekly percentage of infections"
+    " on a state level is used. Assuming people are infectious for 7 days, the infection number for a certain week"
+    " can be computed as"
+    " the number of cases in the next week divided by the number of cases in this week."
+    " This number represents the average amount of people that"
+    " each Covid patient infects in that week. Also a smoothed curve is added to the plot of the infection numbers.",
+    html.Br(),
+    html.Br(),
+    " Besides, some Covid measurements are displayes in terms of closing schools and mask obligation.",
+    html.Br(),
+    "Legend for the colours:",
+    html.Ul(children=[
+        html.Div(children=["1. Vaccination"]),
+            html.Ul(children=[
+                html.Div(children=["1. Red = Vaccination available for all people at"
+                                   " risk (elderly, front-line workers, etc.) "]),
+                html.Div(children=["2. Green = Vaccination no longer available for all these people"])
+            ]),
+        html.Div(children=["2. Masks"]),
+            html.Ul(children=[
+                html.Div(children=["1. Orange = Masks obligatory in all public spaces where "
+                                   "social distancing is not possible "]),
+                html.Div(children=["2. Blue = Masks obligatory in all public spaces where social"
+                                   " distancing is not possible"])
+        ]),
+        html.Div(children=["3. Schools"]),
+            html.Ul(children=[
+                html.Div(children=["1. Brown = At least some types of schools need to close"]),
+                html.Div(children=["2. Yellow = No such restrictions"])
+        ]),
+    ]),
+    html.Br(),
+    "The state and Covid measures that are displayed can be chosen in the dropdown box."
+])
 
 # Create dropdown for state
 infrates_states_dropdown = dcc.Dropdown(
@@ -475,6 +518,7 @@ app.layout = dbc.Container(
         # Covid spead visualization
         html.Div(children=[html.H4(children='1. Visualization of the new cases per county on a weekly basis.')],
                  style={'textAlign': 'left', 'color': 'black'}),
+        html.Div(Covid_spread_general_text),
         dbc.Row(
             [
                 dbc.Col([dbc.Row(visualization_dropdown),
@@ -489,6 +533,7 @@ app.layout = dbc.Container(
         # Infection Rates
         html.Div(children=[html.H4(children='2. Infection rates')],
                  style={'textAlign': 'left', 'color': 'black'}),
+        html.Div(infection_rate_general_text),
         dbc.Row(
             [
                 dbc.Col([html.Div(children='Select a state'),
