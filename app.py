@@ -18,6 +18,9 @@ app = dash.Dash(__name__,
                 title='MDA Project',
                 external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+# add this for heroku
+server = app.server
+
 # For Heroku:
 #   Username: willemsilias2000@gmail.com
 #   Password: n)eLLZQE9$Sk"hE
