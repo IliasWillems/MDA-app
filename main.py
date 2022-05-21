@@ -18,6 +18,10 @@ app = dash.Dash(__name__,
                 title='MDA Project',
                 external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+# For Heroku:
+#   Username: willemsilias2000@gmail.com
+#   Password: n)eLLZQE9$Sk"hE
+
 ########################################################################################################################
 #                                            Load all data in advance                                                  #
 ########################################################################################################################
@@ -27,6 +31,7 @@ with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-c
     counties = json.load(response)
 agg_week_state = pd.read_csv("Data/agg_week_state.csv", dtype={'fips': str})
 measures = pd.read_csv("Data/measures.csv")
+Kmeans_clusters = pd.read_csv('Data/Kmeans_clustering.csv', dtype={'cluster': 'string', 'fips': 'string'})
 
 
 ########################################################################################################################
@@ -40,29 +45,51 @@ measures = pd.read_csv("Data/measures.csv")
 def show_hide_element(visibility_state):
     if visibility_state == 'slider':
         return {'display': 'block', 'padding': 10}
-    if visibility_state == 'animate':
+    if visibility_state in ['animate', 'clusters']:
         return {'display': 'none', 'padding': 10}
 
 
 @app.callback(
-    Output(component_id="id_figure", component_property="figure"),
-    [Input(component_id="visualization-slider", component_property="value")]
+    Output(component_id='visualization-clusters-info', component_property='style'),
+    [Input(component_id='visualization-dropdown', component_property='value')]
 )
-def update_figure_vis(week):
-    fig = px.choropleth(week_merge[week_merge['week'] == week], geojson=counties, locations='fips', color='cpp',
-                        color_continuous_scale="Viridis",
-                        range_color=(0, 0.5),
-                        scope="usa",
-                        labels={'cpp': '%new cases <br> (on county level)'}
-                        )
-    fig.update_layout(title_text="Covid-19 cases for week " + str(week) + ". " + "(" +
-                                 dt.datetime.strptime(week_merge.loc[week, 'startOfWeek'], "%Y-%m-%d").strftime(
-                                     "%d/%b/%Y")
-                                 + " to " +
-                                 dt.datetime.strptime(week_merge.loc[week, 'endOfWeek'], "%Y-%m-%d").strftime(
-                                     "%d/%b/%Y") + ")",
-                      margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
-                      width=800)
+def show_hide_visualization_cluster_info(visibility_state):
+    if visibility_state == 'clusters':
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
+
+
+@app.callback(
+    Output(component_id="id_figure", component_property="figure"),
+    [Input(component_id="visualization-slider", component_property="value"),
+     Input(component_id="visualization-dropdown", component_property="value")]
+)
+def update_figure_vis(week, to_display):
+    if to_display in ["slider", "animate"]:
+        fig = px.choropleth(week_merge[week_merge['week'] == week], geojson=counties, locations='fips',
+                            color='casespercapita',
+                            color_continuous_scale="Viridis",
+                            range_color=(0, 0.5),
+                            scope="usa",
+                            labels={'casespercapita': '%new cases <br> (on county level)'}
+                            )
+        fig.update_layout(title_text="Covid-19 cases for week " + str(week) + ". " + "(" +
+                                     dt.datetime.strptime(week_merge.loc[week, 'startOfWeek'], "%Y-%m-%d").strftime(
+                                         "%d/%b/%Y")
+                                     + " to " +
+                                     dt.datetime.strptime(week_merge.loc[week, 'endOfWeek'], "%Y-%m-%d").strftime(
+                                         "%d/%b/%Y") + ")",
+                          margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
+                          width=800)
+    else:
+        fig = px.choropleth(Kmeans_clusters, geojson=counties, locations='fips', color='cluster',
+                            scope='usa', labels={'cluster': 'cases'}
+                            )
+        fig.update_layout(title_text="Clusters of similar Covid evolution",
+                          margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
+                          width=800)
+
     return fig
 
 
@@ -164,7 +191,7 @@ def update_figure_community_detection_cases(period):
                '21/06/2021 - 20/12/2021', '21/12/2021 - 11/04/2022']
 
     fig.update_layout(margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
-                      title_text="Community detection on cases for the period <br> " + periods[period-1])
+                      title_text="Community detection on cases for the period <br> " + periods[period - 1])
 
     return fig
 
@@ -189,7 +216,7 @@ def update_figure_community_detection_deaths(period):
                '21/06/2021 - 20/12/2021', '21/12/2021 - 11/04/2022']
 
     fig.update_layout(margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
-                      title_text="Community detection on deaths for the period <br> " + periods[period-1])
+                      title_text="Community detection on deaths for the period <br> " + periods[period - 1])
 
     return fig
 
@@ -199,47 +226,48 @@ def update_figure_community_detection_deaths(period):
     [Input(component_id='community-detection-periods', component_property='value')]
 )
 def update_general_info_community_detection(period):
-    info = ["During the first period of the pandemic, Covid-19 was some new and frightening virus. Many states responded to"
-            " this in the same way by issuing statewide lockdown orders. As can be seen on the figures below,"
-            " the evolution of Covid cases and deaths is found to"
-            " be similar throughout the United States. For the cases, there is only one state that does not belong"
-            " to the large cluster, namely Northern Mariana Islands."
-            " Concerning the deaths, Northern Mariane Islands, as well as Puerto Rico and Virgin Islands belong to"
-            " separate one-state clusters. These are all islands that are separated from the USA mainland,"
-            " making a different evolution plausible. ",
-            "During the second period of the pandemic, the different states still seem to evolve similarly"
-            " in terms of cases. Only one large cluster can be observed, excluding Hawaii, Northern Mariana"
-            " Islands, Puerto Rico and Virgin Islands, which are islands separated from the USA mainland."
-            " Concerning the evolution of the deaths however, two large clusters can be detected, as well as"
-            " some separate one-state clusters. In the winter of 2020, a second wave of Covid 19 cases occurred"
-            " with a peak that was even higher than before. Different state characteristics could have had an influence"
-            " on the ability of a state to take care of severely ill people under these circumstances."
-            " This makes a different evolution of Covid-19 deaths across states plausible.",
-            "During the first six months of the year 2021, a general downward trend in cases can be observed in the USA."
-            " All states are clustered together based on their evolution of cases, except for Northern Mariana Island and"
-            " Virgin Islands, which are two islands separated from the USA mainland, making a slightly different evolution"
-            " plausible. Moreover, the evolution of the deaths is similar for most of the states. This could be due to the"
-            " decreasing number of cases, leading to a better ability to take care of severely ill people."
-            " Therefore, differences in state characteristics could be less decisive in the evolution of deaths than"
-            " is the case when there is a peak in Covid-19 infections."
-            " It is also useful to notice that during this period, vaccination against Covid-19 were beginning to be rolled"
-            " out to the public. Since this is just the beginning of the vaccination campaign, the average vaccination"
-            " rate over this period"
-            " is still low for all states. Besides, vaccination rate does not seem to influence the cluster"
-            " assigned to a state yet.",
-            "During this period, the vaccination campaign is in full swing. The broad population has had a chance"
-            " to get fully vaccinated. Besides, the delta variant of Covid became dominant, leading to a new peak"
-            " of Covid infections in the USA. However, this evolution does not seem to be the same in all states, since"
-            " two separate large clusters of Covid-19 cases evolution are detected. Also for the evolution of the deaths,"
-            " two clear clusters are found. Different state characteristics can influence these clusters.",
-            "During the most recent period, Omicron has become the dominating variant. After a high peak in January, the"
-            " number of cases shows in general a decreasing trend. It was found that this trend is similar for all states,"
-            " since they are clustered together, except for the Northern Mariana Islands."
-            " It is possible that the effect of vaccinations on the clustering solution has diminished because the"
-            " vaccination rate is more similar for the different states. Moreover, the vaccines are less effective"
-            " against infection with Omicron, compared to earlier Covid variants. The clustering solution of the deaths"
-            " shows two large clusters and 8 one-state clusters."]
-    return info[period-1]
+    info = [
+        "During the first period of the pandemic, Covid-19 was some new and frightening virus. Many states responded to"
+        " this in the same way by issuing statewide lockdown orders. As can be seen on the figures below,"
+        " the evolution of Covid cases and deaths is found to"
+        " be similar throughout the United States. For the cases, there is only one state that does not belong"
+        " to the large cluster, namely Northern Mariana Islands."
+        " Concerning the deaths, Northern Mariane Islands, as well as Puerto Rico and Virgin Islands belong to"
+        " separate one-state clusters. These are all islands that are separated from the USA mainland,"
+        " making a different evolution plausible. ",
+        "During the second period of the pandemic, the different states still seem to evolve similarly"
+        " in terms of cases. Only one large cluster can be observed, excluding Hawaii, Northern Mariana"
+        " Islands, Puerto Rico and Virgin Islands, which are islands separated from the USA mainland."
+        " Concerning the evolution of the deaths however, two large clusters can be detected, as well as"
+        " some separate one-state clusters. In the winter of 2020, a second wave of Covid 19 cases occurred"
+        " with a peak that was even higher than before. Different state characteristics could have had an influence"
+        " on the ability of a state to take care of severely ill people under these circumstances."
+        " This makes a different evolution of Covid-19 deaths across states plausible.",
+        "During the first six months of the year 2021, a general downward trend in cases can be observed in the USA."
+        " All states are clustered together based on their evolution of cases, except for Northern Mariana Island and"
+        " Virgin Islands, which are two islands separated from the USA mainland, making a slightly different evolution"
+        " plausible. Moreover, the evolution of the deaths is similar for most of the states. This could be due to the"
+        " decreasing number of cases, leading to a better ability to take care of severely ill people."
+        " Therefore, differences in state characteristics could be less decisive in the evolution of deaths than"
+        " is the case when there is a peak in Covid-19 infections."
+        " It is also useful to notice that during this period, vaccination against Covid-19 were beginning to be rolled"
+        " out to the public. Since this is just the beginning of the vaccination campaign, the average vaccination"
+        " rate over this period"
+        " is still low for all states. Besides, vaccination rate does not seem to influence the cluster"
+        " assigned to a state yet.",
+        "During this period, the vaccination campaign is in full swing. The broad population has had a chance"
+        " to get fully vaccinated. Besides, the delta variant of Covid became dominant, leading to a new peak"
+        " of Covid infections in the USA. However, this evolution does not seem to be the same in all states, since"
+        " two separate large clusters of Covid-19 cases evolution are detected. Also for the evolution of the deaths,"
+        " two clear clusters are found. Different state characteristics can influence these clusters.",
+        "During the most recent period, Omicron has become the dominating variant. After a high peak in January, the"
+        " number of cases shows in general a decreasing trend. It was found that this trend is similar for all states,"
+        " since they are clustered together, except for the Northern Mariana Islands."
+        " It is possible that the effect of vaccinations on the clustering solution has diminished because the"
+        " vaccination rate is more similar for the different states. Moreover, the vaccines are less effective"
+        " against infection with Omicron, compared to earlier Covid variants. The clustering solution of the deaths"
+        " shows two large clusters and 8 one-state clusters."]
+    return info[period - 1]
 
 
 @app.callback(
@@ -247,35 +275,36 @@ def update_general_info_community_detection(period):
     [Input(component_id='community-detection-periods', component_property='value')]
 )
 def update_text_community_detection_cases(period):
-    info = ["For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
-            " the cluster it belongs to.",
+    info = [
+        "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+        " the cluster it belongs to.",
 
-            # Period 2
-            "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
-            " the cluster it belongs to.",
+        # Period 2
+        "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+        " the cluster it belongs to.",
 
-            # Period 3
-            "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
-            " the cluster it belongs to.",
+        # Period 3
+        "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+        " the cluster it belongs to.",
 
-            # Period 4
-            html.Div([
-                "For this period, multiple clusters are detected, so we can also try to predict cluster membership for each "
-                "state. In order to produce interpretable results, as well as to be able to do variable selection, we use "
-                "a logistic regression model. Starting with the full list of covariates displayed above, we end up"
-                " selecting ",
-                html.I("proportion vaccinated (p = 0.031)"),
-                " and ",
-                html.I("poverty rate (p = 0.016)"),
-                ". ",
-                "The significance of ",
-                html.I("proportion vaccinated"),
-                " does not come as a surprise, as in this time period the effectiveness of the vaccination "
-                "should be optimal for the broad public."
-            ]),
-            # Period 5
-            "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
-            " the cluster it belongs to."]
+        # Period 4
+        html.Div([
+            "For this period, multiple clusters are detected, so we can also try to predict cluster membership for each "
+            "state. In order to produce interpretable results, as well as to be able to do variable selection, we use "
+            "a logistic regression model. Starting with the full list of covariates displayed above, we end up"
+            " selecting ",
+            html.I("proportion vaccinated (p = 0.031)"),
+            " and ",
+            html.I("poverty rate (p = 0.016)"),
+            ". ",
+            "The significance of ",
+            html.I("proportion vaccinated"),
+            " does not come as a surprise, as in this time period the effectiveness of the vaccination "
+            "should be optimal for the broad public."
+        ]),
+        # Period 5
+        "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+        " the cluster it belongs to."]
 
     return info[period - 1]
 
@@ -285,47 +314,48 @@ def update_text_community_detection_cases(period):
     [Input(component_id='community-detection-periods', component_property='value')]
 )
 def update_text_community_detection_deaths(period):
-    info = ["For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
-            " the cluster it belongs to.",
+    info = [
+        "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
+        " the cluster it belongs to.",
 
-            # Period 2
-            html.Div([
-                "For this period, there are two large clusters detected. After a backwards variable selection it is "
-                "determined that only the variable ",
-                html.I("Uninsured"),
-                " is significant in predicting the cluster for each state ",
-                html.I("(p = 0.008)"),
-                ". Just like in the overall analysis, the poverty rate turns out to be borderline insignificant."
-            ]),
+        # Period 2
+        html.Div([
+            "For this period, there are two large clusters detected. After a backwards variable selection it is "
+            "determined that only the variable ",
+            html.I("Uninsured"),
+            " is significant in predicting the cluster for each state ",
+            html.I("(p = 0.008)"),
+            ". Just like in the overall analysis, the poverty rate turns out to be borderline insignificant."
+        ]),
 
-            # Period 3
-            "For this period there are a lot of clusters but only one of them contains more than one state. "
-            "We do not consider these single-state clusters as clusters and hence there is only one 'real' cluster. "
-            "Therefore, it does not make sense to apply logistic regression here.",
+        # Period 3
+        "For this period there are a lot of clusters but only one of them contains more than one state. "
+        "We do not consider these single-state clusters as clusters and hence there is only one 'real' cluster. "
+        "Therefore, it does not make sense to apply logistic regression here.",
 
-            # Period 4
-            html.Div([
-                "Also for this period there are 2 clusters detected. Now, ",
-                html.I("poverty rate"),
-                " is significant ",
-                html.I("(p = 0.010)"),
-                ". Unlike before, the proportion of people who are uninsured is no longer significant."
-            ]),
+        # Period 4
+        html.Div([
+            "Also for this period there are 2 clusters detected. Now, ",
+            html.I("poverty rate"),
+            " is significant ",
+            html.I("(p = 0.010)"),
+            ". Unlike before, the proportion of people who are uninsured is no longer significant."
+        ]),
 
-            # Period 5
-            html.Div([
-                "For the last period, again 2 large clusters are detected. ",
-                html.I("Uninsured"),
-                " is a significant variable, ",
-                html.I("(p = 0.004)"),
-                " while the ",
-                html.I("poverty rate"),
-                " is no longer significant. ",
-                "Moreover ",
-                html.I("proportion vaccinated"),
-                " is borderline insignificant."
-            ]),
-            ]
+        # Period 5
+        html.Div([
+            "For the last period, again 2 large clusters are detected. ",
+            html.I("Uninsured"),
+            " is a significant variable, ",
+            html.I("(p = 0.004)"),
+            " while the ",
+            html.I("poverty rate"),
+            " is no longer significant. ",
+            "Moreover ",
+            html.I("proportion vaccinated"),
+            " is borderline insignificant."
+        ]),
+        ]
 
     return info[period - 1]
 
@@ -334,11 +364,49 @@ def update_text_community_detection_deaths(period):
 #                                           Covid spread visualization                                                 #
 ########################################################################################################################
 # ToDo: Implement animated visualization
+
 # General text that is always displayed
 Covid_spread_general_text = html.Div([
-    "In this section, we display the newly reported cases per county and per week."
-    " The slider can be used to choose the week for which the data must be shown.",
+    "In this section, we display the newly reported cases per county and per week. The slider can be used to choose the "
+    "week for which the data must be shown.",
+    html.Br(),
+    html.Br(),
+    "In order to get more insight in how Covid-19 evolves throughout the United States, we can try to cluster counties "
+    "together based on how they evolve in terms of cases per week. To this end, we applied a K-means clustering "
+    "algorithm on the data set. If you’d like to know more about these clusters and how they were obtained, please "
+    "select “Clusters” in the dropdown box below (it may take a while to load the map).",
     html.Br()
+])
+
+# Extra information about the clusters
+Covid_spread_clusters_text = html.Div([
+    "In order to apply the K-means algorithm, we first need a measure that can assign a distance to each pair of "
+    "counties. Since the aim is to capture the similarities or differences in evolution of Covid-19 cases between the"
+    " counties, we can represent each county in a 116 dimensional space where each dimension represents the number of"
+    "new Covid-19 cases in a specific week for that county. Then, we can define the distance between two counties to be"
+    " the Euclidean distance between their representations in that high-dimensional space.",
+    html.Br(),
+    html.Br(),
+    "However, it is well known that K-means clustering suffers from the,",
+    html.I("curse of dimensionality"),
+    ": it tends to perform worse in high dimensional spaces. Furthermore, when using clustering methods it is always "
+    "advisable to work on standardized data. Therefore, the 116 dimensional points where first scaled and then their "
+    "dimensionality was reduced using principal component analysis (PCA). The results of applying K-means on these "
+    "pre-processed data still left a lot to be desired. It turned out that some outlier counties were throwing off the "
+    "clustering algorithm. The solution to this was to add an outlier detector between the scaling and PCA step.",
+    html.Br(),
+    html.Br(),
+    "The process just described contains steps that require the choice of a hyperparameter. More specifically, one "
+    "should choose the number of clusters in a k-means clustering algorithm, as well as the number of principal "
+    "components to retain in the dimensionality reduction step. The choices of these hyperparameters are not a "
+    "priori clear and hence a careful parameter tuning should be performed. Luckily, ",
+    html.I("skLearn"),
+    " allows to  construct a pipeline that can tune these parameters for us.",
+    html.Br(),
+    html.Br(),
+    "The final result is displayed on the map. Note that the k-means clustering algorithm did not have any geographical "
+    "information about the counties. It was able to find these clusters solely based on how Covid-19 evolved throughout "
+    "the US."
 ])
 
 # Create a dropdown for options 'animate' and 'slider'
@@ -346,6 +414,7 @@ visualization_dropdown = dcc.Dropdown(
     id='visualization-dropdown',
     options=[{"label": 'slider', 'value': 'slider'},
              {"label": 'animate (Not implemented yet)', 'value': 'animate'},
+             {"label": 'K-means clusters', 'value': 'clusters'}
              ],
     value='slider')
 
@@ -357,7 +426,7 @@ slider = dcc.Slider(id='visualization-slider',
                     marks={str(i): str(i) for i in [np.arange(1, max(week_merge['week']), 10)]})
 
 # Create the figure
-fig_visual = update_figure_vis(1)
+fig_visual = update_figure_vis(1, "slider")
 
 ########################################################################################################################
 #                                                Infection Rates                                                       #
@@ -379,22 +448,22 @@ infection_rate_general_text = html.Div([
     "Legend for the colours:",
     html.Ul(children=[
         html.Div(children=["1. Vaccination"]),
-            html.Ul(children=[
-                html.Div(children=["1. Red = Vaccination available for all people at"
-                                   " risk (elderly, front-line workers, etc.) "]),
-                html.Div(children=["2. Green = Vaccination no longer available for all these people"])
-            ]),
+        html.Ul(children=[
+            html.Div(children=["1. Red = Vaccination available for all people at"
+                               " risk (elderly, front-line workers, etc.) "]),
+            html.Div(children=["2. Green = Vaccination no longer available for all these people"])
+        ]),
         html.Div(children=["2. Masks"]),
-            html.Ul(children=[
-                html.Div(children=["1. Red = Masks obligatory in all public spaces where "
-                                   "social distancing is not possible "]),
-                html.Div(children=["2. Green = Masks not obligatory in all public spaces where social"
-                                   " distancing is not possible"])
+        html.Ul(children=[
+            html.Div(children=["1. Red = Masks obligatory in all public spaces where "
+                               "social distancing is not possible "]),
+            html.Div(children=["2. Green = Masks not obligatory in all public spaces where social"
+                               " distancing is not possible"])
         ]),
         html.Div(children=["3. Schools"]),
-            html.Ul(children=[
-                html.Div(children=["1. Red = At least some types of schools need to close"]),
-                html.Div(children=["2. Green = No such restrictions"])
+        html.Ul(children=[
+            html.Div(children=["1. Red = At least some types of schools need to close"]),
+            html.Div(children=["2. Green = No such restrictions"])
         ]),
     ]),
     html.Br(),
@@ -404,7 +473,7 @@ infection_rate_general_text = html.Div([
 # Create dropdown for state
 infrates_states_dropdown = dcc.Dropdown(
     id='infrates-states',
-    options=[{"label":x,"value":y} for x,y in zip(states.Name,states.fips)],
+    options=[{"label": x, "value": y} for x, y in zip(states.Name, states.fips)],
     value=1)
 
 # Create dropdown for measure
@@ -475,8 +544,9 @@ community_detection_methodology_and_general_results = html.Div([
                            html.I("prop_age.")]),
         html.Div(children=["4. Proportion of people who are vaccinated, referred to as ",
                            html.I("prop.")]),
-        html.Div(children=["5. The degree centrality of the state based on commuting flows between states, referred to as ",
-                           html.I("Degree_centrality_com.")])
+        html.Div(
+            children=["5. The degree centrality of the state based on commuting flows between states, referred to as ",
+                      html.I("Degree_centrality_com.")])
     ]),
     html.Br(),
     "When we do not make a subdivision of time periods and just cluster states over the whole period under observation "
@@ -527,6 +597,11 @@ app.layout = dbc.Container(
                 dbc.Col(dcc.Graph(id="id_figure", figure=fig_visual), md=8)
             ],
             align="center",
+        ),
+        dbc.Row(
+            [
+                html.Div(id='visualization-clusters-info', children=Covid_spread_clusters_text, style={'display': 'none'})
+            ]
         ),
         html.Hr(),
 
