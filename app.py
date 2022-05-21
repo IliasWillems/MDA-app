@@ -303,7 +303,9 @@ def update_text_community_detection_cases(period):
             "The significance of ",
             html.I("proportion vaccinated"),
             " does not come as a surprise, as in this time period the effectiveness of the vaccination "
-            "should be optimal for the broad public."
+            "should be optimal for the broad public. Comparing cluster 0 and cluster 1, the results indicate "
+            "that the probability to belong to cluster 1 is higher for states with a lower vaccination rate"
+            " and a higher poverty rate. "
         ]),
         # Period 5
         "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
@@ -326,7 +328,8 @@ def update_text_community_detection_deaths(period):
             "For this period, there are two large clusters detected. After a backwards variable selection it is "
             "determined that only the variable ",
             html.I("Uninsured"),
-            " is significant in predicting the cluster for each state ",
+            " is significant in predicting the cluster for each state. The probability to belong to cluster 1 is higher"
+            " for states with a larger proportion of uninsured people. ",
             html.I("(p = 0.008)"),
             ". Just like in the overall analysis, the poverty rate turns out to be borderline insignificant."
         ]),
@@ -340,7 +343,8 @@ def update_text_community_detection_deaths(period):
         html.Div([
             "Also for this period there are 2 clusters detected. Now, ",
             html.I("poverty rate"),
-            " is significant ",
+            " is significant. The probability that a state belongs to cluster 1 is higher if the poverty rate"
+            " is higher. ",
             html.I("(p = 0.010)"),
             ". Unlike before, the proportion of people who are uninsured is no longer significant."
         ]),
@@ -349,7 +353,8 @@ def update_text_community_detection_deaths(period):
         html.Div([
             "For the last period, again 2 large clusters are detected. ",
             html.I("Uninsured"),
-            " is a significant variable, ",
+            " is a significant variable. The probability to belong to cluster 1 is higher for states"
+            " with a higher proportion of people that are uninsured. ",
             html.I("(p = 0.004)"),
             " while the ",
             html.I("poverty rate"),
@@ -384,9 +389,10 @@ Covid_spread_general_text = html.Div([
 # Extra information about the clusters
 Covid_spread_clusters_text = html.Div([
     "In order to apply the K-means algorithm, we first need a measure that can assign a distance to each pair of "
-    "counties. Since the aim is to capture the similarities or differences in evolution of Covid-19 cases between the"
+    "counties. Since the aim is to capture the similarities or differences in the evolution of the number of"
+    " Covid-19 cases between the"
     " counties, we can represent each county in a 116 dimensional space where each dimension represents the number of"
-    "new Covid-19 cases in a specific week for that county. Then, we can define the distance between two counties to be"
+    " new Covid-19 cases in a specific week for that county. Then, we can define the distance between two counties to be"
     " the Euclidean distance between their representations in that high-dimensional space.",
     html.Br(),
     html.Br(),
@@ -400,7 +406,7 @@ Covid_spread_clusters_text = html.Div([
     html.Br(),
     html.Br(),
     "The process just described contains steps that require the choice of a hyperparameter. More specifically, one "
-    "should choose the number of clusters in a k-means clustering algorithm, as well as the number of principal "
+    "should choose the number of clusters in a K-means clustering algorithm, as well as the number of principal "
     "components to retain in the dimensionality reduction step. The choices of these hyperparameters are not a "
     "priori clear and hence a careful parameter tuning should be performed. Luckily, ",
     html.I("skLearn"),
@@ -409,7 +415,89 @@ Covid_spread_clusters_text = html.Div([
     html.Br(),
     "The final result is displayed on the map. Note that the k-means clustering algorithm did not have any geographical "
     "information about the counties. It was able to find these clusters solely based on how Covid-19 evolved throughout "
-    "the US."
+    "the US.",
+    html.Br(),
+    html.Br(),
+    "Now, a multinomial logistic model is fit to predict the probability to belong to a cluster for each county."
+    " The variables that are included in the model are:",
+    html.Ul(children=[
+        html.Div(children=["1. Proportion of people voting Republican during the elections of 2020, referred to as ",
+                           html.I("Vote Republican.")]),
+        html.Div(children=["2. Proportion of people voting Democrat during the elections of 2020, referred to as ",
+                           html.I("Vote Democrat.")]),
+        html.Div(children=["3. Pagerank score of each county based on the commuting flows between counties, referred to as ",
+                           html.I("Pagerank score.")]),
+        html.Div(children=["4. Population density of the county, referred to as ",
+                           html.I("pop_density.")]),
+        html.Div(
+            children=["5. The poverty rate of the county, referred to as ",
+                      html.I("PovertyRate.")]),
+        html.Div(
+            children=["6. The median age of the county in the year 2019, referred to as ",
+                      html.I("Median Age.")]),
+        html.Div(children=["7. The life expectancy ",
+                           html.I("Life expectancy.")]),
+        html.Div(
+            children=["8. The proportion of people that are uninsured in the year 2019, referred to as ",
+                      html.I("Uninsured.")]),
+        html.Div(children=["9. The number of airports, referred to as ",
+                           html.I("Airports.")]),
+        html.Div(
+            children=["10. The median individual income in the year 2019, referred to as ",
+                      html.I("Median individual income.")])
+    ]),
+    html.Br(),
+   "The results show that:",
+    html.Ul(children=[
+        html.Div(children=["1. The probability that a county belongs to cluster 1, compared to its probability to"
+                           " belong to cluster 0 is higher if: ",
+                           html.Ul(children=[
+                                html.Div(children=["1. ", html.I("Vote Democrat"), " is lower"]),
+                                html.Div(children=["2. ", html.I("pagerank score"), " is higher"]),
+                                html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
+                                html.Div(children=["4. ", html.I("Median age"), " is lower"]),
+                                html.Div(children=["5. ", html.I("Life expectancy"), " is lower"]),
+                                html.Div(children=["6. ", html.I("Uninsured"), " is higher"]),
+                                html.Div(children=["7. ", html.I("Airports"), " is higher"])
+                           ])]),
+        html.Div(children=["2. The probability that a county belongs to cluster 2, compared to its probability to"
+                           " belong to cluster 0 is higher if: ",
+                           html.Ul(children=[
+                                html.Div(children=["1. ", html.I("Vote Democrat"), " is lower"]),
+                                html.Div(children=["2. ", html.I("pagerank score"), " is higher"]),
+                                html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
+                                html.Div(children=["4. ", html.I("PovertyRate"), " is lower"]),
+                                html.Div(children=["5. ", html.I("Median age"), " is lower"]),
+                                html.Div(children=["6. ", html.I("Uninsured"), " is higher"]),
+                           ])]),
+        html.Div(children=["3. The probability that a county belongs to cluster 3, compared to its probability to"
+                           " belong to cluster 0 is higher if: ",
+                           html.Ul(children=[
+                                html.Div(children=["1. ", html.I("Vote Republican"), " is lower"]),
+                                html.Div(children=["2. ", html.I("Vote Democrat"), " is lower"]),
+                                html.Div(children=["3. ", html.I("pagerank score"), " is higher"]),
+                                html.Div(children=["4. ", html.I("pop_density"), " is lower"]),
+                                html.Div(children=["5. ", html.I("PovertyRate"), " is higher"]),
+                                html.Div(children=["6. ", html.I("Median age"), " is lower"]),
+                                html.Div(children=["7. ", html.I("Life expectancy"), " is lower"]),
+                                html.Div(children=["8. ", html.I("Uninsured"), " is higher"]),
+                                html.Div(children=["9. ", html.I("Median individual income"), " is higher"])
+                           ])]),
+        html.Div(children=["4. The probability that a county belongs to cluster 4, compared to its probability to"
+                           " belong to cluster 0 is higher if: ",
+                           html.Ul(children=[
+                                html.Div(children=["1. ", html.I("Vote Republican"), " is lower"]),
+                                html.Div(children=["2. ", html.I("Vote Democrat"), " is lower"]),
+                                html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
+                                html.Div(children=["4. ", html.I("PovertyRate"), " is higher"]),
+                                html.Div(children=["5. ", html.I("Median age"), " is lower"]),
+                                html.Div(children=["6. ", html.I("Life expectancy"), " is lower"]),
+                                html.Div(children=["7. ", html.I("Uninsured"), " is higher"]),
+                                html.Div(children=["8. ", html.I("Airports"), " is higher"]),
+                                html.Div(children=["9. ", html.I("Median individual income"), " is higher"])
+                           ])])
+    ]),
+    html.Br(),
 ])
 
 # Create a dropdown for options 'animate' and 'slider'
@@ -557,7 +645,9 @@ community_detection_methodology_and_general_results = html.Div([
     "the resulting clusters. Using a logistic regression model, it can be determined that the only significant variable "
     "in this prediction is ",
     html.I("Uninsured, p = 0.004"),
-    ". The poverty rate turned out to be borderline insignificant. An analysis for the clusters based on the cases is "
+    ". Furthermore, the model shows that the probability to belong to cluster 1 is higher for states where"
+    " the proportion of uninsured people is lower."
+    "The poverty rate turned out to be borderline insignificant. An analysis for the clusters based on the cases is "
     "not possible as the algorithm only found one cluster when considering the whole time period. Even when making the "
     "subdivision, only multiple clusters were found based on the cases for the fourth time period (excluding "
     "single-state clusters).",
