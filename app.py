@@ -461,15 +461,16 @@ Covid_spread_general_text = html.Div([
     html.Br(),
     html.Br(),
     "In order to get more insight in how Covid-19 evolves throughout the United States, we can try to cluster counties "
-    "together based on how they evolve in terms of cases per week. To this end, we applied a K-means clustering "
-    "algorithm on the data set. If you’d like to know more about these clusters and how they were obtained, please "
-    "select “Clusters” in the dropdown box below (it may take a while to load the map).",
+    "together based on how they evolve in terms of cases per week. To this end, we applied both a K-means clustering "
+    "and a spectral clustering algorithm on the data set. After optimization, K-means clustering turned out to be "
+    "the most useful algorithm. If you'd like to know more about the clusters found by this algorithm"
+    " and how they were obtained, please select “Clusters” in the dropdown box below (it may take a while to load the map).",
     html.Br()
 ])
 
 # Extra information about the clusters
 Covid_spread_clusters_text = html.Div([
-    "In order to apply the K-means algorithm, we first need a measure that can assign a distance to each pair of "
+    "In order to apply the a clustering algorithm, we first need a measure that can assign a distance to each pair of "
     "counties. Since the aim is to capture the similarities or differences in the evolution of the number of"
     " Covid-19 cases between the"
     " counties, we can represent each county in a 116 dimensional space where each dimension represents the number of"
@@ -479,16 +480,20 @@ Covid_spread_clusters_text = html.Div([
     html.Br(),
     "However, it is well known that K-means clustering suffers from the,",
     html.I("curse of dimensionality"),
-    ": it tends to perform worse in high dimensional spaces. Furthermore, when using clustering methods it is always "
-    "advisable to work on standardized data. Therefore, the 116 dimensional points where first scaled and then their "
-    "dimensionality was reduced using principal component analysis (PCA). The results of applying K-means on these "
+    ": it tends to perform worse in high dimensional spaces. Furthermore, when using clustering methods, it is always "
+    "advisable to work on standardized data. Therefore, the 116 dimensional points where first scaled and then, when using"
+    " the K-means algorithm, their dimensionality was reduced using principal component analysis (PCA)."
+    " The results of applying K-means as well as spectral clustering on the "
     "pre-processed data still left a lot to be desired. It turned out that some outlier counties were throwing off the "
-    "clustering algorithm. The solution to this was to add an outlier detector between the scaling and PCA step.",
+    "clustering algorithms. The solution to this was to add an outlier detector after the scaling step.",
     html.Br(),
     html.Br(),
     "The process just described contains steps that require the choice of a hyperparameter. More specifically, one "
-    "should choose the number of clusters in a K-means clustering algorithm, as well as the number of principal "
-    "components to retain in the dimensionality reduction step. The choices of these hyperparameters are not a "
+    "should choose the clustering algorithm and "
+    "the number of clusters in the clustering algorithm. When using K-means clustering, the number of principal "
+    "components to retain in the dimensionality reduction step has to be chosen as well. On the other hand, when using"
+    " spectral clustering, different methods can be used to assign the clustering labels (i.e. K-means or discretize)."
+    " The choices of these hyperparameters are not a "
     "priori clear and hence a careful parameter tuning should be performed. Luckily, ",
     html.I("skLearn"),
     " allows to  construct a pipeline that can tune these parameters for us.",
@@ -499,7 +504,7 @@ Covid_spread_clusters_text = html.Div([
     "the US.",
     html.Br(),
     html.Br(),
-    "Now, a multinomial logistic model is fit to predict the probability to belong to a cluster for each county."
+    "Now, a logistic model is fit to predict the probability to belong to a cluster for each county."
     " The variables that are included in the model are:",
     html.Ul(children=[
         html.Div(children=["1. Proportion of people voting Republican during the elections of 2020, referred to as ",
@@ -529,83 +534,17 @@ Covid_spread_clusters_text = html.Div([
                       html.I("Median individual income.")])
     ]),
     html.Br(),
-    "The results show that:",
-    dbc.Row([
-        dbc.Col(
-            html.Ul(children=[
-                html.Div(
-                    children=["1. The probability that a county belongs to cluster 1, compared to its probability to"
-                              " belong to cluster 0 is higher if: ",
-                              html.Ul(children=[
-                                  html.Div(children=["1. ", html.I("Vote Democrat"), " is lower"]),
-                                  html.Div(children=["2. ", html.I("pagerank score"), " is higher"]),
-                                  html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
-                                  html.Div(children=["4. ", html.I("Median age"), " is lower"]),
-                                  html.Div(children=["5. ", html.I("Life expectancy"), " is lower"]),
-                                  html.Div(children=["6. ", html.I("Uninsured"), " is higher"]),
-                                  html.Div(children=["7. ", html.I("Airports"), " is higher"])
-                              ])]),
-            ]),
-            md=5
-        ),
-        dbc.Col(
-            html.Ul(children=[
-                html.Div(
-                    children=["3. The probability that a county belongs to cluster 3, compared to its probability to"
-                              " belong to cluster 0 is higher if: ",
-                              html.Ul(children=[
-                                  html.Div(children=["1. ", html.I("Vote Republican"), " is lower"]),
-                                  html.Div(children=["2. ", html.I("Vote Democrat"), " is lower"]),
-                                  html.Div(children=["3. ", html.I("pagerank score"), " is higher"]),
-                                  html.Div(children=["4. ", html.I("pop_density"), " is lower"]),
-                                  html.Div(children=["5. ", html.I("PovertyRate"), " is higher"]),
-                                  html.Div(children=["6. ", html.I("Median age"), " is lower"]),
-                                  html.Div(children=["7. ", html.I("Life expectancy"), " is lower"]),
-                                  html.Div(children=["8. ", html.I("Uninsured"), " is higher"]),
-                                  html.Div(children=["9. ", html.I("Median individual income"), " is higher"])
-                              ])]),
-            ]),
-            md=5,
-        ),
-    ]),
-    dbc.Row([
-        dbc.Col(
-            html.Ul(children=[
-                html.Div(
-                    children=["2. The probability that a county belongs to cluster 2, compared to its probability to"
-                              " belong to cluster 0 is higher if: ",
-                              html.Ul(children=[
-                                  html.Div(children=["1. ", html.I("Vote Democrat"), " is lower"]),
-                                  html.Div(children=["2. ", html.I("pagerank score"), " is higher"]),
-                                  html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
-                                  html.Div(children=["4. ", html.I("PovertyRate"), " is lower"]),
-                                  html.Div(children=["5. ", html.I("Median age"), " is lower"]),
-                                  html.Div(children=["6. ", html.I("Uninsured"), " is higher"]),
-                              ])])
-            ]),
-            md=5
-        ),
-        dbc.Col(
-            html.Ul(children=[
-                html.Div(
-                    children=["4. The probability that a county belongs to cluster 4, compared to its probability to"
-                              " belong to cluster 0 is higher if: ",
-                              html.Ul(children=[
-                                  html.Div(children=["1. ", html.I("Vote Republican"), " is lower"]),
-                                  html.Div(children=["2. ", html.I("Vote Democrat"), " is lower"]),
-                                  html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
-                                  html.Div(children=["4. ", html.I("PovertyRate"), " is higher"]),
-                                  html.Div(children=["5. ", html.I("Median age"), " is lower"]),
-                                  html.Div(children=["6. ", html.I("Life expectancy"), " is lower"]),
-                                  html.Div(children=["7. ", html.I("Uninsured"), " is higher"]),
-                                  html.Div(children=["8. ", html.I("Airports"), " is higher"]),
-                                  html.Div(children=["9. ", html.I("Median individual income"), " is higher"])
-                              ])])
-            ]),
-            md=5,
-        ),
+    "The results show that the probability to belong to cluster 1 instead of cluster 0 is higher if:",
+    html.Ul(children=[
+        html.Div(children=["1. ", html.I("Vote Democrat"), " is lower"]),
+        html.Div(children=["2. ", html.I("Vote Republican"), " is lower"]),
+        html.Div(children=["3. ", html.I("PovertyRate"), " is higher"]),
+        html.Div(children=["4. ", html.I("Life expectancy"), " is lower"]),
+        html.Div(children=["5. ", html.I("Uninsured"), " is higher"]),
+        html.Div(children=["6. ", html.I("Airports"), " is higher"])
     ]),
     html.Br()
+
 ])
 
 # Make correlation plot of voters
