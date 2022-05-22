@@ -1,4 +1,5 @@
 import dash
+import matplotlib.pyplot as plt
 from dash import html
 from dash import dcc
 import dash_bootstrap_components as dbc
@@ -12,6 +13,9 @@ import json
 from scipy.signal import savgol_filter
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+from sklearn.svm import SVR
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import GridSearchCV
 
 # Make the app
 app = dash.Dash(__name__,
@@ -35,7 +39,8 @@ with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-c
 agg_week_state = pd.read_csv("Data/agg_week_state.csv", dtype={'fips': str})
 measures = pd.read_csv("Data/measures.csv")
 Kmeans_clusters = pd.read_csv('Data/Kmeans_clustering.csv', dtype={'cluster': 'string', 'fips': 'string'})
-
+democrat_rebuplican_vote = pd.read_csv('Data/Democrat_Republican_votes.csv')
+cases_and_water_USA = pd.read_csv("Data/cases_and_water_USA.csv")
 
 ########################################################################################################################
 #                                         Define all functions in advance                                              #
@@ -53,14 +58,15 @@ def show_hide_element(visibility_state):
 
 
 @app.callback(
-    Output(component_id='visualization-clusters-info', component_property='style'),
+    [Output(component_id='visualization-clusters-info', component_property='style'),
+     Output(component_id='visualization-cluster-correlation-figure', component_property='style')],
     [Input(component_id='visualization-dropdown', component_property='value')]
 )
 def show_hide_visualization_cluster_info(visibility_state):
     if visibility_state == 'clusters':
-        return {'display': 'block'}
+        return {'display': 'block'}, {'display': 'block'}
     else:
-        return {'display': 'none'}
+        return {'display': 'none'}, {'display': 'none'}
 
 
 @app.callback(
@@ -108,7 +114,9 @@ def update_figure_inf(state_nbr_int, measure):
         go.Scatter(x=state['week'], y=state['r'], name="Infection rates"),
         row=1, col=1)
 
+    # If it is possible to make a smoothed curve, do the following
     if state['r'].shape[0] > 21:
+        # Add the smoothed curve to the plot
         yhat = savgol_filter(state['r'], 21, 3)
         fig.add_trace(go.Scatter(x=state['week'], y=yhat, name="Smoothed data"),
                       row=1, col=1)
@@ -124,6 +132,78 @@ def update_figure_inf(state_nbr_int, measure):
         week = state_measures.loc[change, 'week']
         c = 'red' if state_measures.loc[change, measure] == 1 else 'green'
         fig.add_vline(x=int(week), line_color=c)
+
+    return fig
+
+
+@app.callback(
+    Output(component_id='id_infection-rates-figure-svm', component_property='figure'),
+    [Input(component_id='infrates-states', component_property='value')]
+)
+def update_figure_inf_svm(state_nbr_int):
+    state = agg_week_state.loc[agg_week_state['state'] == state_nbr_int]
+
+    test_start_week = 90
+    timesteps = 5
+
+    # Define the pipeline. Note that this pipeline does not include the information about the lag
+    pipe = Pipeline([('regressor', SVR(kernel='rbf', gamma=0.5, C=10, epsilon=0.05))])
+
+    pd.options.mode.chained_assignment = None
+    state['yhat'] = savgol_filter(state['r'], 21, 3)
+    pd.options.mode.chained_assignment = 'warn'
+
+    train = state.copy()[state.week < test_start_week][['yhat']]
+    test = state.copy()[state.week >= test_start_week][['yhat']]
+    train_data = train.values
+    test_data = test.values
+    train_data_timesteps = np.array([[j for j in train_data[i:i+timesteps]] for i in range(0, len(train_data)-timesteps+1)])[:, :, 0]
+    test_data_timesteps = np.array([[j for j in test_data[i:i+timesteps]] for i in range(0, len(test_data)-timesteps+1)])[:, :, 0]
+
+    x_train, y_train = train_data_timesteps[:, :timesteps-1], train_data_timesteps[:, timesteps-1]
+    x_test, y_test = test_data_timesteps[:, :timesteps-1], test_data_timesteps[:, timesteps-1]
+
+    # Which values to check?
+    gammas_to_check = 5**np.arange(-2.1, 1.9, 1)
+    Cs_to_check = 10**np.arange(6)
+
+    params = {'regressor__gamma': gammas_to_check,
+              'regressor__C': Cs_to_check}
+
+    # Search over parameter space using a gridsearch
+    gridsearch = GridSearchCV(pipe, params, verbose=0).fit(x_train, y_train)
+
+    # Fit pipe with optimal hyperparameters
+    pipe = Pipeline([('regressor', SVR(kernel='rbf', gamma=gridsearch.best_params_['regressor__gamma'],
+                                       C=gridsearch.best_params_['regressor__C'], epsilon=0.05))])
+    pipe.fit(x_train, y_train)
+
+    # Make predictions
+    y_test_pred = pipe.predict(x_test).reshape(-1, 1)
+
+    # Predict k weeks into the future
+    to_predict = 30
+
+    predicted_values = np.empty((0, 1))
+    predictors = np.empty((0, 4))
+    predictors = np.vstack([predictors, np.array(x_test[-1, :])])
+
+    for i in range(to_predict):
+        predicted_values = np.array([pipe.predict(predictors)])
+        new_predictors = predictors[i][range(1, 4)]
+        new_predictors = np.concatenate([new_predictors, [predicted_values[0][i]]], axis=0)
+        predictors = np.vstack([predictors, new_predictors])
+
+    # Plot the predicted versus actual values using tuned values
+    train = state.copy()[state.week <= test_start_week][['yhat']]
+    test = state.copy()[state.week >= test_start_week][['yhat']]
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=np.arange(test_start_week + 1), y=train['yhat'], name="Training data"))
+    fig.add_trace(go.Scatter(x=np.arange(test_start_week, 117), y=test['yhat'], name="Test data"))
+    fig.add_trace(go.Scatter(x=np.arange(test_start_week + timesteps, 117 + to_predict),
+                             y=np.concatenate([y_test_pred.flatten(), predicted_values[0][range(1, to_predict)]]),
+                             name="Predicted data", connectgaps=True))
 
     return fig
 
@@ -155,7 +235,6 @@ def update_state_selected(target_state):
     [Input(component_id="waste-water-reset", component_property="n_clicks")]
 )
 def update_figure_waste_water(n_clicks):
-    cases_and_water_USA = pd.read_csv("Data/cases_and_water_USA.csv")
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     fig.add_trace(
         go.Scatter(x=cases_and_water_USA['date'], y=cases_and_water_USA['effective_concentration_rolling_average'],
@@ -363,7 +442,7 @@ def update_text_community_detection_deaths(period):
             html.I("proportion vaccinated"),
             " is borderline insignificant."
         ]),
-        ]
+    ]
 
     return info[period - 1]
 
@@ -425,8 +504,9 @@ Covid_spread_clusters_text = html.Div([
                            html.I("Vote Republican.")]),
         html.Div(children=["2. Proportion of people voting Democrat during the elections of 2020, referred to as ",
                            html.I("Vote Democrat.")]),
-        html.Div(children=["3. Pagerank score of each county based on the commuting flows between counties, referred to as ",
-                           html.I("Pagerank score.")]),
+        html.Div(
+            children=["3. Pagerank score of each county based on the commuting flows between counties, referred to as ",
+                      html.I("Pagerank score.")]),
         html.Div(children=["4. Population density of the county, referred to as ",
                            html.I("pop_density.")]),
         html.Div(
@@ -447,57 +527,105 @@ Covid_spread_clusters_text = html.Div([
                       html.I("Median individual income.")])
     ]),
     html.Br(),
-   "The results show that:",
-    html.Ul(children=[
-        html.Div(children=["1. The probability that a county belongs to cluster 1, compared to its probability to"
-                           " belong to cluster 0 is higher if: ",
-                           html.Ul(children=[
-                                html.Div(children=["1. ", html.I("Vote Democrat"), " is lower"]),
-                                html.Div(children=["2. ", html.I("pagerank score"), " is higher"]),
-                                html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
-                                html.Div(children=["4. ", html.I("Median age"), " is lower"]),
-                                html.Div(children=["5. ", html.I("Life expectancy"), " is lower"]),
-                                html.Div(children=["6. ", html.I("Uninsured"), " is higher"]),
-                                html.Div(children=["7. ", html.I("Airports"), " is higher"])
-                           ])]),
-        html.Div(children=["2. The probability that a county belongs to cluster 2, compared to its probability to"
-                           " belong to cluster 0 is higher if: ",
-                           html.Ul(children=[
-                                html.Div(children=["1. ", html.I("Vote Democrat"), " is lower"]),
-                                html.Div(children=["2. ", html.I("pagerank score"), " is higher"]),
-                                html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
-                                html.Div(children=["4. ", html.I("PovertyRate"), " is lower"]),
-                                html.Div(children=["5. ", html.I("Median age"), " is lower"]),
-                                html.Div(children=["6. ", html.I("Uninsured"), " is higher"]),
-                           ])]),
-        html.Div(children=["3. The probability that a county belongs to cluster 3, compared to its probability to"
-                           " belong to cluster 0 is higher if: ",
-                           html.Ul(children=[
-                                html.Div(children=["1. ", html.I("Vote Republican"), " is lower"]),
-                                html.Div(children=["2. ", html.I("Vote Democrat"), " is lower"]),
-                                html.Div(children=["3. ", html.I("pagerank score"), " is higher"]),
-                                html.Div(children=["4. ", html.I("pop_density"), " is lower"]),
-                                html.Div(children=["5. ", html.I("PovertyRate"), " is higher"]),
-                                html.Div(children=["6. ", html.I("Median age"), " is lower"]),
-                                html.Div(children=["7. ", html.I("Life expectancy"), " is lower"]),
-                                html.Div(children=["8. ", html.I("Uninsured"), " is higher"]),
-                                html.Div(children=["9. ", html.I("Median individual income"), " is higher"])
-                           ])]),
-        html.Div(children=["4. The probability that a county belongs to cluster 4, compared to its probability to"
-                           " belong to cluster 0 is higher if: ",
-                           html.Ul(children=[
-                                html.Div(children=["1. ", html.I("Vote Republican"), " is lower"]),
-                                html.Div(children=["2. ", html.I("Vote Democrat"), " is lower"]),
-                                html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
-                                html.Div(children=["4. ", html.I("PovertyRate"), " is higher"]),
-                                html.Div(children=["5. ", html.I("Median age"), " is lower"]),
-                                html.Div(children=["6. ", html.I("Life expectancy"), " is lower"]),
-                                html.Div(children=["7. ", html.I("Uninsured"), " is higher"]),
-                                html.Div(children=["8. ", html.I("Airports"), " is higher"]),
-                                html.Div(children=["9. ", html.I("Median individual income"), " is higher"])
-                           ])])
+    "The results show that:",
+    dbc.Row([
+        dbc.Col(
+            html.Ul(children=[
+                html.Div(
+                    children=["1. The probability that a county belongs to cluster 1, compared to its probability to"
+                              " belong to cluster 0 is higher if: ",
+                              html.Ul(children=[
+                                  html.Div(children=["1. ", html.I("Vote Democrat"), " is lower"]),
+                                  html.Div(children=["2. ", html.I("pagerank score"), " is higher"]),
+                                  html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
+                                  html.Div(children=["4. ", html.I("Median age"), " is lower"]),
+                                  html.Div(children=["5. ", html.I("Life expectancy"), " is lower"]),
+                                  html.Div(children=["6. ", html.I("Uninsured"), " is higher"]),
+                                  html.Div(children=["7. ", html.I("Airports"), " is higher"])
+                              ])]),
+            ]),
+            md=5
+        ),
+        dbc.Col(
+            html.Ul(children=[
+                html.Div(
+                    children=["3. The probability that a county belongs to cluster 3, compared to its probability to"
+                              " belong to cluster 0 is higher if: ",
+                              html.Ul(children=[
+                                  html.Div(children=["1. ", html.I("Vote Republican"), " is lower"]),
+                                  html.Div(children=["2. ", html.I("Vote Democrat"), " is lower"]),
+                                  html.Div(children=["3. ", html.I("pagerank score"), " is higher"]),
+                                  html.Div(children=["4. ", html.I("pop_density"), " is lower"]),
+                                  html.Div(children=["5. ", html.I("PovertyRate"), " is higher"]),
+                                  html.Div(children=["6. ", html.I("Median age"), " is lower"]),
+                                  html.Div(children=["7. ", html.I("Life expectancy"), " is lower"]),
+                                  html.Div(children=["8. ", html.I("Uninsured"), " is higher"]),
+                                  html.Div(children=["9. ", html.I("Median individual income"), " is higher"])
+                              ])]),
+            ]),
+            md=5,
+        ),
     ]),
+    dbc.Row([
+        dbc.Col(
+            html.Ul(children=[
+                html.Div(
+                    children=["2. The probability that a county belongs to cluster 2, compared to its probability to"
+                              " belong to cluster 0 is higher if: ",
+                              html.Ul(children=[
+                                  html.Div(children=["1. ", html.I("Vote Democrat"), " is lower"]),
+                                  html.Div(children=["2. ", html.I("pagerank score"), " is higher"]),
+                                  html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
+                                  html.Div(children=["4. ", html.I("PovertyRate"), " is lower"]),
+                                  html.Div(children=["5. ", html.I("Median age"), " is lower"]),
+                                  html.Div(children=["6. ", html.I("Uninsured"), " is higher"]),
+                              ])])
+            ]),
+            md=5
+        ),
+        dbc.Col(
+            html.Ul(children=[
+                html.Div(
+                    children=["4. The probability that a county belongs to cluster 4, compared to its probability to"
+                              " belong to cluster 0 is higher if: ",
+                              html.Ul(children=[
+                                  html.Div(children=["1. ", html.I("Vote Republican"), " is lower"]),
+                                  html.Div(children=["2. ", html.I("Vote Democrat"), " is lower"]),
+                                  html.Div(children=["3. ", html.I("pop_density"), " is lower"]),
+                                  html.Div(children=["4. ", html.I("PovertyRate"), " is higher"]),
+                                  html.Div(children=["5. ", html.I("Median age"), " is lower"]),
+                                  html.Div(children=["6. ", html.I("Life expectancy"), " is lower"]),
+                                  html.Div(children=["7. ", html.I("Uninsured"), " is higher"]),
+                                  html.Div(children=["8. ", html.I("Airports"), " is higher"]),
+                                  html.Div(children=["9. ", html.I("Median individual income"), " is higher"])
+                              ])])
+            ]),
+            md=5,
+        ),
+    ]),
+    html.Br()
+])
+
+# Make correlation plot of voters
+covid_spread_clusters_votes_correlation_figure = px.scatter(x=democrat_rebuplican_vote['Vote Republican'],
+                                                            y=democrat_rebuplican_vote['Vote Democrat'])
+covid_spread_clusters_votes_correlation_figure.update_xaxes(title_text='Vote Republican')
+covid_spread_clusters_votes_correlation_figure.update_yaxes(title_text='Vote Democrat')
+
+# Write some explanation
+covid_spread_clusters_votes_correlation_text = html.Div(children=[
+    "As a final remark, one could note that we likely have a multicollinearity issue in this analysis, as we have "
+    "variables for the proportion of both republican and democrat voters. However, computing the correlation between "
+    "the two variables we only obtain a value of r = -0.021. Let’s investigate why this is the case.",
     html.Br(),
+    html.Br(),
+    "Another way of determining whether two variables are correlated is by plotting them against each other. If the "
+    "data cloud we obtain in that way represents a flat ellipse, then the data are correlated.  Plotting the two "
+    "variables at hand against each other, we see several of these (very) flattened ellipses. Hence, it turns out that "
+    "the two variables are indeed very correlated, but only when conditioning on the amount of people that went to vote "
+    "(after all, voting is not obligatory in the United States). Therefore, when looking at all the data, the two "
+    "variables are not correlated and furthermore, it is useful to include them both in the model as they then also "
+    "give information about the amount of people that voted in a county."
 ])
 
 # Create a dropdown for options 'animate' and 'slider'
@@ -581,6 +709,9 @@ fig_inf = update_figure_inf(20, 'Vaccination')
 
 # Create a plot of the selected state
 fig_state_selected = update_state_selected(20)
+
+# Create a plot of the support vector machine prediction
+fig_inf_svm = update_figure_inf_svm(20)
 
 ########################################################################################################################
 #                                            Waste water analysis                                                      #
@@ -693,7 +824,16 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             [
-                html.Div(id='visualization-clusters-info', children=Covid_spread_clusters_text, style={'display': 'none'})
+                html.Div(id='visualization-clusters-info', children=[Covid_spread_clusters_text,
+                                                                     covid_spread_clusters_votes_correlation_text],
+                         style={'display': 'none'})
+            ]
+        ),
+        dbc.Row(
+            [
+                dcc.Graph(id="visualization-cluster-correlation-figure",
+                          figure=covid_spread_clusters_votes_correlation_figure,
+                          style={'display': 'none'})
             ]
         ),
         html.Hr(),
@@ -714,6 +854,11 @@ app.layout = dbc.Container(
                 dbc.Col(dcc.Graph(id="id_infection-rates-figure", figure=fig_inf), md=8)
             ],
             align="center",
+        ),
+        dbc.Row(
+            [
+                dcc.Graph(id='id_infection-rates-figure-svm', figure=fig_inf_svm)
+            ]
         ),
         html.Hr(),
 
