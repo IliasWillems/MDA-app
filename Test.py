@@ -16,70 +16,99 @@ from plotly.subplots import make_subplots
 from sklearn.svm import SVR
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import mean_squared_error
+from sklearn.linear_model import LinearRegression
 
-agg_week_state = pd.read_csv("Data/agg_week_state.csv", dtype={'fips': str})
+fipsCountyState = pd.read_csv("Data/fipsCountyState.csv")
+water_waste_cases_by_county = pd.read_csv("Data/water_waste_cases_by_county.csv")
+water_by_county_import = pd.read_csv("Data/wastewater_by_county.csv")
 
-state = agg_week_state.loc[agg_week_state['state'] == 6]
+cases_by_county_import = pd.merge(water_waste_cases_by_county, fipsCountyState, how='inner')
 
-test_start_week = 90
-timesteps = 5
+water_by_county = water_by_county_import
+water_by_county = water_by_county.drop([0])  # drop 2020-01-01
+water_by_county['sampling_week'] = pd.to_datetime(water_by_county.sampling_week)
+water_USA = water_by_county[['sampling_week', 'effective_concentration_rolling_average']]
+water_USA = water_USA.groupby(by=['sampling_week'], as_index=False).mean().sort_values(by='sampling_week')
 
-# Define the pipeline. Note that this pipeline does not include the information about the lag
-pipe = Pipeline([('regressor', SVR(kernel='rbf', gamma=0.5, C=10, epsilon=0.05))])
+# Turn weekly data to daily data using past 3 days and next 3 days
+impute_date_list = []
 
-pd.options.mode.chained_assignment = None
-yhat = savgol_filter(state['r'], 21, 3)
-state.loc[:, 'yhat'] = yhat
-pd.options.mode.chained_assignment = 'warn'
+for week in water_USA.sampling_week:
+    impute_date = []
+    for i in range(-3, 4):
+        impute_date.append(week + pd.Timedelta('%dD' % i))
+    impute_date_list.append(impute_date)
 
-train = state.copy()[state.week < test_start_week][['yhat']]
-test = state.copy()[state.week >= test_start_week][['yhat']]
-train_data = train.values
-test_data = test.values
-train_data_timesteps = np.array([[j for j in train_data[i:i+timesteps]] for i in range(0, len(train_data)-timesteps+1)])[:, :, 0]
-test_data_timesteps = np.array([[j for j in test_data[i:i+timesteps]] for i in range(0, len(test_data)-timesteps+1)])[:, :, 0]
+water_USA['date'] = impute_date_list
+water_USA = water_USA.explode('date')
 
-x_train, y_train = train_data_timesteps[:, :timesteps-1], train_data_timesteps[:, timesteps-1]
-x_test, y_test = test_data_timesteps[:, :timesteps-1], test_data_timesteps[:, timesteps-1]
+# drop column and reset index
+water_USA = water_USA.drop('sampling_week', 1)
+water_USA = water_USA.reset_index(drop=True)
+water_USA['date'] = water_USA['date'].astype('str')
 
-# Which values to check?
-gammas_to_check = 5**np.arange(-2.1, 1.9, 1)
-Cs_to_check = 10**np.arange(6)
+us_counties = cases_by_county_import
+us_counties = us_counties.loc[us_counties['fips'].notnull(), :]
+us_counties['fips'] = us_counties['fips'].astype('int')
+cases_USA = us_counties[['date', 'cases']]
+cases_USA = cases_USA.groupby(by=['date'], as_index=False).sum().sort_values(by='date')
+cases_USA['increase_cases'] = cases_USA.cases.diff()
+cases_USA.iloc[0, 2] = 0
+cases_USA = cases_USA[['date', 'increase_cases']]
+cases_USA['increase_cases'] = cases_USA['increase_cases'] / 1000
 
-params = {'regressor__gamma': gammas_to_check,
-          'regressor__C': Cs_to_check}
+# merge two data frames
+cases_and_water_USA = cases_USA.merge(water_USA, on='date')
 
-# Search over parameter space using a gridsearch
-gridsearch = GridSearchCV(pipe, params, verbose=1).fit(x_train, y_train)
+# After tuning (see notebooks)
+optimize_lag = 11
+lag = 11
 
-# Fit pipe with optimal hyperparameters
-pipe = Pipeline([('regressor', SVR(kernel='rbf', gamma=gridsearch.best_params_['regressor__gamma'],
-                                   C=gridsearch.best_params_['regressor__C'], epsilon=0.05))])
-pipe.fit(x_train, y_train)
+water_USA2 = water_USA.copy(deep=True)
+water_USA2['date'] = water_USA2['date'].astype('datetime64')
+water_USA2['date_adj'] = water_USA2['date'] + pd.Timedelta('%dD' % lag)
+water_USA2 = water_USA2[['date_adj', 'effective_concentration_rolling_average']]
+water_USA2.rename(columns={'date_adj': 'date'}, inplace=True)
+water_USA2['date'] = water_USA2['date'].astype('str')
 
-# Make predictions
-y_test_pred = pipe.predict(x_test).reshape(-1, 1)
+# merge two data frames
+cases_and_water_USA2 = cases_USA.merge(water_USA2, on='date')
 
-# Predict k weeks into the future
-to_predict = 30
+# Fit a linear model
+After_may = cases_and_water_USA2[80:].copy(deep=True)
+X = After_may.effective_concentration_rolling_average.to_numpy().reshape(-1, 1)
+y = After_may.increase_cases.to_numpy().reshape(-1, 1)
+reg11 = LinearRegression().fit(X, y)
 
-predicted_values = np.empty((0, 1))
-predictors = np.empty((0, 4))
-predictors = np.vstack([predictors, np.array(x_test[-1, :])])
+# Plot the predictions versus actual data
+water_USA3 = water_USA.copy(deep=True)
+water_USA3['date'] = water_USA3['date'].astype('datetime64')
+water_USA3['date_adj'] = water_USA3['date'] + pd.Timedelta('%dD' %lag)
+water_USA3 = water_USA3[['date_adj','effective_concentration_rolling_average']]
+water_USA3.rename(columns={'date_adj':'date'}, inplace=True)
+water_USA3['date'] = water_USA3['date'].astype('str')
 
-for i in range(to_predict):
-    predicted_values = np.array([pipe.predict(predictors)])
-    new_predictors = predictors[i][range(1, 4)]
-    new_predictors = np.concatenate([new_predictors, [predicted_values[0][i]]], axis=0)
-    predictors = np.vstack([predictors, new_predictors])
+# merge two data frames
+cases_and_water_USA3 = cases_USA.merge(water_USA3, on='date')
+predict_cases = reg11.predict(
+    cases_and_water_USA3.effective_concentration_rolling_average.to_numpy().reshape(-1, 1)).flatten()
+true_cases = cases_and_water_USA3.increase_cases.to_numpy()
+date = cases_and_water_USA3.date.to_numpy()
 
-# Plot the predicted versus actual values using tuned values
-train = state.copy()[state.week <= test_start_week][['yhat']]
-test = state.copy()[state.week >= test_start_week][['yhat']]
+cases_and_water_USA3 = pd.DataFrame({'date': date, 'Predicted Cases': predict_cases, "True Cases": true_cases})
 
-fig = go.Figure()
-fig.add_trace(go.Scatter(x=np.arange(test_start_week + 1), y=train['yhat'], name="Training data"))
-fig.add_trace(go.Scatter(x=np.arange(test_start_week, 117), y=test['yhat'], name="Test data"))
-fig.add_trace(go.Scatter(x=np.arange(test_start_week + timesteps, 117 + to_predict),
-                         y=np.concatenate([y_test_pred.flatten(), predicted_values[0][range(1, to_predict)]]),
-                         name="Predicted data", connectgaps=True))
+# time series plot
+fig = make_subplots()
+fig.add_trace(
+    go.Scatter(x=cases_and_water_USA3['date'], y=cases_and_water_USA3['Predicted Cases'],
+               name='Predicted Increased Cases', marker_color='blue')
+
+)
+fig.add_trace(
+    go.Scatter(x=cases_and_water_USA3['date'], y=cases_and_water_USA3['True Cases'],
+               mode='lines', name='True Increased Cases')
+)
+
+fig.update_xaxes(title_text='Date')
+fig.update_yaxes(title_text='Cases (k)')
