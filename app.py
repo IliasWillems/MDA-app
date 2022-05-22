@@ -153,12 +153,12 @@ def update_figure_inf_svm(state_nbr_int):
     state['yhat'] = savgol_filter(state['r'], 21, 3)
     pd.options.mode.chained_assignment = 'warn'
 
-    train = state.copy()[state.week < test_start_week][['yhat']]
-    test = state.copy()[state.week >= test_start_week][['yhat']]
+    train = state.copy()[state.week < test_start_week][['week', 'yhat']]
+    test = state.copy()[state.week >= test_start_week][['week', 'yhat']]
     train_data = train.values
     test_data = test.values
-    train_data_timesteps = np.array([[j for j in train_data[i:i+timesteps]] for i in range(0, len(train_data)-timesteps+1)])[:, :, 0]
-    test_data_timesteps = np.array([[j for j in test_data[i:i+timesteps]] for i in range(0, len(test_data)-timesteps+1)])[:, :, 0]
+    train_data_timesteps = np.array([[j for j in train_data[i:i+timesteps]] for i in range(0, len(train_data)-timesteps+1)])[:, :, 1]
+    test_data_timesteps = np.array([[j for j in test_data[i:i+timesteps]] for i in range(0, len(test_data)-timesteps+1)])[:, :, 1]
 
     x_train, y_train = train_data_timesteps[:, :timesteps-1], train_data_timesteps[:, timesteps-1]
     x_test, y_test = test_data_timesteps[:, :timesteps-1], test_data_timesteps[:, timesteps-1]
@@ -195,13 +195,15 @@ def update_figure_inf_svm(state_nbr_int):
         predictors = np.vstack([predictors, new_predictors])
 
     # Plot the predicted versus actual values using tuned values
-    train = state.copy()[state.week <= test_start_week][['yhat']]
-    test = state.copy()[state.week >= test_start_week][['yhat']]
+
+    # Make it so that the lines connect
+    new = pd.DataFrame({'week': [test.iloc[0, 0]], 'yhat': [test.iloc[0, 1]]})
+    train = pd.concat([train, new])
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=np.arange(test_start_week + 1), y=train['yhat'], name="Training data"))
-    fig.add_trace(go.Scatter(x=np.arange(test_start_week, 117), y=test['yhat'], name="Test data"))
-    fig.add_trace(go.Scatter(x=np.arange(test_start_week + timesteps, 117 + to_predict),
+    fig.add_trace(go.Scatter(x=train['week'], y=train['yhat'], name="Training data"))
+    fig.add_trace(go.Scatter(x=test['week'], y=test['yhat'], name="Test data"))
+    fig.add_trace(go.Scatter(x=np.arange(test_start_week + timesteps - 1, 116 + to_predict),
                              y=np.concatenate([y_test_pred.flatten(), predicted_values[0][range(1, to_predict)]]),
                              name="Predicted data", connectgaps=True))
 
@@ -693,7 +695,7 @@ infection_rate_general_text = html.Div([
 infrates_states_dropdown = dcc.Dropdown(
     id='infrates-states',
     options=[{"label": x, "value": y} for x, y in zip(states.Name, states.fips)],
-    value=1)
+    value=20)
 
 # Create dropdown for measure
 infrates_measures_dropdown = dcc.Dropdown(
