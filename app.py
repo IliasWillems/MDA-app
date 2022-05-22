@@ -381,14 +381,14 @@ def update_figure_waste_water_prediction():
     [Input(component_id='community-detection-periods', component_property='value')]
 )
 def update_figure_community_detection_cases(period):
-    df = pd.read_csv("Data/CommunityDetection/df_LB_cases_%s.csv" % period, dtype={'fips': str, 'cluster': str})
-    df = df.loc[df['Name'].shift() != df['Name']]
+    df = pd.read_csv("Data/CommunityDetection/df_LB_cases_%s.csv" % period, dtype={'state fips': str, 'cluster': str})
+    df = df.loc[df['state'].shift() != df['state']]
 
     fig = px.choropleth(df,
-                        locations='Postal Code',
+                        locations='state abbreviation',
                         color='cluster',
                         color_continuous_scale='spectral_r',
-                        hover_name='Name',
+                        hover_name='state',
                         locationmode='USA-states',
                         scope='usa')
 
@@ -406,14 +406,14 @@ def update_figure_community_detection_cases(period):
     [Input(component_id='community-detection-periods', component_property='value')]
 )
 def update_figure_community_detection_deaths(period):
-    df = pd.read_csv("Data/CommunityDetection/df_LB_deaths_%s.csv" % period, dtype={'fips': str, 'cluster': str})
-    df = df.loc[df['Name'].shift() != df['Name']]
+    df = pd.read_csv("Data/CommunityDetection/df_LB_deaths_%s.csv" % period, dtype={'state fips': str, 'cluster': str})
+    df = df.loc[df['state'].shift() != df['state']]
 
     fig = px.choropleth(df,
-                        locations='Postal Code',
+                        locations='state abbreviation',
                         color='cluster',
                         color_continuous_scale='spectral_r',
-                        hover_name='Name',
+                        hover_name='state',
                         locationmode='USA-states',
                         scope='usa')
 
