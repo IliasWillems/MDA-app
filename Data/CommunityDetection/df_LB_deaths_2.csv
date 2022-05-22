@@ -1,54 +1,52 @@
-cluster,Name,Postal Code,fips
-0,Alabama,AL,1
-0,Alaska,AK,2
-0,Arkansas,AR,5
-0,Colorado,CO,8
-0,Connecticut,CT,9
-0,Idaho,ID,16
-0,Illinois,IL,17
-0,Indiana,IN,18
-0,Iowa,IA,19
-0,Kansas,KS,20
-0,Kentucky,KY,21
-0,Maine,ME,23
-0,Maryland,MD,24
-0,Massachusetts,MA,25
-0,Michigan,MI,26
-0,Minnesota,MN,27
-0,Missouri,MO,29
-0,Montana,MT,30
-0,Nebraska,NE,31
-0,Nevada,NV,32
-0,New Hampshire,NH,33
-0,New Jersey,NJ,34
-0,New Mexico,NM,35
-0,New York,NY,36
-0,North Carolina,NC,37
-0,North Dakota,ND,38
-0,Ohio,OH,39
-0,Oklahoma,OK,40
-0,Oregon,OR,41
-0,Pennsylvania,PA,42
-0,Rhode Island,RI,44
-0,South Dakota,SD,46
-0,Tennessee,TN,47
-0,Utah,UT,49
-0,Vermont,VT,50
-0,Washington,WA,53
-0,West Virginia,WV,54
-0,Wisconsin,WI,55
-0,Wyoming,WY,56
-1,California,CA,6
-1,Florida,FL,12
-1,Georgia,GA,13
-1,Louisiana,LA,22
-1,Mississippi,MS,28
-1,South Carolina,SC,45
-1,Texas,TX,48
-2,Arizona,AZ,4
-3,Delaware,DE,10
-4,Hawaii,HI,15
-5,Northern Mariana Islands,MP,69
-6,Puerto Rico,PR,72
-7,Virgin Islands,VI,78
-8,Virginia,VA,51
+cluster,state,state abbreviation,state fips
+0,Alabama,AL,1.0
+0,Alaska,AK,2.0
+0,Arkansas,AR,5.0
+0,Colorado,CO,8.0
+0,Connecticut,CT,9.0
+0,District of Columbia,,
+0,Idaho,ID,16.0
+0,Illinois,IL,17.0
+0,Indiana,IN,18.0
+0,Iowa,IA,19.0
+0,Kansas,KS,20.0
+0,Kentucky,KY,21.0
+0,Maine,ME,23.0
+0,Maryland,MD,24.0
+0,Massachusetts,MA,25.0
+0,Michigan,MI,26.0
+0,Minnesota,MN,27.0
+0,Missouri,MO,29.0
+0,Montana,MT,30.0
+0,Nebraska,NE,31.0
+0,Nevada,NV,32.0
+0,New Hampshire,NH,33.0
+0,New Jersey,NJ,34.0
+0,New Mexico,NM,35.0
+0,New York,NY,36.0
+0,North Carolina,NC,37.0
+0,North Dakota,ND,38.0
+0,Ohio,OH,39.0
+0,Oklahoma,OK,40.0
+0,Oregon,OR,41.0
+0,Pennsylvania,PA,42.0
+0,Rhode Island,RI,44.0
+0,South Dakota,SD,46.0
+0,Tennessee,TN,47.0
+0,Utah,UT,49.0
+0,Vermont,VT,50.0
+0,Washington,WA,53.0
+0,West Virginia,WV,54.0
+0,Wisconsin,WI,55.0
+0,Wyoming,WY,56.0
+1,California,CA,6.0
+1,Florida,FL,12.0
+1,Georgia,GA,13.0
+1,Louisiana,LA,22.0
+1,Mississippi,MS,28.0
+1,South Carolina,SC,45.0
+1,Texas,TX,48.0
+2,Arizona,AZ,4.0
+3,Delaware,DE,10.0
+4,Hawaii,HI,15.0
+8,Virginia,VA,51.0
