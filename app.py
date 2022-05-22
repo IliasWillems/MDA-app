@@ -245,10 +245,10 @@ def update_state_selected(target_state):
     return fig
 
 
-@app.callback(
-    Output(component_id="id_waste-water-per-county-figure", component_property="figure"),
-    [Input(component_id='id_waste-water-per-county-fips-input', component_property="value")]
-)
+# @app.callback(
+#     Output(component_id="id_waste-water-per-county-figure", component_property="figure"),
+#     [Input(component_id='id_waste-water-per-county-fips-input', component_property="value")]
+# )
 def update_figure_waste_water_per_county(fips):
     fips = str(fips)
     water_by_county_import['fipscode'] = water_by_county_import['fipscode'].astype(str)
@@ -803,6 +803,7 @@ fig_inf_svm = update_figure_inf_svm(20)
 ########################################################################################################################
 #                                            Waste water analysis                                                      #
 ########################################################################################################################
+# ToDo: Refactor the 'update_figure_waste_water_per_county' function to be more memory efficient
 
 # General introduction for this section
 waste_water_introduction_text = "-- Write some introduction here. Say that 'USA' should be specified to display data " \
@@ -817,7 +818,8 @@ waste_water_per_county_fips_input = dbc.Input(id='id_waste-water-per-county-fips
                                               type="text")
 
 # Create figure visualizing the waste water covid concentration and cases
-fig_waste_water_per_county = update_figure_waste_water_per_county("19153")
+# fig_waste_water_per_county = update_figure_waste_water_per_county("19153")
+fig_waste_water_per_county = update_figure_waste_water_prediction()
 
 # Create figure displaying predictions
 fig_waste_water_USA_prediction = update_figure_waste_water_prediction()
