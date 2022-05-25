@@ -494,7 +494,9 @@ def update_text_community_detection_cases(period):
 
         # Period 4
         html.Div([
-            "For this period, multiple clusters are detected, so we can also try to predict cluster membership for each "
+            "For this period, multiple clusters are detected. It is interesting to note that these communities are "
+            "very similar to the communities that were found using K-means clustering based on cases per county "
+            "in section 1. We can also try to predict cluster membership for each "
             "state. In order to produce interpretable results, as well as to be able to do variable selection, we use "
             "a logistic regression model. Starting with the full list of covariates displayed above, we end up"
             " selecting ",
