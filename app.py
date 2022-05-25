@@ -498,16 +498,34 @@ def update_text_community_detection_cases(period):
             "state. In order to produce interpretable results, as well as to be able to do variable selection, we use "
             "a logistic regression model. Starting with the full list of covariates displayed above, we end up"
             " selecting ",
-            html.I("proportion vaccinated (p = 0.031)"),
+            html.I("Uninsured (p = 0.027)"),
             " and ",
-            html.I("poverty rate (p = 0.016)"),
+            html.I("poverty rate (p = 0.025)"),
             ". ",
-            "The significance of ",
+            "It can be noticed that also a model selecting ",
+            html.I("proportion vaccinated (p = 0.038)"),
+            " and ",
+            html.I("poverty rate (p = 0.014)"),
+            " would be a useful model, only containing significant variables. "
+             "Note that the significance of ",
             html.I("proportion vaccinated"),
-            " does not come as a surprise, as in this time period the effectiveness of the vaccination "
+            " would not come as a surprise, as in this time period the effectiveness of the vaccination "
             "should be optimal for the broad public. Comparing cluster 0 and cluster 1, the results indicate "
             "that the probability to belong to cluster 1 is higher for states with a lower vaccination rate"
             " and a higher poverty rate. "
+            "However, in a model containing ",
+            html.I("Uninsured"),
+            ", ",
+            html.I("poverty rate"),
+            " and ",
+            html.I("proportion vaccinated"),
+            " both the variables ",
+            html.I("Uninsured"),
+            " and ",
+            html.I("proportion vaccinated"),
+            " are non-significant. This is probably due to some slight multicollinearity (the correlation between them"
+            " is -0.4)."
+
         ]),
         # Period 5
         "For this period, there is only one large cluster. Therefore, it would not make sense to predict for each state"
@@ -563,7 +581,14 @@ def update_text_community_detection_deaths(period):
             " is no longer significant. ",
             "Moreover ",
             html.I("proportion vaccinated"),
-            " is borderline insignificant."
+            " is borderline insignificant. "
+            "However, it can be noted that in a model containing only the variable ",
+            html.I("proportion vaccinated"),
+            ", this variable is highly significant (p=0.004). Some multicollinearity due to the variables ",
+            html.I("proportion vaccinated"),
+            " and ",
+            html.I("Uninsured"),
+            " probably causes the proportion of vaccinated people to be non-significant (their correlation is -0.40)."
         ]),
     ]
 
