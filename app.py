@@ -611,7 +611,7 @@ Covid_spread_general_text = html.Div([
     "In order to get more insight in how Covid-19 evolves throughout the United States, we can try to cluster counties "
     "together based on how they evolve in terms of cases per week. To this end, we applied both a K-means clustering "
     "and a spectral clustering algorithm on the data set. After optimization, K-means clustering turned out to be "
-    "the most useful algorithm. If you'd like to know more about the clusters found by this algorithm"
+    "the most optimal algorithm. If you'd like to know more about the clusters found by this algorithm"
     " and how they were obtained, please select “Clusters” in the dropdown box below (it may take a while to load the map).",
     html.Br()
 ])
@@ -644,10 +644,16 @@ Covid_spread_clusters_text = html.Div([
     " The choices of these hyperparameters are not a "
     "priori clear and hence a careful parameter tuning should be performed. Luckily, ",
     html.I("skLearn"),
-    " allows to  construct a pipeline that can tune these parameters for us.",
+    " allows to  construct a pipeline and can tune these parameters for us. The pipeline parameters"
+    " contain two different scalers (StandardScaler and MinMaxScaler), two different clustering algorithms"
+    " (spectral clustering and K-means), two different outlier detection techniques (IsolationForest and OneClassSvm),"
+    " the number of retained principal components ranges from 2 until 9 and the number of clusters from 2 until 5."
+    " A custom score function based on the silhouette score was used to evaluate the performance of the pipelines.",
     html.Br(),
     html.Br(),
-    "The final result is displayed on the map. Note that the k-means clustering algorithm did not have any geographical "
+    "The final and optimal result is displayed on the map. The MinMaxScaler, OneClassSVM and 9 principal components were chosen"
+    ". Note that the K-means clustering "
+    "algorithm did not have any geographical "
     "information about the counties. It was able to find these clusters solely based on how Covid-19 evolved throughout "
     "the US.",
     html.Br(),
@@ -874,9 +880,9 @@ fig_community_detection_deaths = update_figure_community_detection_deaths(1)
 
 # General text that is always displayed, irrespective of period chosen
 community_detection_methodology_and_general_results = html.Div([
-    "In this section, we construct a graph based on the covid data set. More specifically, the nodes represent the "
+    "In this section, we construct a graph using Neo4j based on the covid data set. More specifically, the nodes represent the "
     "different states and two states are connected if the evolution of Covid-19 in these states follows the same trend. "
-    "To this end, we look at correlations between the number of cases in both states on a weekly basis and create an "
+    "To this end, we look at correlations between the weekly rolling averages of the number of cases and create an "
     "undirected connection between them if the correlation is larger than 0.7. In a next step, we perform a community "
     "detection algorithm based on label propagation and group states according to their communities. In a completely "
     "analogous way, communities of states are formed based on the evolution of Covid-19 related deaths in the different "
@@ -914,7 +920,7 @@ community_detection_methodology_and_general_results = html.Div([
     html.Br(),
     html.Br(),
     "Below we visualize the clusters for each period and apply a logistic regression to model cluster memberships based "
-    "on the predictors listed above. Since the sample size for each of these prediction is small (each state corresponds "
+    "on the predictors listed above. Since the sample size for each of these predictions is small (each state corresponds "
     "to one observation), Firth's logistic regression was also tried to make the model. However, the conclusion were "
     "each time the same, so we will only discuss the more commonly used logistic regression models."
 ])
