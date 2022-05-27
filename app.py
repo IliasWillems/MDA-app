@@ -15,6 +15,7 @@ from plotly.subplots import make_subplots
 from sklearn.svm import SVR
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+from datetime import timedelta
 
 # Make the app
 app = dash.Dash(__name__,
@@ -39,10 +40,15 @@ agg_week_state = pd.read_csv("Data/agg_week_state.csv", dtype={'fips': str})
 measures = pd.read_csv("Data/measures.csv")
 Kmeans_clusters = pd.read_csv('Data/Kmeans_clustering.csv', dtype={'cluster': 'string', 'fips': 'string'})
 democrat_rebuplican_vote = pd.read_csv('Data/Democrat_Republican_votes.csv')
-fipsCountyState = pd.read_csv("Data/fipsCountyState.csv")
-water_waste_cases_by_county = pd.read_csv("Data/water_waste_cases_by_county.csv")
+
+# fipsCountyState = pd.read_csv("Data/fipsCountyState.csv")
+# water_waste_cases_by_county = pd.read_csv("Data/water_waste_cases_by_county.csv")
+# water_by_county_import = pd.read_csv("Data/wastewater_by_county.csv")
+# cases_by_county_import = pd.merge(water_waste_cases_by_county, fipsCountyState, how='inner')
+
+cases_by_county_import = pd.read_csv("Data/cases_by_county_reduced.csv")
 water_by_county_import = pd.read_csv("Data/wastewater_by_county.csv")
-cases_by_county_import = pd.merge(water_waste_cases_by_county, fipsCountyState, how='inner')
+
 cases_and_water_USA = pd.read_csv("Data/cases_and_water_USA.csv")
 cases_and_water_USA3 = pd.read_csv("Data/cases_and_water_USA3.csv")
 
@@ -245,112 +251,78 @@ def update_state_selected(target_state):
     return fig
 
 
-# @app.callback(
-#     Output(component_id="id_waste-water-per-county-figure", component_property="figure"),
-#     [Input(component_id='id_waste-water-per-county-fips-input', component_property="value")]
-# )
-def update_figure_waste_water_per_county(fips):
-    fips = str(fips)
-    water_by_county_import['fipscode'] = water_by_county_import['fipscode'].astype(str)
-    fips_list = water_by_county_import.fipscode.unique().tolist()
-    fips_list = ['0' + fips if len(fips) == 4 else fips for fips in fips_list]
+@app.callback(
+    Output(component_id="id_waste-water-per-state-figure", component_property="figure"),
+    [Input(component_id='id_waste-water-per-state-fips-input', component_property="value")]
+)
+def update_figure_waste_water_per_state(state_nbr):
+    state_abr = states.loc[states['fips'] == state_nbr, 'Postal Code'].values[0]
+    state = states.loc[states['fips'] == state_nbr, 'Name'].values[0]
 
-    # Check if fips is valid
-    if (fips not in fips_list) and (fips != "USA"):
-        fig = go.Figure()
-        fig.update_layout(title_text="Fips code not in database")
-        return fig
+    # if state_abr not in water_by_county_import.state.unique().tolist():
+    #     return ("Please select another state (in abbreviation)")
 
-    # If selected "USA" is selected, display data for the whole USA
-    if fips == "USA":
-        fig = make_subplots(specs=[[{"secondary_y": True}]])
-        fig.add_trace(
-            go.Scatter(x=cases_and_water_USA['date'], y=cases_and_water_USA['effective_concentration_rolling_average'],
-                       name='Concentration Rolling Average'), secondary_y=False
-
-        )
-        fig.add_trace(
-            go.Scatter(x=cases_and_water_USA['date'], y=cases_and_water_USA['increase_cases'],
-                       mode='lines', name='Increased Cases'), secondary_y=True
-        )
-
-        fig.update_xaxes(title_text='Date')
-        fig.update_yaxes(title_text='Copies / mL of sewage', secondary_y=False)
-        fig.update_yaxes(title_text='Cases (k)', secondary_y=True)
-
-        return fig
-
-    # Else, return data for selected fips
-    water_by_county = water_by_county_import.drop([0]).copy(deep=True)  # drop 2020-01-01
-    water_by_county['sampling_week'] = pd.to_datetime(water_by_county.sampling_week)
-    water_by_county.rename(columns={'sampling_week': 'date', 'effective_concentration_rolling_average': 'concentration',
-                                    'fipscode': 'fips'},
-                           inplace=True)
+    water_by_county = water_by_county_import.drop([0])  # drop 2020-01-01
+    water_by_county.rename(
+        columns={'sampling_week': 'date', 'effective_concentration_rolling_average': 'concentration'}, inplace=True)
     water_USA = water_by_county[['date', 'concentration']].groupby(by=['date'], as_index=False).mean().sort_values(
         by='date')
-    water_by_county['fips'] = ['0' + fips if len(fips) == 4 else fips for fips in
-                               water_by_county['fips']]  # impute missing 0
 
-    water_one_county = water_by_county[water_by_county['fips'] == fips].reset_index(drop=True)
-    water_one_county = water_one_county[['date', 'concentration', 'fips']]
-    water_one_county.merge(water_USA, on='date', how='right')  # imputation using average concentraion
+    water_one_state = water_by_county[water_by_county['state'] == state_abr].reset_index(drop=True)
+    water_one_state = water_one_state[['date', 'concentration']].groupby(by=['date'],
+                                                                         as_index=False).mean().sort_values(by='date')
 
-    # turn weekly data to daily data using past 3 days and next 3 days
-    impute_date_list = []
+    # imputation using average concentration
+    date_USA = water_USA['date'].tolist()
+    date_one_state = water_one_state['date'].tolist()
+    date_missing = list(set(date_USA) - set(date_one_state))
+    water_USA.query('date in @date_missing')
+    water_one_state = pd.concat([water_one_state, water_USA.query('date in @date_missing')])
 
-    for date in water_one_county.date:
-        impute_date = []
-        for i in range(-3, 4):
-            impute_date.append(date + pd.Timedelta('%dD' % i))
-        impute_date_list.append(impute_date)
-
-    water_one_county['date'] = impute_date_list
-    water_one_county = water_one_county.explode('date')
-    water_one_county['date'] = water_one_county['date'].astype('str')
+    # turn weekly to daily data
+    water_one_state['date'] = pd.to_datetime(water_one_state.date, format='%Y/%m/%d')
+    water_one_state = water_one_state.set_index('date').resample('D').ffill().reset_index()
+    water_one_state['date'] = (pd.to_datetime(water_one_state['date']) - timedelta(3))
+    water_one_state['date'] = water_one_state['date'].astype('str')
 
     # cases
-    cases_by_county = cases_by_county_import.loc[cases_by_county_import['fips'].notnull(), :].copy(deep=True)
-    cases_by_county['fips'] = cases_by_county['fips'].astype(int).astype(str)
-    cases_by_county['fips'] = ['0' + fips if len(fips) == 4 else fips for fips in
-                               cases_by_county['fips']]  # impute missing 0
+    cases_one_state = cases_by_county_import.loc[cases_by_county_import['fips'] == state_nbr].reset_index(drop=True)
+    cases_one_state = cases_one_state[['date', 'cases']].groupby(by=['date'], as_index=False).sum().sort_values(
+        by='date')
 
-    cases_one_county = cases_by_county[cases_by_county['fips'] == fips].reset_index(drop=True)
+    cases_one_state['increased_cases'] = cases_one_state.cases.diff()
+    cases_one_state['increased_cases'] = cases_one_state['increased_cases'].fillna(0)
+    cases_one_state = cases_one_state.mask(cases_one_state['increased_cases'] < 0, 0)
 
-    cases_one_county['increased_cases'] = cases_one_county.cases.diff()
-    cases_one_county['increased_cases'] = cases_one_county['increased_cases'].fillna(0)
-    cases_one_county = cases_one_county.mask(cases_one_county['increased_cases'] < 0, 0)
-
-    cases_one_county = cases_one_county[['date', 'increased_cases', 'fips', 'county', 'state']]
-    cases_one_county['increased_cases'] = cases_one_county['increased_cases'].astype(int)
+    cases_one_state = cases_one_state[['date', 'increased_cases']]
+    cases_one_state['increased_cases'] = cases_one_state['increased_cases'].astype(int)
 
     # merge two data frames
-    water_cases_one_county = water_one_county.merge(cases_one_county, on='date', how='inner')
-    county = water_cases_one_county['county'][0]
-    state = water_cases_one_county['state'][0]
+    water_cases_one_state = water_one_state.merge(cases_one_state, on='date', how='inner')
 
     # time series plot
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     fig.add_trace(
-        go.Scatter(x=water_cases_one_county['date'], y=water_cases_one_county['concentration'],
-                   name='Concentration Rolling Average'), secondary_y=False
+        go.Scatter(x=water_cases_one_state['date'], y=water_cases_one_state['concentration'],
+                   name='Concentration Rolling Average', marker_color='blue'), secondary_y=False
 
     )
     fig.add_trace(
-        go.Scatter(x=water_cases_one_county['date'], y=water_cases_one_county['increased_cases'],
+        go.Scatter(x=water_cases_one_state['date'], y=water_cases_one_state['increased_cases'],
                    name='Increased Cases'), secondary_y=True
     )
 
-    dt_all = pd.date_range(start=water_cases_one_county.date[0],
-                           end=water_cases_one_county.date[len(water_cases_one_county.date) - 1],
+    dt_all = pd.date_range(start=water_cases_one_state.date[0],
+                           end=water_cases_one_state.date[len(water_cases_one_state.date) - 1],
                            freq='D')
     dt_all_py = [d.to_pydatetime() for d in dt_all]
-    dt_obs_py = [d.to_pydatetime() for d in pd.to_datetime(water_cases_one_county['date'])]
+    dt_obs_py = [d.to_pydatetime() for d in pd.to_datetime(water_cases_one_state['date'])]
     dt_breaks = [d for d in dt_all_py if d not in dt_obs_py]
 
-    if len(dt_breaks) > 300:
+    if len(dt_breaks) > 100:
         fig.update_xaxes(rangebreaks=[dict(values=dt_breaks)])
 
-    fig.update_layout(title_text='%s in %s' % (county, state), title_x=0.3)  # "County" in "State"
+    fig.update_layout(title_text='%s' % state, title_x=0.3)
     fig.update_xaxes(title_text='Date')
     fig.update_yaxes(title_text='Copies / mL of sewage', secondary_y=False)
     fig.update_yaxes(title_text='Cases', secondary_y=True)
@@ -509,7 +481,7 @@ def update_text_community_detection_cases(period):
             " and ",
             html.I("poverty rate (p = 0.014)"),
             " would be a useful model, only containing significant variables. "
-             "Note that the significance of ",
+            "Note that the significance of ",
             html.I("proportion vaccinated"),
             " would not come as a surprise, as in this time period the effectiveness of the vaccination "
             "should be optimal for the broad public. Comparing cluster 0 and cluster 1, the results indicate "
@@ -839,20 +811,31 @@ fig_inf_svm = update_figure_inf_svm(20)
 # ToDo: Refactor the 'update_figure_waste_water_per_county' function to be more memory efficient
 
 # General introduction for this section
-waste_water_introduction_text = "-- Write some introduction here. Say that 'USA' should be specified to display data " \
-                                "for the whole USA"
-
+waste_water_introduction_text = html.Div([
+    "When people are infected with COVID-19, even if they don’t have any symptom, the viruscan still spread with their "
+    "feces as well as saliva, and eventually enter the wastewater system. This allows wastewater surveillance to serve "
+    "as an early warning that COVID-19 is going to spread in the community. When the virus concentration in the "
+    "wastewater starts to rise, the health department can take early action to prevent the spread of COVID-19.",
+    html.Br(),
+    html.Br(),
+    "In the dropdown box below, select the state for which you want to see the Covid-19 cases, overlaid with the waste "
+    "water data."
+])
 # Explanation of the prediction results
-waste_water_prediction_text = "-- Write some text explaining the findings"
+waste_water_prediction_text = html.Div([
+    "We use a linear model to predict the cases based on the covid concentration for the whole USA."
+])
 
 # Create Input box for fips number
-waste_water_per_county_fips_input = dbc.Input(id='id_waste-water-per-county-fips-input',
-                                              value="19153",
-                                              type="text")
+waste_water_per_county_fips_input = dcc.Dropdown(
+    id='id_waste-water-per-state-fips-input',
+    options=[{"label": x, "value": y} for x, y in zip(states.loc[states.fips.isin(cases_by_county_import['fips'])].Name,
+                                                      states.loc[states.fips.isin(cases_by_county_import['fips'])].fips)],
+    value=20)
 
 # Create figure visualizing the waste water covid concentration and cases
 # fig_waste_water_per_county = update_figure_waste_water_per_county("19153")
-fig_waste_water_per_county = update_figure_waste_water_prediction()
+fig_waste_water_per_state = update_figure_waste_water_per_state(20)
 
 # Create figure displaying predictions
 fig_waste_water_USA_prediction = update_figure_waste_water_prediction()
@@ -939,7 +922,7 @@ community_detection_deaths_info = update_text_community_detection_deaths(1)
 app.layout = dbc.Container(
     [
         html.Div(children=[html.H1(children='Modern Data Analytics project: Covid data'),
-                           html.H2(children='Brought to you by the rubber duckies')],
+                           html.H2(children='Made by Team Sweden')],
                  style={'textAlign': 'center', 'color': 'black'}),
         html.Hr(),
 
@@ -1006,7 +989,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col([html.Div(children=["Please enter a fips code:",
                                             waste_water_per_county_fips_input])], md=3),
-                dbc.Col(dcc.Graph(id="id_waste-water-per-county-figure", figure=fig_waste_water_per_county), md=8)
+                dbc.Col(dcc.Graph(id="id_waste-water-per-state-figure", figure=fig_waste_water_per_state), md=8)
             ],
             align="center",
         ),
