@@ -41,11 +41,6 @@ measures = pd.read_csv("Data/measures.csv")
 Kmeans_clusters = pd.read_csv('Data/Kmeans_clustering.csv', dtype={'cluster': 'string', 'fips': 'string'})
 democrat_rebuplican_vote = pd.read_csv('Data/Democrat_Republican_votes.csv')
 
-# fipsCountyState = pd.read_csv("Data/fipsCountyState.csv")
-# water_waste_cases_by_county = pd.read_csv("Data/water_waste_cases_by_county.csv")
-# water_by_county_import = pd.read_csv("Data/wastewater_by_county.csv")
-# cases_by_county_import = pd.merge(water_waste_cases_by_county, fipsCountyState, how='inner')
-
 cases_by_county_import = pd.read_csv("Data/cases_by_county_reduced.csv")
 water_by_county_import = pd.read_csv("Data/wastewater_by_county.csv")
 
