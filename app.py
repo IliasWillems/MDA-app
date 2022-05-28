@@ -16,6 +16,7 @@ from sklearn.svm import SVR
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 from datetime import timedelta
+import PIL
 
 # Make the app
 app = dash.Dash(__name__,
@@ -46,6 +47,8 @@ water_by_county_import = pd.read_csv("Data/wastewater_by_county.csv")
 
 cases_and_water_USA = pd.read_csv("Data/cases_and_water_USA.csv")
 cases_and_water_USA3 = pd.read_csv("Data/cases_and_water_USA3.csv")
+
+prediction_results = pd.read_csv("Data/prediction_results.csv", dtype={'fips': str})
 
 
 ########################################################################################################################
@@ -518,7 +521,7 @@ def update_text_community_detection_deaths(period):
             "determined that only the variable ",
             html.I("Uninsured"),
             " is significant in predicting the cluster for each state. The probability to belong to cluster 1 is higher"
-            " for states with a larger proportion of uninsured people. ",
+            " for states with a larger proportion of uninsured people ",
             html.I("(p = 0.008)"),
             ". Just like in the overall analysis, the poverty rate turns out to be borderline insignificant."
         ]),
@@ -548,7 +551,7 @@ def update_text_community_detection_deaths(period):
             " while the ",
             html.I("poverty rate"),
             " is no longer significant. ",
-            "Moreover ",
+            "Moreover, ",
             html.I("proportion vaccinated"),
             " is borderline insignificant. "
             "However, it can be noted that in a model containing only the variable ",
@@ -562,6 +565,61 @@ def update_text_community_detection_deaths(period):
     ]
 
     return info[period - 1]
+
+
+@app.callback(
+    [Output(component_id="id_random-forest-figure-cases", component_property="figure"),
+     Output(component_id="id_random-forest-figure-deaths", component_property="figure")],
+    [Input(component_id="random-forest-periods", component_property="value")]
+)
+def update_figures_random_forests(period: int):
+    im_cases_link = "Figures/avgcases_"
+    im_deaths_link = "Figures/avgdeaths_"
+
+    # Period = 0 corresponds to using all data
+    if period == 0:
+        im_cases_link += "all"
+        im_deaths_link += "all"
+        title_part = "over all periods"
+    else:
+        im_cases_link += ("period" + str(period))
+        im_deaths_link += ("period" + str(period))
+        title_part = "for period " + str(period)
+
+    im_cases_link += "_high.png"
+    im_deaths_link += "_high.png"
+
+    im_cases = PIL.Image.open(im_cases_link)
+    im_deaths = PIL.Image.open(im_deaths_link)
+
+    fig_cases, fig_deaths = px.imshow(im_cases), px.imshow(im_deaths)
+
+    fig_cases.update_layout(title_text="Analysis of cases " + title_part,
+                            xaxis={'showticklabels': False, 'ticks': ""},
+                            yaxis={'showticklabels': False, 'ticks': ""})
+
+    fig_deaths.update_layout(title_text="Analysis of deaths " + title_part,
+                             xaxis={'showticklabels': False, 'ticks': ""},
+                             yaxis={'showticklabels': False, 'ticks': ""})
+    fig_deaths.update_xaxes(nticks=0)
+
+    return fig_cases, fig_deaths
+
+
+def update_figure_random_forest_prediction_period_5():
+    prediction_results['fips'] = \
+        prediction_results.apply(lambda row: "0" + row['fips'] if len(row['fips']) == 4 else row['fips'], axis=1)
+
+    fig = px.choropleth(prediction_results, geojson=counties, locations='fips',
+                        color='category',
+                        color_continuous_scale="Viridis",
+                        scope="usa",
+                        )
+    fig.update_layout(title_text="Correctness of classification for each county",
+                      margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
+                      width=800)
+
+    return fig
 
 
 ########################################################################################################################
@@ -585,7 +643,7 @@ Covid_spread_general_text = html.Div([
 
 # Extra information about the clusters
 Covid_spread_clusters_text = html.Div([
-    "In order to apply the a clustering algorithm, we first need a measure that can assign a distance to each pair of "
+    "In order to apply a clustering algorithm, we first need a measure that can assign a distance to each pair of "
     "counties. Since the aim is to capture the similarities or differences in the evolution of the number of"
     " Covid-19 cases between the"
     " counties, we can represent each county in a 116 dimensional space where each dimension represents the number of"
@@ -593,11 +651,11 @@ Covid_spread_clusters_text = html.Div([
     " the Euclidean distance between their representations in that high-dimensional space.",
     html.Br(),
     html.Br(),
-    "However, it is well known that K-means clustering suffers from the,",
+    "However, it is well known that K-means clustering suffers from the ",
     html.I("curse of dimensionality"),
     ": it tends to perform worse in high dimensional spaces. Furthermore, when using clustering methods, it is always "
-    "advisable to work on standardized data. Therefore, the 116 dimensional points where first scaled and then, when using"
-    " the K-means algorithm, their dimensionality was reduced using principal component analysis (PCA)."
+    "advisable to work on standardized data. Therefore, the 116 dimensional points where first scaled and then, before "
+    "using the K-means algorithm, their dimensionality was reduced using principal component analysis (PCA)."
     " The results of applying K-means as well as spectral clustering on the "
     "pre-processed data still left a lot to be desired. It turned out that some outlier counties were throwing off the "
     "clustering algorithms. The solution to this was to add an outlier detector after the scaling step.",
@@ -615,7 +673,10 @@ Covid_spread_clusters_text = html.Div([
     " contain two different scalers (StandardScaler and MinMaxScaler), two different clustering algorithms"
     " (spectral clustering and K-means), two different outlier detection techniques (IsolationForest and OneClassSvm),"
     " the number of retained principal components ranges from 2 until 9 and the number of clusters from 2 until 5."
-    " A custom score function based on the silhouette score was used to evaluate the performance of the pipelines.",
+    " A custom score function based on the silhouette score was used to evaluate the performance of the pipelines. In "
+    "short, the silhouette score compares for each point the mean distance to all the points in its assigned clusters "
+    "with the mean distance to all the points in its neighbouring cluster. The neighbouring cluster is the cluster that "
+    "is closest to the assigned cluster of the point under consideration.",
     html.Br(),
     html.Br(),
     "The final and optimal result is displayed on the map. The MinMaxScaler, OneClassSVM and 9 principal components were chosen"
@@ -721,10 +782,19 @@ infection_rate_general_text = html.Div([
     " can be computed as"
     " the number of cases in the next week divided by the number of cases in the current week."
     " This number represents the average amount of people that"
-    " each Covid patient infects in that week. Also a smoothed curve is added to the plot of the infection numbers.",
+    " each Covid patient infects in that week. Also a smoothed curve is added to the plot of the infection numbers. "
+    "More specifically, the smoother used is a Savitsky-Golay filter. In a nutshell, it fits low-degree polynomials "
+    "through subsets of successive points in the data based on least-squares [Gallagher, 2020].",
     html.Br(),
     html.Br(),
-    " Additionally, some Covid measurements are displayed in terms of closing schools and mask obligation.",
+    "[Gallagher, 2020]: ",
+    html.I("Savitzky-Golay Smoothing and Differentiation Filter"),
+    ", Neal B. Gallagher, Eigenvector  research, retrieved from ",
+    html.I("https://www.researchgate.net/publication/338518012_Savitzky-Golay_Smoothing_and_Differentiation_Filter"),
+    ", on 28/05/2022",
+    html.Br(),
+    html.Br(),
+    "Additionally, some Covid measurements are displayed in terms of closing schools and mask obligation.",
     html.Br(),
     "Legend for the colours:",
     html.Ul(children=[
@@ -784,8 +854,8 @@ text_inf_svm_1 = html.Div([
     "One caveat of this approach is that masks were made obligatory relatively early, leaving us with a very "
     "small/insufficient amount of data to train the model on. Likewise, schools were closed very soon, leading to the "
     "same problem. Therefore, we only analyse the effect of vaccinations. On top of that, support vector machines "
-    "using a radial basis function kernel have two hyperparameters to be tuned. Tuning is by means of a gridsearch over "
-    "logarithmically equidistant points, as if often done when tuning SVMs. Note that we do not tune the lag of the "
+    "using a radial basis function kernel have two hyperparameters to be tuned. Tuning is done by means of a gridsearch over "
+    "logarithmically equidistant points, as is customary when tuning SVMs. Note that we do not tune the lag of the "
     "model but set it to 15 in all cases. This is done in order to reduce computational complexity. The value 15 was "
     "chosen as manual inspection indicated it performed well in most cases."
 ])
@@ -803,14 +873,13 @@ fig_inf_svm = update_figure_inf_svm(20)
 ########################################################################################################################
 #                                            Waste water analysis                                                      #
 ########################################################################################################################
-# ToDo: Refactor the 'update_figure_waste_water_per_county' function to be more memory efficient
 
 # General introduction for this section
 waste_water_introduction_text = html.Div([
-    "When people are infected with COVID-19, even if they don’t have any symptom, the viruscan still spread with their "
-    "feces as well as saliva, and eventually enter the wastewater system. This allows wastewater surveillance to serve "
+    "When people are infected with COVID-19, even if they don’t have any symptoms, the virus can still spread with their "
+    "feces as well as saliva, and eventually enter the waste water system. This allows waste water surveillance to serve "
     "as an early warning that COVID-19 is going to spread in the community. When the virus concentration in the "
-    "wastewater starts to rise, the health department can take early action to prevent the spread of COVID-19.",
+    "waste water starts to rise, the health department can take early action to prevent further spread of COVID-19.",
     html.Br(),
     html.Br(),
     "In the dropdown box below, select the state for which you want to see the Covid-19 cases, overlaid with the waste "
@@ -818,14 +887,16 @@ waste_water_introduction_text = html.Div([
 ])
 # Explanation of the prediction results
 waste_water_prediction_text = html.Div([
-    "We use a linear model to predict the cases based on the covid concentration for the whole USA."
+    "We use a linear model to predict the cases based on the covid concentration in the waste water for the whole USA. "
+    "Clearly, the predictions are quite good."
 ])
 
 # Create Input box for fips number
 waste_water_per_county_fips_input = dcc.Dropdown(
     id='id_waste-water-per-state-fips-input',
     options=[{"label": x, "value": y} for x, y in zip(states.loc[states.fips.isin(cases_by_county_import['fips'])].Name,
-                                                      states.loc[states.fips.isin(cases_by_county_import['fips'])].fips)],
+                                                      states.loc[
+                                                          states.fips.isin(cases_by_county_import['fips'])].fips)],
     value=20)
 
 # Create figure visualizing the waste water covid concentration and cases
@@ -909,6 +980,95 @@ community_detection_general_info = update_general_info_community_detection(1)
 # Analyses for each of the periods
 community_detection_cases_info = update_text_community_detection_cases(1)
 community_detection_deaths_info = update_text_community_detection_deaths(1)
+
+########################################################################################################################
+#                                              Random Forests                                                          #
+########################################################################################################################
+
+random_forest_general_info = html.Div([
+    "In this final section, we combine all the knowledge we obtained throughout our investigation of the evolution of "
+    "Covid-19 in the United States to predict for each county whether it is a Covid-19 hotspot. Here we define ",
+    html.I("hotspot"),
+    " in two ways:",
+    html.Ul(children=[
+        html.Div("1. A county is a hotspot if its average infection rate is above the overall average for all "
+                 "counties."),
+        html.Div("2. A county is a hotspot if its average covid-related death rate is above the overall average for "
+                 "all counties.")
+    ]),
+
+    "As was already often done in the previous sections, we will analyse the usual 5 periods separately, as well as "
+    "all periods together. A consequence of this is that whether or not a county is a hotspot depends on the period "
+    "under observation. Therefore, predicting in general whether a county is a Covid-19 hotspot is a little ambiguous "
+    "at first. To disambiguate, we will predict whether or not a county is a hotspot for the last period, namely period "
+    "5. To this end, a model is trained based on the data for the first 4 periods.",
+    html.Br(),
+    html.Br(),
+    html.H4("Exploratory analysis"),
+    "Let us first investigate the characteristics of each period separately as kind of an exploratory analysis. As a "
+    "first step, we select a prediction model (which one?). Next, for each period, we (re)train that model on the "
+    "data for the selected period. Finally, to investigate the characteristics of that period, we would like to know "
+    "how important each feature is in the trained model. To this end, a Shapley plot can be constructed.",
+    html.Br(),
+    html.Br(),
+    "Shapley plots are basically effect size plots: for each model, it automatically selects which features are most "
+    "important (these are listed in the plots). For those features, you can see the effect of high/low values on that "
+    "feature (indicated by the colour) on the probability of being hotspot (indicated on the x-axis). So for example, "
+    "if you take the plot for cases in period 1, you can see that the households_speak_limited_english feature is quite "
+    "important, in that counties with a low percentage of households that only speak limited English have a lower "
+    "probability of being a hotspot (since blue is on the negative side of the x-axis). So each point for a feature "
+    "refers to a county and indicates the marginal contribution of that feature to the prediction for that county.",
+    html.Br(),
+    html.Br(),
+    "In reference to Section 4, we can see some similarities. For example, to predict the communities based on deaths "
+    "for period 4, ",
+    html.I("poverty rate"),
+    " turned out to be a significant variable. Likewise, analysing deaths on a county level for period 4, ",
+    html.I("median individual income"),
+    " turns out to be the most important predictor. Also for period 4, we see that voting behaviour is very important "
+    "for the predictions. This was not observed in the previous section as voting behaviour was not included in the "
+    "analysis. On the contrary, also ",
+    html.I("life expectancy"),
+    " is important, a variable that is likely to be closely related to ",
+    html.I("Uninsured"),
+    " and ",
+    html.I("Poverty rate"),
+    ".",
+    html.Br(),
+    html.Br()
+])
+
+random_forest_dropdown = dcc.Dropdown(
+    id="random-forest-periods",
+    options=[
+        {"label": 'All data', 'value': 0},
+        {"label": 'Period 1', 'value': 1},
+        {"label": 'Period 2', 'value': 2},
+        {"label": 'Period 3', 'value': 3},
+        {"label": 'Period 4', 'value': 4},
+        {"label": 'Period 5', 'value': 5},
+    ],
+    value=2
+)
+
+random_forest_figure_cases, random_forest_figure_deaths = update_figures_random_forests(2)
+
+random_forest_prediction_text = html.Div([
+    "Lastly, we construct a prediction model based on features collected over a large amount of varying data set, as "
+    "well as extracted features like for example (but not limited to) centrality measures based on commuting flows. As "
+    "explained before, we train this model on the first 4 periods and try to predict whether or not each county is a "
+    "Covid-19 hotspot in period 5. To assess the quality of our predictor (classifier), we use the usual techniques "
+    "based on the confusion matrix. More precisely, we compute that the area under the ROC is 0.645. This is a decent "
+    "result, especially given how difficult the data is to predict.",
+    html.Br(),
+    html.Br(),
+    "For each county, we also plot its prediction category, being True/False Negative/Positive, below. Although it "
+    "could be argued that some regions of equal category can be detected, it is hard to say whether or not this is "
+    "sufficient to conclude that the difficulty of predicting the class of a county depends on its geographical "
+    "location."
+])
+
+random_forest_figure_prediction = update_figure_random_forest_prediction_period_5()
 
 ########################################################################################################################
 #                                             Display everything                                                       #
@@ -1021,6 +1181,33 @@ app.layout = dbc.Container(
                         md=5),
                 dbc.Col(html.Div(id='id_community-detection-deaths-info', children=[community_detection_deaths_info]),
                         md=5)
+            ],
+            align="top",
+            justify="center",
+        ),
+        html.Hr(),
+
+        # Random forests
+        html.Div(children=[html.H4(children="5. Random forest model per period")],
+                 style={'textAlign': 'left', 'color': 'black'}),
+        html.Div(random_forest_general_info),
+        dbc.Row(
+            [
+                dbc.Col(html.Div(random_forest_dropdown), md=3)
+            ]
+        ),
+        dbc.Row(
+            [
+                dbc.Col(dcc.Graph(id="id_random-forest-figure-cases", figure=random_forest_figure_cases), md=6),
+                dbc.Col(dcc.Graph(id="id_random-forest-figure-deaths", figure=random_forest_figure_deaths), md=6)
+            ],
+            align="top",
+            justify="center",
+        ),
+        html.Div(random_forest_prediction_text),
+        dbc.Row(
+            [
+                dbc.Col(dcc.Graph(id="id_random-forest-prediction", figure=random_forest_figure_prediction), md=5)
             ],
             align="top",
             justify="center",
