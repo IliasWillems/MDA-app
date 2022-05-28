@@ -84,7 +84,7 @@ def show_hide_visualization_cluster_info(visibility_state):
      Input(component_id="visualization-dropdown", component_property="value")]
 )
 def update_figure_vis(week, to_display):
-    if to_display in ["slider", "animate"]:
+    if to_display == "slider":
         fig = px.choropleth(week_merge[week_merge['week'] == week], geojson=counties, locations='fips',
                             color='casespercapita',
                             color_continuous_scale="Viridis",
@@ -100,6 +100,17 @@ def update_figure_vis(week, to_display):
                                          "%d/%b/%Y") + ")",
                           margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
                           width=800)
+    elif to_display == "animate":
+        fig = px.choropleth(week_merge, geojson=counties, locations='fips',
+                            color='casespercapita',
+                            color_continuous_scale="Viridis",
+                            range_color=(0, 0.5),
+                            scope="usa",
+                            labels={'casespercapita': '%new cases <br> (on county level)'},
+                            animation_frame="week"
+                            )
+
+        return fig
     else:
         fig = px.choropleth(Kmeans_clusters, geojson=counties, locations='fips', color='cluster',
                             scope='usa', labels={'cluster': 'cases'}
@@ -755,7 +766,7 @@ covid_spread_clusters_votes_correlation_text = html.Div(children=[
 visualization_dropdown = dcc.Dropdown(
     id='visualization-dropdown',
     options=[{"label": 'slider', 'value': 'slider'},
-             {"label": 'animate (Not implemented yet)', 'value': 'animate'},
+             {"label": 'animate (VERY long loading time)', 'value': 'animate'},
              {"label": 'K-means clusters', 'value': 'clusters'}
              ],
     value='slider')

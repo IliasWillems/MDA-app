@@ -21,4 +21,16 @@ from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import LinearRegression
 from datetime import timedelta
 
+week_merge = pd.read_csv("Data/week_merge.csv", dtype={'fips': str})
+with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+    counties = json.load(response)
+
+fig = px.choropleth(week_merge, geojson=counties, locations='fips',
+                    color='casespercapita',
+                    color_continuous_scale="Viridis",
+                    range_color=(0, 0.5),
+                    scope="usa",
+                    labels={'casespercapita': '%new cases <br> (on county level)'},
+                    animation_frame="week"
+                    )
 
