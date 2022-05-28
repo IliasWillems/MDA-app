@@ -3,6 +3,7 @@ from dash import html
 from dash import dcc
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
+import dash_gif_component as gif
 import numpy as np
 import pandas as pd
 import datetime as dt
@@ -79,7 +80,7 @@ def show_hide_visualization_cluster_info(visibility_state):
 
 
 @app.callback(
-    Output(component_id="id_figure", component_property="figure"),
+    Output(component_id="id_visualization-display-component", component_property="children"),
     [Input(component_id="visualization-slider", component_property="value"),
      Input(component_id="visualization-dropdown", component_property="value")]
 )
@@ -100,17 +101,17 @@ def update_figure_vis(week, to_display):
                                          "%d/%b/%Y") + ")",
                           margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
                           width=800)
+
+        return dcc.Graph(figure=fig)
+
     elif to_display == "animate":
-        fig = px.choropleth(week_merge, geojson=counties, locations='fips',
-                            color='casespercapita',
-                            color_continuous_scale="Viridis",
-                            range_color=(0, 0.5),
-                            scope="usa",
-                            labels={'casespercapita': '%new cases <br> (on county level)'},
-                            animation_frame="week"
-                            )
+        fig = gif.GifPlayer(
+            gif='assets/media/Covid19_Spread_fulldata_lowQuality.gif',
+            still='assets/media/PlaceholderImage3.png'
+        )
 
         return fig
+
     else:
         fig = px.choropleth(Kmeans_clusters, geojson=counties, locations='fips', color='cluster',
                             scope='usa', labels={'cluster': 'cases'}
@@ -119,7 +120,7 @@ def update_figure_vis(week, to_display):
                           margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
                           width=800)
 
-    return fig
+    return dcc.Graph(figure=fig)
 
 
 @app.callback(
@@ -636,7 +637,6 @@ def update_figure_random_forest_prediction_period_5():
 ########################################################################################################################
 #                                           Covid spread visualization                                                 #
 ########################################################################################################################
-# ToDo: Implement animated visualization
 
 # General text that is always displayed
 Covid_spread_general_text = html.Div([
@@ -649,6 +649,7 @@ Covid_spread_general_text = html.Div([
     "and a spectral clustering algorithm on the data set. After optimization, K-means clustering turned out to be "
     "the most optimal algorithm. If you'd like to know more about the clusters found by this algorithm"
     " and how they were obtained, please select “Clusters” in the dropdown box below (it may take a while to load the map).",
+    html.Br(),
     html.Br()
 ])
 
@@ -778,8 +779,8 @@ slider = dcc.Slider(id='visualization-slider',
                     value=1,
                     marks={str(i): str(i) for i in [np.arange(1, max(week_merge['week']), 10)]})
 
-# Create the figure
-fig_visual = update_figure_vis(1, "slider")
+# Create a variable that stores what to display
+visualization_display = update_figure_vis(1, "slider")
 
 ########################################################################################################################
 #                                                Infection Rates                                                       #
@@ -1101,7 +1102,7 @@ app.layout = dbc.Container(
                 dbc.Col([dbc.Row(visualization_dropdown),
                          html.Div(id='slider-container', children=[slider], style={'display': 'block', 'padding': 10})],
                         md=3),
-                dbc.Col(dcc.Graph(id="id_figure", figure=fig_visual), md=8)
+                dbc.Col(id="id_visualization-display-component", children=visualization_display, md=8)
             ],
             align="center",
         ),

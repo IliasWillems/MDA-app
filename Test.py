@@ -3,6 +3,7 @@ import dash
 import matplotlib.pyplot as plt
 from dash import html
 from dash import dcc
+import dash_gif_component as gif
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import numpy as np
@@ -25,12 +26,22 @@ week_merge = pd.read_csv("Data/week_merge.csv", dtype={'fips': str})
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
 
-fig = px.choropleth(week_merge, geojson=counties, locations='fips',
-                    color='casespercapita',
-                    color_continuous_scale="Viridis",
-                    range_color=(0, 0.5),
-                    scope="usa",
-                    labels={'casespercapita': '%new cases <br> (on county level)'},
-                    animation_frame="week"
-                    )
+# Make the app
+app = dash.Dash(__name__,
+                title='MDA Project',
+                external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+# add this for heroku
+server = app.server
+
+
+# Add dcc.Location in the layout
+app.layout = dbc.Container(
+    gif.GifPlayer(
+        gif='assets/media/Covid19_Spread_fulldata_lowQuality.gif',
+        still='assets/media/PlaceholderImage3.png'
+    )
+)
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
