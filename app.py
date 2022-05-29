@@ -696,7 +696,7 @@ Covid_spread_clusters_text = html.Div([
     "The optimal result was based on spectral clustering using 2 clusters, Isolation Forest to detect outliers,"
     " the StandardScaler and assigning labels based on K-means."
     " One of these clusters contained only 23 counties in Texas, while the other cluster contained the remaining 3077"
-    " included US counties. The silhouette score was equal to 0.2148. To investigate whether K-means clustering"
+    " included US counties. The silhouette score was equal to 0.2142. To investigate whether K-means clustering"
     " led to other clusters, a new pipeline was tuned, removing the option spectral clustering from the parameters. "
     "This resulted in the clusters that are displayed on the map. The MinMaxScaler, OneClassSVM and 8 principal"
     " components were chosen and the silhouette score was 0.1551, which is not much lower"
