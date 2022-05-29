@@ -1053,8 +1053,7 @@ random_forest_general_info = html.Div([
     html.I("median individual income"),
     " turns out to be the most important predictor. Also for period 4, we see that voting behaviour is very important "
     "for the predictions. This was not observed in the previous section as voting behaviour was not included in the "
-    "analysis. However, voting behaviour is known to be related to vaccinations, which was found to be a "
-    "significant variable in estimating the communities for the cases in period 4. Besides, also ",
+    "analysis. Besides, also ",
     html.I("life expectancy"),
     " is important, a variable that is likely to be closely related to ",
     html.I("Uninsured"),
