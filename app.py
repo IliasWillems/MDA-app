@@ -645,10 +645,10 @@ Covid_spread_general_text = html.Div([
     html.Br(),
     html.Br(),
     "In order to get more insight in how Covid-19 evolves throughout the United States, we can try to cluster counties "
-    "together based on how they evolve in terms of cases per week. To this end, we applied both a K-means clustering "
-    "and a spectral clustering algorithm on the data set. After optimization, K-means clustering turned out to be "
-    "the most optimal algorithm. If you'd like to know more about the clusters found by this algorithm"
-    " and how they were obtained, please select “Clusters” in the dropdown box below (it may take a while to load the map).",
+    "together based on how they evolve in terms of cases per week. To this end, we applied a K-means and spectral clustering "
+    "algorithm on the data set."
+    " If you'd like to know more about the clusters found by these algorithms"
+    " and how they were obtained, please select “clusters” in the dropdown box below (it may take a while to load the map).",
     html.Br(),
     html.Br()
 ])
@@ -666,8 +666,10 @@ Covid_spread_clusters_text = html.Div([
     "However, it is well known that K-means clustering suffers from the ",
     html.I("curse of dimensionality"),
     ": it tends to perform worse in high dimensional spaces. Furthermore, when using clustering methods, it is always "
-    "advisable to work on standardized data. Therefore, the 116 dimensional points where first scaled and then, before "
-    "using the K-means algorithm, their dimensionality was reduced using principal component analysis (PCA)."
+    "advisable to work on standardized data. Therefore, the 116 dimensional points were first scaled and then, before "
+    "using the K-means algorithm, their dimensionality was reduced using principal component analysis (PCA). Although "
+    "K-means is one of the most well-known clustering algorithms, other algorithms such as spectral clustering might "
+    "outperform K-means due to a higher flexibility in the shape of the clusters."
     " The results of applying K-means as well as spectral clustering on the "
     "pre-processed data still left a lot to be desired. It turned out that some outlier counties were throwing off the "
     "clustering algorithms. The solution to this was to add an outlier detector after the scaling step.",
@@ -677,28 +679,36 @@ Covid_spread_clusters_text = html.Div([
     "should choose the clustering algorithm and "
     "the number of clusters in the clustering algorithm. When using K-means clustering, the number of principal "
     "components to retain in the dimensionality reduction step has to be chosen as well. On the other hand, when using"
-    " spectral clustering, different methods can be used to assign the clustering labels (i.e. K-means or discretize)."
+    " spectral clustering, different methods can be used to assign the clustering labels (i.e. K-means or discretize)"
+    " and the number of nearest neighbors to create the adjacency matrix has to be chosen as well."
     " The choices of these hyperparameters are not a "
     "priori clear and hence a careful parameter tuning should be performed. Luckily, ",
     html.I("skLearn"),
     " allows to  construct a pipeline and can tune these parameters for us. The pipeline parameters"
     " contain two different scalers (StandardScaler and MinMaxScaler), two different clustering algorithms"
     " (spectral clustering and K-means), two different outlier detection techniques (IsolationForest and OneClassSvm),"
-    " the number of retained principal components ranges from 2 until 9 and the number of clusters from 2 until 5."
+    " the number of retained principal components (for K-means) ranges from 2 until 9 and the number"
+    " of clusters from 2 until 5. The number of nearest neighbors for spectral clustering can be 5, 10 or 15."
     " A custom score function based on the silhouette score was used to evaluate the performance of the pipelines. In "
     "short, the silhouette score compares for each point the mean distance to all the points in its assigned clusters "
     "with the mean distance to all the points in its neighbouring cluster. The neighbouring cluster is the cluster that "
     "is closest to the assigned cluster of the point under consideration.",
     html.Br(),
     html.Br(),
-    "The final and optimal result is displayed on the map. The MinMaxScaler, OneClassSVM and 9 principal components were chosen"
-    ". Note that the K-means clustering "
+    "The optimal result was based on spectral clustering using 2 clusters, Isolation Forest to detect outliers,"
+    " the StandardScaler, using 5 nearest neighbors and assigning labels based on discretization."
+    " One of these clusters contained only 22 counties, while the other cluster contained the remaining 3078"
+    " included US counties. The silhouette score was equal to 0.294. To investigate whether K-means clustering"
+    " led to other clusters, a new pipeline was tuned, removing the option spectral clustering from the parameters. "
+    "This resulted in the clusters that are displayed on the map. The MinMaxScaler, OneClassSVM and 8 principal"
+    " components were chosen and the silhouette score was 0.1551, which is however somewhat lower"
+    " than was the case for spectral clustering. Note that the K-means clustering "
     "algorithm did not have any geographical "
     "information about the counties. It was able to find these clusters solely based on how Covid-19 evolved throughout "
     "the US.",
     html.Br(),
     html.Br(),
-    "Now, a logistic model is fit to predict the probability to belong to a cluster for each county."
+    "Now, a logistic model is fit to predict the probability to belong to a K-means cluster for each county."
     " The variables that are included in the model are:",
     html.Ul(children=[
         html.Div(children=["1. Proportion of people voting Republican during the elections of 2020, referred to as ",
@@ -768,7 +778,7 @@ visualization_dropdown = dcc.Dropdown(
     id='visualization-dropdown',
     options=[{"label": 'Slider', 'value': 'slider'},
              {"label": 'Animate', 'value': 'animate'},
-             {"label": 'K-means clusters', 'value': 'clusters'}
+             {"label": 'Clusters', 'value': 'clusters'}
              ],
     value='slider')
 
@@ -856,7 +866,7 @@ fig_state_selected = update_state_selected(20)
 
 # General text for support vector machines (above plot)
 text_inf_svm_1 = html.Div([
-    "To investigate for each of these measures what their effect on the infection rates were, we could try to predict "
+    "To investigate for each of these measures what their effects on the infection rates were, we could try to predict "
     "the infection rates if these measures had not been implemented. To do so, we first train a support vector machine "
     "on the time series of infection rates before the measure of interest went in effect. Next, we can predict the "
     "infection rates for the period in which the measure was enforced based on this model in order to get an idea of "
@@ -900,7 +910,13 @@ waste_water_introduction_text = html.Div([
 # Explanation of the prediction results
 waste_water_prediction_text = html.Div([
     "We use a linear model to predict the cases based on the covid concentration in the waste water for the whole USA. "
-    "Clearly, the predictions are quite good."
+    "From the time series plot, an obvious time lag between daily increased cases and virus concentration rolling average"
+    " can be observed. Instead of using the concentration rolling average as a variable to predict the time series"
+    " of increased cases, we shifted the wastewater data N (N = 1, 2,...., 15) days backward and fitted N"
+    " linear models with daily increased cases as the target. Lowest MSE occurred when N = 11, so we used "
+    "this model to predict daily cases and plotted the results. Except for the period when a lot "
+    "of people are infected, a simple linear model with shifted wastewater data as the only variable "
+    "can roughly predict daily increased cases."
 ])
 
 # Create Input box for fips number
@@ -1039,7 +1055,7 @@ random_forest_general_info = html.Div([
     html.I("median individual income"),
     " turns out to be the most important predictor. Also for period 4, we see that voting behaviour is very important "
     "for the predictions. This was not observed in the previous section as voting behaviour was not included in the "
-    "analysis. On the contrary, also ",
+    "analysis. Besides, also ",
     html.I("life expectancy"),
     " is important, a variable that is likely to be closely related to ",
     html.I("Uninsured"),
@@ -1066,6 +1082,7 @@ random_forest_dropdown = dcc.Dropdown(
 random_forest_figure_cases, random_forest_figure_deaths = update_figures_random_forests(2)
 
 random_forest_prediction_text = html.Div([
+    html.H4("Predictive analysis"),
     "Lastly, we construct a prediction model based on features collected over a large amount of varying data set, as "
     "well as extracted features like for example (but not limited to) centrality measures based on commuting flows. As "
     "explained before, we train this model on the first 4 periods and try to predict whether or not each county is a "
@@ -1154,7 +1171,7 @@ app.layout = dbc.Container(
         html.Div(waste_water_introduction_text),
         dbc.Row(
             [
-                dbc.Col([html.Div(children=["Please enter a fips code:",
+                dbc.Col([html.Div(children=["Select a state:",
                                             waste_water_per_county_fips_input])], md=3),
                 dbc.Col(dcc.Graph(id="id_waste-water-per-state-figure", figure=fig_waste_water_per_state), md=8)
             ],
