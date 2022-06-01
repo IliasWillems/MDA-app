@@ -608,11 +608,19 @@ def update_figures_random_forests(period: int):
 
     fig_cases.update_layout(title_text="Analysis of cases " + title_part,
                             xaxis={'showticklabels': False, 'ticks': ""},
-                            yaxis={'showticklabels': False, 'ticks': ""})
+                            yaxis={'showticklabels': False, 'ticks': ""},
+                            margin=dict(l=20, r=20, t=30, b=20),
+                            autosize=False,
+                            width=700,
+                            height=700)
 
     fig_deaths.update_layout(title_text="Analysis of deaths " + title_part,
                              xaxis={'showticklabels': False, 'ticks': ""},
-                             yaxis={'showticklabels': False, 'ticks': ""})
+                             yaxis={'showticklabels': False, 'ticks': ""},
+                             margin=dict(l=20, r=20, t=30, b=20),
+                             autosize=False,
+                             width=700,
+                             height=700)
     fig_deaths.update_xaxes(nticks=0)
 
     return fig_cases, fig_deaths
@@ -1034,7 +1042,8 @@ random_forest_general_info = html.Div([
     html.Br(),
     html.H4("Exploratory analysis"),
     "Let us first investigate the characteristics of each period separately as kind of an exploratory analysis. As a "
-    "first step, we select a prediction model (which one?). Next, for each period, we (re)train that model on the "
+    "first step, we select a prediction model (in our case, a random forest model). Next, for each period, we (re)train "
+    "that model on the "
     "data for the selected period. Finally, to investigate the characteristics of that period, we would like to know "
     "how important each feature is in the trained model. To this end, a Shapley plot can be constructed.",
     html.Br(),
@@ -1083,7 +1092,7 @@ random_forest_figure_cases, random_forest_figure_deaths = update_figures_random_
 
 random_forest_prediction_text = html.Div([
     html.H4("Predictive analysis"),
-    "Lastly, we construct a prediction model based on features collected over a large amount of varying data set, as "
+    "Lastly, we construct a random forest model based on features collected over a large amount of varying data set, as "
     "well as extracted features like for example (but not limited to) centrality measures based on commuting flows. As "
     "explained before, we train this model on the first 4 periods and try to predict whether or not each county is a "
     "Covid-19 hotspot in period 5. To assess the quality of our predictor (classifier), we use the usual techniques "
@@ -1222,9 +1231,10 @@ app.layout = dbc.Container(
         html.Div(random_forest_general_info),
         dbc.Row(
             [
-                dbc.Col(html.Div(random_forest_dropdown), md=3)
+                dbc.Col(html.Div(random_forest_dropdown), md=3),
             ]
         ),
+        html.Br(),
         dbc.Row(
             [
                 dbc.Col(dcc.Graph(id="id_random-forest-figure-cases", figure=random_forest_figure_cases), md=6),
