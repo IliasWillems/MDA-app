@@ -766,8 +766,8 @@ covid_spread_clusters_votes_correlation_text = html.Div(children=[
 # Create a dropdown for options 'animate' and 'slider'
 visualization_dropdown = dcc.Dropdown(
     id='visualization-dropdown',
-    options=[{"label": 'slider', 'value': 'slider'},
-             {"label": 'animate (VERY long loading time)', 'value': 'animate'},
+    options=[{"label": 'Slider', 'value': 'slider'},
+             {"label": 'Animate', 'value': 'animate'},
              {"label": 'K-means clusters', 'value': 'clusters'}
              ],
     value='slider')
