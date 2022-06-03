@@ -114,7 +114,8 @@ def update_figure_vis(week, to_display):
 
     else:
         fig = px.choropleth(Kmeans_clusters, geojson=counties, locations='fips', color='cluster',
-                            scope='usa', labels={'cluster': 'cases'}
+                            color_discrete_map={'0':'#636EFA','1':'#EF553B'},
+                            scope='usa', labels={'cluster': 'cluster'}
                             )
         fig.update_layout(title_text="Clusters of similar Covid evolution",
                           margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
