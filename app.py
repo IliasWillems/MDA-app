@@ -114,7 +114,8 @@ def update_figure_vis(week, to_display):
 
     else:
         fig = px.choropleth(Kmeans_clusters, geojson=counties, locations='fips', color='cluster',
-                            scope='usa', labels={'cluster': 'cases'}
+                            color_discrete_map={'0':'#636EFA','1':'#EF553B'},
+                            scope='usa', labels={'cluster': 'cluster'}
                             )
         fig.update_layout(title_text="Clusters of similar Covid evolution",
                           margin={"r": 0, "t": 50, "l": 0, "b": 0, "autoexpand": True},
@@ -743,7 +744,10 @@ Covid_spread_clusters_text = html.Div([
                            html.I("Airports.")]),
         html.Div(
             children=["10. The median individual income in the year 2019, referred to as ",
-                      html.I("Median individual income.")])
+                      html.I("Median individual income.")]),
+        html.Div(
+            children=["11. The average vaccination rate, referred to as ",
+                      html.I("Vaccination.")])
     ]),
     html.Br(),
     "The results show that the probability to belong to cluster 1 instead of cluster 0 is higher if:",
@@ -753,7 +757,8 @@ Covid_spread_clusters_text = html.Div([
         html.Div(children=["3. ", html.I("PovertyRate"), " is higher"]),
         html.Div(children=["4. ", html.I("Life expectancy"), " is lower"]),
         html.Div(children=["5. ", html.I("Uninsured"), " is higher"]),
-        html.Div(children=["6. ", html.I("Airports"), " is higher"])
+        html.Div(children=["6. ", html.I("Airports"), " is higher"]),
+        html.Div(children=["7. ", html.I("Vaccination"), " is lower"])
     ]),
     html.Br()
 
