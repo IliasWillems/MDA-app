@@ -237,6 +237,11 @@ def update_figure_inf_svm(state_nbr_int):
                              y=predicted_values[range(0, to_predict)],
                              name="Predicted data", connectgaps=True))
 
+    fig.update_layout(
+        xaxis_title="Week number",
+        yaxis_title="Infection rate"
+    )
+
     return fig
 
 
